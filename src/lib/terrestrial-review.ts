@@ -1,6 +1,17 @@
 import { z } from "zod";
 import tierSettings from "@/data/terrestrial-review-tiers.json";
 import { terrestrialExpertLetterNotes } from "@/lib/terrestrial-expert-checks";
+type JsonValue = string | number | boolean | null | JsonValue[] | { [key: string]: JsonValue };
+const jsonValue: z.ZodType<JsonValue> = z.lazy(() =>
+  z.union([
+    z.string(),
+    z.number().finite(),
+    z.boolean(),
+    z.null(),
+    z.array(jsonValue),
+    z.record(jsonValue),
+  ]),
+);
 
 export type GeographicTier = "high" | "medium" | "low" | "unclassified";
 export function terrestrialTier(administration: string): { tier: GeographicTier; reason: string } {
@@ -42,8 +53,8 @@ const noticeRawSchema = z
     prov: z.string(),
     intent: z.string(),
   })
-  .catchall(z.string());
-const geoRawSchema = z.object({ site_name: z.string().optional() }).catchall(z.string());
+  .catchall(jsonValue);
+const geoRawSchema = z.object({ site_name: z.string().optional() }).catchall(jsonValue);
 const antennaRawSchema = z
   .object({
     pwr_dbw: z.string().optional(),
@@ -53,8 +64,8 @@ const antennaRawSchema = z
     azm_max_e: z.string().optional(),
     gain_max: z.string().optional(),
   })
-  .catchall(z.string());
-const rowSchema = z
+  .catchall(jsonValue);
+export const rowSchema = z
   .object({
     notice: z.object({ source: sourceSchema, raw: noticeRawSchema }).passthrough(),
     screenStatus: z.string(),
@@ -247,7 +258,12 @@ export function terrestrialWorkload(rows: TerrestrialRow[], reviews: Terrestrial
 }
 
 /** Deterministic selected-evidence request, not an objection or confirmed interference finding. */
-export function terrestrialLetter(row: TerrestrialRow, date = new Date()): string {
+export function terrestrialLetter(
+  row: TerrestrialRow,
+  date = new Date(),
+  issue = 3076,
+  synthetic = false,
+): string {
   const raw = row.notice.raw;
   const stations = row.matchedFinnishRows
     .map(
@@ -260,11 +276,11 @@ Date: ${date.toISOString().slice(0, 10)}
 
 To: Administration of ${raw.adm}
 
-Subject: Request for technical clarification and bilateral coordination — BR IFIC 3076, notice ${raw.terrakey}
+Subject: Request for technical clarification and bilateral coordination — BR IFIC ${issue}, notice ${raw.terrakey}
 
 Dear Sir/Madam,
 
-The Administration of Finland is reviewing the terrestrial notice ${raw.terrakey}, assignment ${raw.assgn_id || "not reported"}, site ${siteName(row)}, published in BR IFIC 3076. The reported provision is ${raw.prov || "not reported"}; its applicability remains to be confirmed.
+${synthetic ? "Synthetic demonstration — supplied evidence is unverified.\n\n" : ""}The Administration of Finland is reviewing the terrestrial notice ${raw.terrakey}, assignment ${raw.assgn_id || "not reported"}, site ${siteName(row)}, published in BR IFIC ${issue}. The reported provision is ${raw.prov || "not reported"}; its applicability remains to be confirmed.
 
 The reported frequency interval is ${intervalLabel(row)}. ${hasOverlap(row) ? "The offline frequency screening identified overlap with the following Finnish reception intervals:" : "No direct overlap was identified in the available Finnish Excel intervals. National, adjacent-band and geographic relevance remains unresolved."}
 ${stations}

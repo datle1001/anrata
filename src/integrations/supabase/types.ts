@@ -104,6 +104,101 @@ export type Database = {
         }
         Relationships: []
       }
+      terrestrial_publications: {
+        Row: {
+          artifact: Json
+          filename: string
+          id: string
+          issue: number
+          owner_scope: string
+          raw: string
+          sha256: string
+          transferred: boolean
+          uploaded_at: string
+          user_id: string | null
+        }
+        Insert: {
+          artifact: Json
+          filename: string
+          id?: string
+          issue: number
+          owner_scope: string
+          raw: string
+          sha256: string
+          transferred?: boolean
+          uploaded_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          artifact?: Json
+          filename?: string
+          id?: string
+          issue?: number
+          owner_scope?: string
+          raw?: string
+          sha256?: string
+          transferred?: boolean
+          uploaded_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      terrestrial_uploaded_notices: {
+        Row: {
+          administration: string
+          assignment_id: string
+          changes: Json | null
+          id: string
+          issue: number
+          notice_id: string
+          owner_scope: string
+          publication_id: string
+          raw: Json
+          state: string
+          updated_at: string
+          user_id: string | null
+          viewed_at: string | null
+        }
+        Insert: {
+          administration: string
+          assignment_id: string
+          changes?: Json | null
+          id?: string
+          issue: number
+          notice_id: string
+          owner_scope: string
+          publication_id: string
+          raw: Json
+          state?: string
+          updated_at?: string
+          user_id?: string | null
+          viewed_at?: string | null
+        }
+        Update: {
+          administration?: string
+          assignment_id?: string
+          changes?: Json | null
+          id?: string
+          issue?: number
+          notice_id?: string
+          owner_scope?: string
+          publication_id?: string
+          raw?: Json
+          state?: string
+          updated_at?: string
+          user_id?: string | null
+          viewed_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "terrestrial_uploaded_notices_publication_id_fkey"
+            columns: ["publication_id"]
+            isOneToOne: false
+            referencedRelation: "terrestrial_publications"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       uploaded_filings: {
         Row: {
           administration: string

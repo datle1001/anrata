@@ -209,7 +209,7 @@ Finnish Transport and Communications Agency Traficom`;
             </div>
           </div>
 
-          <dl className="grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
+          <dl className="grid grid-cols-2 gap-3 text-center text-sm sm:grid-cols-4">
             {[
               ["Network", filing.name],
               ["Administration", filing.administration],
@@ -295,7 +295,7 @@ Finnish Transport and Communications Agency Traficom`;
               Band lookup against Traficom's national list. Some may not be notified to the ITU.
             </p>
             <div className="mt-3 max-h-64 overflow-auto">
-              <table className="w-full text-left text-xs">
+              <table className="w-full text-center text-xs">
                 <thead className="text-muted-foreground">
                   <tr>
                     <th className="py-1">Station</th>

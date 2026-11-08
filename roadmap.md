@@ -1,5 +1,13 @@
 # Traficom submission roadmap
 
+## Unified upload lifecycle and terrestrial extension
+- [x] Delete publication-specific Cloud/browser review and read state; re-upload starts NEW. Compare newly uploaded Space evidence against prior uploads, explicitly separate publication chronology.
+- [x] Add separate Space/Terrestrial inboxes with immediate owner-scoped Cloud originals and terrestrial record indexes, stored recursive Changes, scan/transfer and original export.
+- [x] Add uploaded terrestrial queue, standard evidence/changes branches, review lifecycle, exact evidence exports and selected-record Word drafts; preserve real/synthetic separation. Add offline packaging CLI retaining source hashes and all fields, with explicit 500-row / 2 MB limits.
+- [x] Expose fresh uploaded terrestrial evidence to Oma; add workspace administration coverage (not national trends) and REQUIREMENTS.md with honest validation gaps.
+- [x] Verified guest Space/Terrestrial reverse uploads, nested 0.002→0.003 and LHCP→RHCP Changes, retained baseline NEW, read persistence, deletion/re-upload fresh NEW/no baseline, mobile no page overflow and Oma exact fresh terrestrial values before Scan. 103 app tests and 73 offline tests pass; preview build OK. Temporary uploads removed.
+- [ ] Account end-to-end ownership check: blocked because the remix has no auth users; session minting confirmed this. Real-path P.1546, regulatory applicability and labeled accuracy validation still require domain inputs / expert verification, as documented in REQUIREMENTS.md.
+
 ## Conditional filing comparison display
 - [x] Restore standard detail for new/unmatched/older filings; show Changes only on a newer matched filing, preserving identity uncertainty and identifying both IFIC issues. Notice-ID changes are shown separately as provenance.
 - [x] Preserve arbitrary extra filing JSON at every nested level for existing recursive Cloud comparison; exact values, null vs missing, array items, additions/removals and type changes verified. Scan accepts Cloud key reordering without accepting evidence edits.
@@ -20,7 +28,7 @@
 - [x] Normalize accepted JSON publication filings in Cloud atomically, preserve original content and stored PFD, and enable scoped Oma queries across issues, administration, frequencies and PFD categories.
 - [x] Verify guest upload → two Cloud filing rows before transfer → Oma returns exact stored 4.25 dB → refresh → deletion; all 81 tests pass and preview build OK. Test uploads deleted. Supported imports remain validated synthetic Space JSON, not arbitrary official ITU MDB/PDF.
 - [ ] Verify authenticated ownership end-to-end: blocked because the remixed project has no auth users; sign in/create an account before testing. Guest storage and retrieval verified separately.
-- [ ] Center filing metadata and table values: deferred from earlier request; latest request only covers immediate Cloud upload and Oma access.
+- [x] Center uploaded Space metadata/table values and uploaded Terrestrial queue/match table values without altering evidence.
 
 ## Neutral identity and read-state update
 - [x] Create a distinctive transparent Antara logo and favicon; align Oma logo with MA.

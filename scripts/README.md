@@ -5,6 +5,15 @@ satellite or terrestrial interference assessment.
 
 ## Terrestrial publication comparison
 
+### Package a prepared subset for the Cloud inbox
+After offline screening and source review, package a selected land-mobile review artifact without changing its records:
+
+```sh
+python scripts/package_terrestrial_review.py /tmp/selected-terrestrial-screening.json /tmp/terrestrial-upload.json --published-at 2026-11-08
+```
+
+Use the actual publication date, not the example date. The versioned inbox accepts up to 500 notices / 2 MB per issue; the complete real 3076 artifact remains in the separate benchmark queue. Packaging retains all source metadata and a SHA-256 of the input. It does not perform screening, propagation or regulatory comparison. It rejects ambiguous duplicate identities and never truncates evidence. Use `--synthetic` only for explicitly synthetic inputs.
+
 Export `fxm_terra`, `fxm_pub_hist`, `pub`, and `pub_current_circ` from each
 unmodified terrestrial MDB into separate directories, then run:
 

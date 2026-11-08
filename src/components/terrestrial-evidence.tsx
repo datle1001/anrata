@@ -6,6 +6,7 @@ import asset from "@/data/terrestrial3076-screening.asset.json";
 import { TerrestrialPathPreparation } from "@/components/terrestrial-path-preparation";
 import { ClientOnly } from "@tanstack/react-router";
 import { TerrestrialQueue } from "@/components/terrestrial-queue";
+import { TerrestrialUploadQueue } from './terrestrial-upload-queue';
 
 export function TerrestrialEvidence() {
   const [downloading, setDownloading] = useState(false);
@@ -64,7 +65,7 @@ export function TerrestrialEvidence() {
           </p>
         }
       >
-        <TerrestrialQueue />
+        <><TerrestrialUploadQueue /><TerrestrialQueue /></>
       </ClientOnly>
       <details className="border-t border-border pt-5">
         <summary className="cursor-pointer font-semibold">

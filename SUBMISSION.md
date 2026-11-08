@@ -61,12 +61,20 @@ maxima**. Grid step 0.1°, boundary segment control 5 km; editable offline setti
 3 dB review buffer is team-selected, separate from limits and not applied where
 comparison is unresolved. No band has preferential priority.
 
+## November 8 functional extension
+- Separate Space and Terrestrial inboxes share the same owner-scoped Cloud database. Original JSON is persisted before Scan; Scan transfers validated supplied artifacts without recalculation.
+- Terrestrial land-mobile uploads retain source notices, transmitter/antenna joins, supplied Finnish matches and arbitrary nested fields. Cloud stores per-notice reviews and recursive field differences; Oma retrieves fresh uploaded evidence directly.
+- Changes follow upload sequence, including reverse IFIC order. Both issues and exact before/after values are shown; differences are not verified ITU MOD actions or withdrawal evidence. Earlier uploaded baselines retain standard detail.
+- Deleting an inbox file cascades its indexed evidence and associated review state. Space browser read/review markers are cleared only after Cloud deletion succeeds; re-upload starts unread.
+- Uploaded terrestrial records are separate from the real 3076 benchmark, with filters, 25-row pages, team geographic priority, source export and selected-issue Word coordination drafts. Workspace coverage is not a national trend detector.
+- Live Oma integration is functional; it does not replace deterministic calculations or expert validation.
+
 ## Honest scope and remaining blockers
 Not completed: comprehensive M4 applicability; Finnish satellite protection;
 API/A, CR/C and AP30/30A/30B-specific processing; non-GSO/EPFD; orbital/geographic
 continuous maxima; actual-path terrestrial prediction; true land-border layer
 validation; verified withdrawals; independently labeled accuracy assessment;
-live AI API integration; automatic monitoring or dispatch. These require model,
+automatic monitoring or dispatch. These require model,
 schema, source and expert validation beyond the present prepared demo. The
 organizer supplied no benchmark filings/reference implementation, which does
 not waive validation. This is a functional **partial-scope submission prototype**,
@@ -84,6 +92,6 @@ not fulfillment of every technical challenge objective.
 ## Submission handoff
 Submit the two CSVs, conditional calculation artifacts, this report, I/O
 documentation and source repository. Reviewer should approve all technical claims.
-The app is not yet published. Repository URL and final contest upload must be
+The published app is https://anrata.lovable.app; new preview changes require publishing to update that URL. Repository URL and final contest upload must be
 supplied by the author; neither is fabricated here. Video recording is optional
 under supplied sections 02–07 and has not been generated.
