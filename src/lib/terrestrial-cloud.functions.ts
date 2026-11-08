@@ -34,17 +34,15 @@ export const terrestrialCloud = createServerFn({ method: "POST" })
       const sha256 = Array.from(new Uint8Array(bytes), (b) => b.toString(16).padStart(2, "0")).join(
         "",
       );
-      const { error } = await access.db
-        .from("terrestrial_publications")
-        .insert({
-          owner_scope: access.scope,
-          user_id: access.userId,
-          issue: artifact.issue,
-          sha256,
-          filename: data.entry.filename,
-          raw: data.entry.raw,
-          artifact: JSON.parse(JSON.stringify(artifact)),
-        });
+      const { error } = await access.db.from("terrestrial_publications").insert({
+        owner_scope: access.scope,
+        user_id: access.userId,
+        issue: artifact.issue,
+        sha256,
+        filename: data.entry.filename,
+        raw: data.entry.raw,
+        artifact: JSON.parse(JSON.stringify(artifact)),
+      });
       if (error)
         throw new Error(
           error.code === "23505" ? "This Terrestrial issue is already uploaded." : error.message,
