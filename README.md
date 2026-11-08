@@ -11,6 +11,11 @@ The **Inbox** accepts supported Space/Terrestrial JSON and stores original evide
 
 Official M4 allocation snapshot and reproducible interval comparisons now accompany the existing Excel screening. Allocation overlap does not establish service applicability or safety. Historical PFD outputs remain unchanged; hardened regeneration gates service/power/footnotes and full-band criterion selection.
 
+Judges can test the flow themselves with the synthetic inputs in
+[public/demo-files](public/demo-files/README.md): three Space issues and three
+Terrestrial issues plus one stored P.1546 case, with the upload order and the
+expected Changes written out.
+
 For input/output schemas, reproducible commands, licenses and limitations see
 [scripts/README.md](scripts/README.md), [SUBMISSION.md](SUBMISSION.md), [REQUIREMENTS.md](REQUIREMENTS.md) and [CHALLENGE_AUDIT.md](CHALLENGE_AUDIT.md).
 

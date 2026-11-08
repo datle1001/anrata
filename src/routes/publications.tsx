@@ -20,7 +20,6 @@ import {
 import { downloadText } from "@/lib/review";
 import { clearUploadState } from "@/lib/upload-cleanup";
 import { TerrestrialInbox } from "@/components/terrestrial-inbox";
-import { DemoTestFiles } from "@/components/demo-test-files";
 
 export const Route = createFileRoute("/publications")({
   component: PublicationPortal,
@@ -152,7 +151,6 @@ function PublicationPortal() {
           {user ? "your account" : "this guest workspace"}. Accepted uploads are immediately
           available to Oma, before desk transfer.
         </p>
-        <DemoTestFiles />
         <nav className="mt-6 flex gap-3" aria-label="Inbox service">
           <Button
             variant={service === "space" ? "default" : "outline"}
