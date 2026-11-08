@@ -26,9 +26,7 @@ export function SyntheticSpaceRecord({
   row,
   state,
   onState,
-  isLatest = false,
 }: {
-  isLatest?: boolean;
   row: ReturnType<typeof transferredSpaceRows>[number];
   state: string;
   onState: (id: string, next: string) => void;
@@ -36,7 +34,7 @@ export function SyntheticSpaceRecord({
   const { entry, filing, id } = row;
   const now = useNow();
   const { viewedAt, markRead } = useDetailRead(`${entry.sha256}:${filing.id}`);
-  const unread = isLatest && isUnreadFiling(state, viewedAt);
+  const unread = isUnreadFiling(state, viewedAt);
   const [open, setOpen] = useState(false);
   const pfd = filing.pfdScreening;
   const [letterOpen, setLetterOpen] = useState(false);

@@ -864,7 +864,6 @@ export function NoticeRecords({
                   row={item.record}
                   state={syntheticReviews[item.record.id] ?? "unreviewed"}
                   onState={changeSyntheticState}
-                  isLatest={scan !== null && item.record.scannedAt === scan.at}
                 />
               ) : (
                 <RecordCard

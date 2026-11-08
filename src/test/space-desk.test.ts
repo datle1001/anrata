@@ -1,8 +1,46 @@
 import { describe, expect, it } from "vitest";
 import { deskPage, matchesSpaceWorkflow, transferredSpaceRows } from "@/lib/space-desk";
 import { parsePublication, publicationTemplate } from "@/lib/publication-inbox";
+import { detailReviewState, isUnreadFiling } from "@/lib/detail-review";
 
 describe("Space multi-publication desk", () => {
+  it("keeps all four unopened IFIC 3077 filings unread after IFIC 3081 arrives", () => {
+    const publication = parsePublication(publicationTemplate);
+    const filing = publication.filings[0];
+    if (!filing) throw new Error("Template must include a filing");
+    const filings = Array.from({ length: 4 }, (_, i) => ({
+      ...filing,
+      id: `SIM-3077-${i + 1}`,
+    }));
+    const first = {
+      publication: { ...publication, filings },
+      raw: "original 3077",
+      filename: "3077.json",
+      sha256: "hash3077",
+      uploadedAt: "2026-11-08T01:00:00Z",
+      transferred: true,
+    };
+    const second = {
+      ...first,
+      publication: { ...publication, issue: 3081 },
+      filename: "3081.json",
+      sha256: "hash3081",
+      uploadedAt: "2026-11-08T01:10:00Z",
+    };
+    const unread3077 = (entries: Parameters<typeof transferredSpaceRows>[0]) =>
+      transferredSpaceRows(entries)
+        .filter((row) => row.issue === "3077")
+        .filter(() => isUnreadFiling("unreviewed"));
+    expect(unread3077([first])).toHaveLength(4);
+    expect(latestScan(transferredSpaceRows([first, second]))?.filenames).toEqual(["3081.json"]);
+    expect(unread3077([first, second])).toHaveLength(4);
+    const rows = transferredSpaceRows([first, second]);
+    const viewedId = "SIM:3077:SIM-3077-1";
+    expect(rows.filter((row) => row.issue === "3077" && isUnreadFiling(
+      row.id === viewedId ? detailReviewState("unreviewed") : "unreviewed",
+      row.id === viewedId ? "2026-11-08T01:15:00Z" : undefined,
+    ))).toHaveLength(3);
+  });
   it("retains synthetic identities and unresolved status, transferring only selected publications", () => {
     const entry = {
       publication: parsePublication(publicationTemplate),

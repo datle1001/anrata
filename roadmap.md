@@ -1,5 +1,8 @@
 # Traficom submission roadmap
 
+## Multi-IFIC unread regression
+- [x] Keep unopened filings NEW independently of the most recent upload. Verified real guest uploads: four IFIC 3077 filings stay NEW after IFIC 3081; opening one leaves three NEW after refresh while all four 3081 filings remain NEW. Ten focused tests pass; preview build OK. Temporary uploads deleted.
+
 ## Cloud upload evidence and alignment
 - [x] Normalize accepted JSON publication filings in Cloud atomically, preserve original content and stored PFD, and enable scoped Oma queries across issues, administration, frequencies and PFD categories.
 - [x] Verify guest upload → two Cloud filing rows before transfer → Oma returns exact stored 4.25 dB → refresh → deletion; all 81 tests pass and preview build OK. Test uploads deleted. Supported imports remain validated synthetic Space JSON, not arbitrary official ITU MDB/PDF.
