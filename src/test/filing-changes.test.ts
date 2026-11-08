@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseFilingChanges } from "@/lib/filing-changes";
+import { hasEarlierFilingMatch, parseFilingChanges } from "@/lib/filing-changes";
 import { uploadedEvidencePage } from "@/lib/upload-evidence";
 import { parsePublication, publicationTemplate, type InboxEntry } from "@/lib/publication-inbox";
 
@@ -7,6 +7,20 @@ const stored = { version: 1, status: "changed", matchBasis: "Unique normalized n
   scope: "Stored comparison only", baseline: { issue: 3983, filingId: "OLD", sha256: "source-hash" },
   fields: [{ path: "lowerMHz", before: 10700, after: 10700.125, beforePresent: true, afterPresent: true }] };
 describe("Stored cross-IFIC differences", () => {
+  it("keeps unmatched new filings in the standard review branch", () => {
+    expect(hasEarlierFilingMatch(undefined, 3082)).toBe(false);
+    expect(hasEarlierFilingMatch(parseFilingChanges({ ...stored, status: "no-baseline", baseline: null, fields: [] }), 3082)).toBe(false);
+  });
+  it("only gives the newer matched filing the changes branch, never its baseline", () => {
+    const changes = parseFilingChanges({ ...stored, baseline: { ...stored.baseline, issue: 3081 } });
+    expect(hasEarlierFilingMatch(changes, 3082)).toBe(true);
+    expect(hasEarlierFilingMatch(changes, 3081)).toBe(false);
+    expect(hasEarlierFilingMatch(changes, 3077)).toBe(false);
+  });
+  it("recognizes identical repetitions separately from unmatched or ambiguous filings", () => {
+    expect(hasEarlierFilingMatch(parseFilingChanges({ ...stored, status: "unchanged", fields: [] }), 3984)).toBe(true);
+    expect(hasEarlierFilingMatch(parseFilingChanges({ ...stored, status: "ambiguous", baseline: null, fields: [] }), 3984)).toBe(false);
+  });
   it("preserves a small numeric change and its exact previous/current values", () => {
     const changes = parseFilingChanges(stored);
     expect(changes?.fields).toEqual([{ path: "lowerMHz", before: 10700, after: 10700.125, beforePresent: true, afterPresent: true }]);

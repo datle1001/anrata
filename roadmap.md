@@ -1,5 +1,10 @@
 # Traficom submission roadmap
 
+## Conditional filing comparison display
+- [x] Restore standard detail for new/unmatched/older filings; show Changes only on a newer matched filing, preserving identity uncertainty and identifying both IFIC issues. Notice-ID changes are shown separately as provenance.
+- [x] Preserve arbitrary extra filing JSON at every nested level for existing recursive Cloud comparison; exact values, null vs missing, array items, additions/removals and type changes verified. Scan accepts Cloud key reordering without accepting evidence edits.
+- [x] Verified three actual guest IFIC uploads: newest 4983 skips unrelated 4982 and compares to 4981; seven arbitrary/nested/PFD-extra differences, unchanged repetition, standard new/baseline detail, retained NEW, refresh, mobile and live Oma exact values checked. Temporary uploads deleted; 97 tests pass and preview build OK.
+
 ## Cross-IFIC changes-first review
 - [x] Persist owner-scoped previous/current field differences with baseline issue/hash; refresh after upload/deletion and preserve stored PFD unchanged. Exact ID/administration or unique normalized name/administration is a candidate match, not verified ITU modification; ambiguity remains unresolved.
 - [x] Show Changes first for repeated uploaded filings, keep full evidence collapsed, export the original comparison artifact and ground Oma follow-up in fresh stored differences.

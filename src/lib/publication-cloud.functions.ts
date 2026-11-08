@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getRequest } from "@tanstack/react-start/server";
 import { z } from "zod";
-import { parsePublication } from "./publication-inbox";
+import { parsePublication, sameFilingEvidence } from "./publication-inbox";
 import { uploadedFilingEvidence } from "./upload-evidence";
 
 export const cloudPublications = createServerFn({ method: "POST" })
@@ -18,7 +18,7 @@ export const cloudPublications = createServerFn({ method: "POST" })
       const original = parsePublication(JSON.parse(data.entry.raw));
       const publication = parsePublication(data.entry.publication);
       if (original.issue !== publication.issue || original.publishedAt !== publication.publishedAt ||
-          publication.filings.some((f) => !original.filings.some((source) => JSON.stringify(source) === JSON.stringify(f))))
+          publication.filings.some((f) => !original.filings.some((source) => sameFilingEvidence(source, f))))
         throw new Error("Stored rows must retain the original uploaded evidence.");
       const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(data.entry.raw));
       const sha256 = Array.from(new Uint8Array(digest), (b) => b.toString(16).padStart(2, "0")).join("");

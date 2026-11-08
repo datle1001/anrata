@@ -2,6 +2,11 @@ import { z } from "zod";
 import type { FilingChanges } from "./filing-changes";
 
 const num = z.number().finite();
+type JsonValue = string | number | boolean | null | JsonValue[] | { [key: string]: JsonValue };
+// Preserve additional evidence at every level while still validating known required fields.
+const jsonValue: z.ZodType<JsonValue> = z.lazy(() => z.union([
+  z.string(), z.number().finite(), z.boolean(), z.null(), z.array(jsonValue), z.record(jsonValue),
+]));
 /** Offline-computed PFD screening supplied with the upload; displayed as stored, never recomputed. */
 export const storedScreeningSchema = z
   .object({
@@ -24,7 +29,7 @@ export const storedScreeningSchema = z
               psdMaxDbwHz: num,
               gainMaxDbi: num,
               satelliteLongitudeDeg: num.optional(),
-            }),
+            }).catchall(jsonValue),
             worstPoint: z.object({
               label: z.string().min(1).max(200),
               lat: num,
@@ -35,14 +40,14 @@ export const storedScreeningSchema = z
               pfdDb: num,
               limitDb: num,
               marginDb: num,
-            }),
+            }).catchall(jsonValue),
           })
-          .strict(),
+          .catchall(jsonValue),
       )
       .max(50)
       .default([]),
   })
-  .strict();
+  .catchall(jsonValue);
 export type StoredScreening = z.infer<typeof storedScreeningSchema>;
 
 const filingSchema = z
@@ -58,7 +63,7 @@ const filingSchema = z
     blockers: z.array(z.string().min(1).max(2000)).max(30),
     pfdScreening: storedScreeningSchema.optional(),
   })
-  .strict()
+  .catchall(jsonValue)
   .refine((r) => r.upperMHz > r.lowerMHz, "Frequency bounds must increase.");
 const publicationSchema = z
   .object({
@@ -128,6 +133,17 @@ export function parsePublication(input: unknown) {
   if (typeof input === "object" && input !== null && "publication" in input)
     return circularSchema.parse(input);
   return publicationSchema.parse(input);
+}
+/** JSON object key order can change in Cloud; array order and exact values cannot. */
+export function sameFilingEvidence(a: unknown, b: unknown): boolean {
+  function canonical(value: unknown): unknown {
+    if (Array.isArray(value)) return value.map(canonical);
+    if (value !== null && typeof value === "object") return Object.fromEntries(
+      Object.entries(value).sort(([a], [b]) => a.localeCompare(b)).map(([key, item]) => [key, canonical(item)]),
+    );
+    return value;
+  }
+  return JSON.stringify(canonical(a)) === JSON.stringify(canonical(b));
 }
 export function readInbox(storage: Pick<Storage, "getItem">): InboxEntry[] {
   try {

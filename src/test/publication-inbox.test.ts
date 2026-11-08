@@ -5,6 +5,7 @@ import {
   publicationTemplate,
   readInbox,
   inboxKey,
+  sameFilingEvidence,
   type InboxEntry,
 } from "@/lib/publication-inbox";
 import { recentContext, matchesAdministration } from "@/lib/oma/context";
@@ -20,6 +21,36 @@ const entry: InboxEntry = {
   transferred: false,
 };
 describe("Publication and conversational boundaries", () => {
+  it("permits Cloud key reordering on scan but rejects modified values or array ordering", () => {
+    expect(sameFilingEvidence({ extra: { z: 1, a: 2 }, id: "A" }, { id: "A", extra: { a: 2, z: 1 } })).toBe(true);
+    expect(sameFilingEvidence({ extra: { a: 2 } }, { extra: { a: 2.001 } })).toBe(false);
+    expect(sameFilingEvidence({ extra: [1, 2] }, { extra: [2, 1] })).toBe(false);
+    expect(sameFilingEvidence({ extra: null }, {})).toBe(false);
+  });
+  it("preserves arbitrary filing data and nested additions/removals for comprehensive comparison", () => {
+    const notices = publicationTemplate.notices.map((f) => ({ ...f,
+      coordination: { polarization: "RHCP", antennas: [{ serial: "A1", tilt: 0.001 }], nullable: null },
+      affectedStations: [{ name: "FI-TEST", metadata: { active: true } }],
+    }));
+    const parsed = parsePublication({ ...publicationTemplate, notices });
+    expect(parsed.filings).toEqual(notices);
+    const revised = { ...notices[0], coordination: { polarization: "LHCP", antennas: [{ serial: "A1", tilt: 0.002 }], added: "new value" } };
+    const next = parsePublication({ ...publicationTemplate, publication: { ...publicationTemplate.publication, ific_no: 3082, total_notices: 1 }, notices: [revised] });
+    expect(next.filings[0]).toEqual(revised);
+  });
+  it("preserves extra evidence inside stored PFD groups, inputs and sample points without recomputing", () => {
+    const pfdScreening = { status: "within", groups: [{ groupId: "g", freqLowMHz: 10700, freqHighMHz: 11700,
+      citation: "Supplied demo", referenceBandwidthHz: 4000, antenna: { polarization: "RHCP" },
+      inputs: { psdMaxDbwHz: -60, gainMaxDbi: 0, calibration: { note: "original" } },
+      worstPoint: { label: "FI", lat: 60, lon: 25, arrivalAngleDeg: 10, slantRangeKm: 38000, spreadingLossDb: 160,
+        pfdDb: -150, limitDb: -145, marginDb: -5, source: { revision: 2 } },
+    }], additionalAudit: { checked: false } };
+    const parsed = parsePublication({ ...publicationTemplate, notices: publicationTemplate.notices.map((f) => ({ ...f, pfdScreening })) });
+    expect(parsed.filings[0]?.pfdScreening).toEqual(pfdScreening);
+  });
+  it("does not let extra evidence bypass validation of known filing fields", () => {
+    expect(() => parsePublication({ ...publicationTemplate, notices: [{ ...publicationTemplate.notices[0], lowerMHz: "wrong", extra: { valid: true } }] })).toThrow();
+  });
   it("preserves unresolved synthetic rows without manufacturing PFD", () => {
     const p = parsePublication(publicationTemplate);
     expect(p.synthetic).toBe(true);

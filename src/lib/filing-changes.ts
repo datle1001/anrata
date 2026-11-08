@@ -16,6 +16,11 @@ export const filingChangesSchema = z.object({
     beforePresent: z.boolean(), afterPresent: z.boolean() })),
 });
 export type FilingChanges = z.infer<typeof filingChangesSchema> & { artifactJson: string };
+/** Only a newer filing with one confirmed candidate baseline gets the changes branch. */
+export function hasEarlierFilingMatch(changes: FilingChanges | undefined, currentIssue: number): changes is FilingChanges {
+  return !!changes && (changes.status === "changed" || changes.status === "unchanged") &&
+    changes.baseline !== null && changes.baseline.issue < currentIssue;
+}
 export function parseFilingChanges(input: unknown): FilingChanges | undefined {
   const parsed = filingChangesSchema.safeParse(input);
   if (!parsed.success) return undefined;

@@ -205,7 +205,7 @@ function PublicationPortal() {
                 {!e.transferred ? (
                   <Button disabled={busy} onClick={() => void transfer(e.sha256)}>
                     <CheckCircle2 />
-                    Validate & transfer to desk
+                    Scan & transfer to Space Desk
                   </Button>
                 ) : (
                   <Button asChild>

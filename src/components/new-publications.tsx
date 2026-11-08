@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { CheckCircle2, ChevronDown, Download, Eye } from "lucide-react";
 import { LetterDialog } from "@/components/letter-dialog";
 import { pfdMeta, type Station } from "@/lib/dossier";
@@ -9,6 +9,12 @@ import { useNow } from "@/hooks/use-now";
 import { useDetailRead } from "@/hooks/use-detail-read";
 import { detailReviewState, isUnreadFiling } from "@/lib/detail-review";
 import { FilingChangesView } from "@/components/filing-changes";
+import { hasEarlierFilingMatch } from "@/lib/filing-changes";
+
+function CurrentFilingEvidence({ collapsed, children }: { collapsed: boolean; children: ReactNode }) {
+  if (!collapsed) return <div className="min-w-0 space-y-5">{children}</div>;
+  return <details className="min-w-0"><summary className="cursor-pointer text-sm font-semibold">Full current filing evidence</summary><div className="mt-4 space-y-5">{children}</div></details>;
+}
 
 const badgeStyle: Record<string, string> = {
   exceeds: "text-destructive border-destructive/50",
@@ -39,7 +45,7 @@ export function SyntheticSpaceRecord({
   const [open, setOpen] = useState(false);
   const pfd = filing.pfdScreening;
   const changes = entry.filingChanges?.[filing.id];
-  const repeated = changes?.status === "changed" || changes?.status === "unchanged";
+  const repeated = hasEarlierFilingMatch(changes, entry.publication.issue);
   const [letterOpen, setLetterOpen] = useState(false);
   const stations = useMemo(
     () =>
@@ -115,7 +121,7 @@ Finnish Transport and Communications Agency Traficom`;
           <span className="min-w-0 flex-1">
             <span className="flex flex-wrap items-center gap-2 break-words font-medium">
               {filing.name}
-              {repeated && <span className="text-xs font-semibold text-secondary">{changes.status === "changed" ? `${changes.fields.length} changes` : "Unchanged"} · IFIC {changes.baseline?.issue}</span>}
+              {repeated && changes && <span className="text-xs font-semibold text-secondary">{changes.status === "changed" ? `${changes.fields.length} changes` : "Repeated · identical data"} · IFIC {changes.baseline?.issue}</span>}
               {unread && (
                 <span className="rounded bg-primary px-1.5 py-0.5 text-[10px] font-semibold text-primary-foreground">
                   NEW
@@ -144,14 +150,13 @@ Finnish Transport and Communications Agency Traficom`;
           <ChevronDown className="size-4 shrink-0 transition-transform group-open:rotate-180" />
         </summary>
         <div className="mx-4 mt-4 space-y-5">
-          {changes && <FilingChangesView changes={changes} />}
+          {repeated && changes && <FilingChangesView changes={changes} currentIssue={entry.publication.issue} networkName={filing.name} currentFilingId={filing.id} />}
+          {changes?.status === "ambiguous" && <p role="status" className="text-sm text-chart-1">Multiple earlier filing candidates; identity requires expert confirmation. No unique comparison is available.</p>}
           {repeated && <div className="flex flex-wrap gap-2">
             <Button size="sm" onClick={() => setLetterOpen(true)}><Eye />Preview / edit letter</Button>
             <Button size="sm" variant="outline" onClick={() => onState(id, state === "completed" ? "unreviewed" : "completed")}><CheckCircle2 />{state === "completed" ? "Reopen review" : "Complete review"}</Button>
           </div>}
-          <details open={repeated ? undefined : true} className="min-w-0">
-          <summary className="cursor-pointer text-sm font-semibold">Full current filing evidence</summary>
-          <div className="mt-4 space-y-5">
+          <CurrentFilingEvidence collapsed={repeated}>
           <div className="border-l-2 border-secondary pl-4">
             <h3 className="mb-2 text-xs font-semibold text-secondary">REVIEW TRIGGER</h3>
             <p className="mb-3 text-lg font-semibold">
@@ -337,8 +342,7 @@ Finnish Transport and Communications Agency Traficom`;
               Download original evidence (JSON)
             </button>
           </details>
-          </div>
-          </details>
+          </CurrentFilingEvidence>
           <LetterDialog
             title={filing.name}
             fileName={`Letter_${filing.name.replace(/\W+/g, "_")}_IFIC${row.issue}.docx`}

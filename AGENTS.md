@@ -61,3 +61,4 @@ use the editor.
 - Space uses a paginated source-aware presentation adapter for real and transferred synthetic publications; preserve source-specific evidence and review ownership so a shared desk never merges synthetic technical findings into real artifacts.
 - Geographic review tiers come from a shared editable team settings file and remain separate from calculation evidence; Oma terrestrial queries load the same validated current asset as the desk and aggregate before pagination to prevent summary-example undercounts.
 - Uploaded Space `pfdScreening` is shown as stored, never recomputed.
+- Preserve extra filing JSON; gate Changes on an earlier match to retain standard detail.
