@@ -30,10 +30,14 @@ def prepare(screening, finland):
     location = case['transmitterLocations'][0]
     point = location['reportedPoint']
     antenna = location['antennaEvidence'][0]['raw']
-    targets = {r['station']: r for r in finland['records']}
     paths = []
     for matched in case['matchedFinnishRows']:
-        row = targets[matched['station']]
+        candidates = [r for r in finland['records'] if r['station'] == matched['station']]
+        if matched.get('source'):
+            candidates = [r for r in candidates if r['source'] == matched['source']]
+        if len(candidates) != 1:
+            raise ValueError('Matched Finnish source row missing or ambiguous; station number alone is not unique')
+        row = candidates[0]
         lat, lon = float(row['raw']['Latitude']), float(row['raw']['Longitude'])
         distance, bearing = distance_and_bearing(point['latitudeDeg'], point['longitudeDeg'], lat, lon)
         paths.append({

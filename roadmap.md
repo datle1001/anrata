@@ -1,5 +1,12 @@
 # Traficom submission roadmap
 
+## Final challenge and organizer Q&A audit
+- [x] Cross-check mandatory Space/Terrestrial requirements and every organizer clarification; record indicative 70/100 scoring and missing resources in CHALLENGE_AUDIT.md.
+- [x] Harden offline unique whole-band limit selection, service/power/footnote confirmation and shared review margins; retain all groups/hashes in future regeneration without rewriting historical calculation artifacts.
+- [x] Add official 5,917-row M4 snapshot and immutable interval evidence (1,658 terrestrial rows without Excel matches remain allocation-overlap candidates, not interference cases); polish source/validation visibility, separate benchmark downloads and documentation.
+- [x] 107 app and 86 offline tests pass, targeted lint and preview build OK. Desktop/mobile evidence section, six actual downloads, unchanged calculation JSON, M4 counts and all content-route metadata verified; no browser errors/mobile overflow. No user demo files uploaded.
+- [ ] Full technical completion remains blocked by verified per-case applicability, actual terrestrial propagation inputs/border paths, independent case labels and authorized IFIC monitoring.
+
 ## Terrestrial workflow parity follow-through
 - [x] Complete uploaded-notice filters, live workload shortcuts, explicit record selection/export, raw action visibility and standard Review Trigger; keep review actions reachable in Changes mode.
 - [x] All 107 automated tests pass; changed-file lint and preview build OK. Real IFIC 3076 detail, review/reopen and 502px mobile layout verified without browser errors or page overflow. User-provided upload tests deferred as requested; account ownership and actual-path predictions retain the documented external-input blockers.

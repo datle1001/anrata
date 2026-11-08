@@ -6,7 +6,7 @@ import asset from "@/data/terrestrial3076-screening.asset.json";
 import { TerrestrialPathPreparation } from "@/components/terrestrial-path-preparation";
 import { ClientOnly } from "@tanstack/react-router";
 import { TerrestrialQueue } from "@/components/terrestrial-queue";
-import { TerrestrialUploadQueue } from './terrestrial-upload-queue';
+import { TerrestrialUploadQueue } from "./terrestrial-upload-queue";
 
 export function TerrestrialEvidence() {
   const [downloading, setDownloading] = useState(false);
@@ -65,7 +65,10 @@ export function TerrestrialEvidence() {
           </p>
         }
       >
-        <><TerrestrialUploadQueue /><TerrestrialQueue /></>
+        <>
+          <TerrestrialUploadQueue />
+          <TerrestrialQueue />
+        </>
       </ClientOnly>
       <details className="border-t border-border pt-5">
         <summary className="cursor-pointer font-semibold">
@@ -141,7 +144,7 @@ export function TerrestrialEvidence() {
             <section className="py-8">
               <h2 className="mb-4 text-lg font-semibold">Matched Finnish reception intervals</h2>
               <div className="overflow-x-auto">
-                <table className="w-full min-w-[480px] text-left text-sm">
+                <table className="w-full min-w-[480px] text-center text-sm">
                   <thead className="border-b border-border text-muted-foreground">
                     <tr>
                       <th className="pb-3">Station</th>

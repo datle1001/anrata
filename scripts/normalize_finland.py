@@ -4,6 +4,7 @@ Run: python3 scripts/normalize_finland.py INPUT.xlsx OUTPUT.json
 Requires openpyxl. Keeps every source row, including duplicates and anomalies.
 """
 import json
+import hashlib
 import re
 import sys
 from pathlib import Path
@@ -36,7 +37,7 @@ def protected_frequency(tx, rx):
 
 
 def effective_bandwidth(channel, transmission):
-    known = [v for v in (channel, transmission) if v is not None]
+    known = [v for v in (channel, transmission) if v is not None and v > 0]
     return min(known) if known else None
 
 
@@ -72,7 +73,7 @@ def normalize(input_path):
         if not raw["Class of licence"]:
             flags.append("Missing licence class: MUUT label applied")
         if str(raw["Station number"]) == "440557":
-            flags.append("Organizer-confirmed typo: raw values retained; correction unresolved")
+            flags.append("Organizer-confirmed bandwidth typo: smaller bandwidth selected per Q&A; raw values retained")
         key = json.dumps(raw, sort_keys=True, default=str)
         if key in seen:
             flags.append("Exact duplicate source row: retained")
@@ -89,6 +90,8 @@ def normalize(input_path):
                      "raw": raw, "flags": flags})
     return {"dataset": "Traficom synthetic frequencies of interest", "version": "normalization-v2",
             "scope": "Frequency preparation only; no interference assessment or geographic validation",
+            "inputSha256": hashlib.sha256(Path(input_path).read_bytes()).hexdigest(),
+            "normalizationPolicy": "Organizer Q&A: RX then TX fallback; smaller bandwidth on mismatch; MUUT for absent licence class; raw values retained",
             "recordCount": len(rows), "flaggedRecordCount": sum(bool(r["flags"]) for r in rows), "records": rows}
 
 

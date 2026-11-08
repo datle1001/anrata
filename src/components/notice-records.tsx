@@ -95,6 +95,10 @@ function PfdCalc({ g }: { g: PfdGroup }) {
       <p className="mt-2 font-sans text-muted-foreground">
         Source: {g.citation} — {g.service}
       </p>
+      <p className="mt-2 font-sans text-chart-1">
+        Conditional full-gain estimate. Service, power-envelope and footnote applicability require
+        expert confirmation. This does not clear unevaluated bands or reception areas.
+      </p>
       {g.footnoteCheck && <p className="font-sans text-chart-1">{g.footnoteCheck}</p>}
     </div>
   );
@@ -179,6 +183,11 @@ function RecordCard({
                   : r.features.missingPower
                     ? "Missing transmitter power evidence"
                     : (p.reason ?? "Frequency overlap · technical finding unresolved")}
+            </p>
+            <p className="mb-3 break-words text-xs text-muted-foreground">
+              Source: {r.source.file} · notice {r.noticeId}. Stored group preview: {p.groups.length}{" "}
+              of {p.groupsCalculated ?? p.groups.length} calculations; unsupported groups remain
+              unresolved.
             </p>
             <ul className="list-disc space-y-1 pl-5 text-sm">
               {reviewReasons(r).map((x) => (

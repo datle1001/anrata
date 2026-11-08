@@ -20,6 +20,7 @@ This is a working partial-scope demonstrator, not a guaranteed 100-point submiss
 7. Uploaded Terrestrial notices can be filtered by issue, administration, raw action, team priority, interval matches, comparison, source and review state. Select individual records or a page to export only chosen evidence; stored comparison JSON is preserved unchanged. Review actions remain available without expanding repeated-notice evidence.
 
 ## Current limits
+- Final written-requirement/Q&A audit and indicative **70/100** estimate: see `CHALLENGE_AUDIT.md`; this is not the judges' score. Official M4 API snapshot and interval evidence now cover retained source populations, but regulatory service mapping remains incomplete.
 - Space demo JSON and versioned terrestrial offline review JSON only; raw MDB preparation remains CLI/offline.
 - Terrestrial upload limit: 500 records / 2 MB per issue. Full real IFIC 3076 remains separately accessible and exportable; it is not silently truncated for this inbox.
 - Team geographic tiers order reading only. Workspace administration counts are coverage, not a national trend or risk verdict.

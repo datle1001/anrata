@@ -3,6 +3,27 @@
 These scripts prepare and audit real inputs. They do **not** implement a complete
 satellite or terrestrial interference assessment.
 
+## Official M4 snapshot and interval evidence
+
+```sh
+curl -L --fail 'https://opendata.traficom.fi/api/v13/Taajuusjakotaulukko' -o /tmp/m4-allocation-raw.json
+lovable-assets get --file src/data/space3074-frequency-candidates.asset.json --output /tmp/space3074-frequency-candidates.json
+lovable-assets get --file src/data/terrestrial3076-screening.asset.json --output /tmp/terrestrial3076-screening.json
+python scripts/prepare_m4_evidence.py /tmp/m4-allocation-raw.json /tmp/space3074-frequency-candidates.json /tmp/terrestrial3076-screening.json /tmp/m4-evidence.json
+```
+
+Numeric `Sub_band_*__Hz_` fields are converted explicitly to MHz; invalid fields remain unresolved. Raw API rows, IDs, source positions and hashes are preserved. This compares the retained Space Excel-overlap pool and all retained terrestrial rows to M4 sub-bands, not all Space records or service/provision applicability. Power units and licence-exemption are not inferred. Stored November 8 snapshot: 5,917 allocation rows; all 1,858 retained terrestrial rows overlap a listed allocation, including 1,658 without Excel matches. These are broad allocation matches, not 1,858 interference cases.
+
+## Hardened bulk GSO PFD regeneration
+
+Historical stored PFD artifacts remain unchanged. After notice preparation:
+
+```sh
+python scripts/screen_gso_pfd.py /tmp/ific-work src/data/ific3074-notice-records.json src/data/finland-normalized.json src/data/pfd-limits.json /tmp/pfd-screening.json --settings src/data/geographic-screening-settings.json --confirmations /tmp/reviewed-group-confirmations.json
+```
+
+Confirmations are keyed by group ID: `service` must match the row; `applicabilityConfirmed` and `powerEnvelopeConfirmed` must be true; `evidenceReference` identifies reviewed evidence; conditional-footnote rows require `footnotesConfirmed: true`. Omit confirmations to retain conditional numerical estimates with criterion-relative status unresolved. No confirmation is fabricated. A group must fit wholly within one unique encoded row; boundary-spanning groups remain unresolved. All calculated groups are retained. Input/script/settings hashes travel with output; review buffer comes from shared settings, not a hard-coded regulatory rule. Unittest discovery now includes bulk PFD formula, boundary, ambiguity, buffer and applicability regressions.
+
 ## Terrestrial publication comparison
 
 ### Package a prepared subset for the Cloud inbox
@@ -218,7 +239,4 @@ Each row has `id`, `issue`, `kind` (space/terrestrial), `name`, `administration`
 finite-or-null `lowerMHz`/`upperMHz`, `frequencyRows`, `groupCount`, `matchedRows`
 (Excel row numbers), `status`, `classifications`, `actionRaw`, `source`
 (file/table/csvRow), `groupIds`, `blockers`, `calculationScope`.
-Imported source/regulatory claims remain unverified. No backend/LLM API is used;
-drafts are evidence-derived templates, expert-approved, and never sent. Imports,
-draft edits and selection disappear on refresh. No claim of measured time savings
-or independently validated recognition accuracy is made.
+Imported source/regulatory claims remain unverified. This generic `scope/rows` import is a transient offline workspace. The separate `/publications` inbox persists accepted Space/Terrestrial originals and evidence in Cloud before Scan, and Oma reads those stored uploads. Drafts are expert-approved and never sent. No measured time-saving or independently validated recognition accuracy is claimed.

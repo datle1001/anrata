@@ -89,6 +89,10 @@ export function TerrestrialDetail({
               assignment {raw.assgn_id || "not reported"}
             </DialogDescription>
           </DialogHeader>
+          <p className="break-words text-xs text-muted-foreground">
+            Source: {row.notice.source.file} · {row.notice.source.table} · CSV row{" "}
+            {row.notice.source.csvRow}. Technical conclusions remain separate from review state.
+          </p>
           {repeated && changes && (
             <FilingChangesView
               changes={changes}

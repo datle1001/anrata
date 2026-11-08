@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "sourceUrl": "https://opendata.traficom.fi/api/v13/Taajuusjakotaulukko",
+  "scope": "Official M4 sub-band interval overlap only, not regulatory service applicability or interference assessment. Space input is the retained Excel-overlap pool, not the entire IFIC; all retained terrestrial rows are assessed for interval overlap.",
+  "metrics": {
+    "m4Rows": 5917,
+    "m4UnresolvedRows": 0,
+    "spaceFrequencyRows": 14305,
+    "spaceMatchedRows": 14305,
+    "terrestrialRows": 1858,
+    "terrestrialMatchedRows": 1858,
+    "terrestrialM4MatchesWithoutExcel": 1658
+  },
+  "inputSha256": {
+    "m4-allocation-raw.json": "41ffdd0ed84a40c19fd4bb3771699a63c879b1ad4f2201dcb1cd3c37524871fb",
+    "space3074-frequency-candidates.json": "c5fc0a17867d4e4ebcd9f3f2e839131de7eb63fc730e6cc4fb7a1329907b448a",
+    "terrestrial3076-screening.json": "c98b658f9ac8d6298b8ba59e67aaaea4f37802dd8fbf1ac3a275f77248768c9e"
+  },
+  "scriptSha256": "e8cb9e2814a0e0fd9075bfcff4971f7a537882407f1a6b54b5d1dca4d861330c",
+  "qualifications": [
+    "M4 allocation overlap alone does not confirm protected service or applicable limits.",
+    "No Excel match never excludes M4 or licence-exempt reception.",
+    "API timestamps are retrieval metadata, not independently verified legal effective dates.",
+    "Power fields are retained raw; their units and applicability are not inferred."
+  ],
+  "retrievedAt": "2026-11-08T05:28:46.305281+00:00"
+}

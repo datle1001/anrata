@@ -30,6 +30,21 @@ class PreparationTests(unittest.TestCase):
         self.assertIsNone(path['fieldStrengthDbUvPerM'])
         self.assertIsNone(path['coordinationMarginDb'])
 
+    def test_duplicate_station_resolves_by_source_row(self):
+        first = {'station': '1', 'source': {'row': 1}, 'raw': {'Latitude': 20, 'Longitude': 0}}
+        second = {**first, 'source': {'row': 2}, 'raw': {'Latitude': 1, 'Longitude': 0}}
+        data = {'issue': 3076, 'example': {
+            'notice': {'raw': {'freq_assgn': '803.5'}},
+            'transmitterLocations': [{'reportedPoint': {'latitudeDeg': 0, 'longitudeDeg': 0},
+                'antennaEvidence': [{'raw': {'pwr_dbw': '32.3', 'eff_hgtmax': '61'}}]}],
+            'matchedFinnishRows': [{'station': '1', 'source': {'row': 1}}]}}
+        result = prepare(data, {'records': [first, second]})
+        self.assertEqual(result['paths'][0]['source']['row'], 1)
+        self.assertFalse(result['paths'][0]['withinP1546DistanceDomain'])
+        del data['example']['matchedFinnishRows'][0]['source']
+        with self.assertRaises(ValueError):
+            prepare(data, {'records': [first, second]})
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -24,7 +24,7 @@ export function terrestrialExpertChecks(row: TerrestrialRow) {
       selectedThresholdDbUvPerM: null,
       fieldStrengthDbUvPerM: null,
       detail:
-        "T/R 25-08 A1.2.3: 12 dB(µV/m) is a conditional 108–380 MHz reference, not a universal limit. Applicability, channel spacing and spectrum conversion must be confirmed. Above 470 MHz requires separately confirmed extension applicability. Actual-path border / territorial-sea field strength is unresolved.",
+        "Organizer Q&A selects T/R 25-08 A1.2.3 for this land-mobile challenge, including the 20 dB(µV/m) above-400 MHz reference above 470 MHz. The 12 dB(µV/m) reference applies only to 108–380 MHz. Confirm per-case applicability and power in each 25 kHz window. P.1546-6 is accepted; the optional 10 m to 3 m correction is not required. Actual-path land-border / outer territorial-sea field strength remains unresolved.",
     },
   };
 }

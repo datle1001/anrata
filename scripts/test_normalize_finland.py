@@ -12,6 +12,13 @@ class OrganizerRules(unittest.TestCase):
     def test_smaller_bandwidth(self):
         self.assertEqual(effective_bandwidth(.3, .2), .2)
 
+    def test_organizer_specific_bandwidth_examples(self):
+        self.assertEqual(effective_bandwidth(.009, .010), .009)
+        self.assertEqual(effective_bandwidth(2.5, 118.6), 2.5)
+
+    def test_non_positive_bandwidth_remains_unavailable(self):
+        self.assertIsNone(effective_bandwidth(0, -1))
+
     def test_units(self):
         self.assertEqual(quantity_mhz("300.000 kHz"), .3)
         self.assertEqual(quantity_mhz("300k"), .3)

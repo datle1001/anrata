@@ -73,10 +73,37 @@ def evaluate_group(psd, gain, sat_lon, row, points):
     return best
 
 
-def screen(folder, records_path, finland_path, limits_path):
+def select_limit(lo, hi, rows):
+    """Never extend a criterion from an overlapping band to the whole group."""
+    if lo is None or hi is None or not (0 < lo < hi):
+        return None
+    matches = [r for r in rows if r['lowMHz'] <= lo < hi <= r['highMHz']]
+    return matches[0] if len(matches) == 1 else None
+
+
+def classification(margin, buffer_db):
+    if not math.isfinite(buffer_db) or buffer_db < 0:
+        raise ValueError('Review buffer must be finite and non-negative')
+    return 'exceeds' if margin > 0 else 'near-limit' if margin >= -buffer_db else 'within'
+
+
+def confirmed_applicability(value, row):
+    return (value.get('service') == row['service']
+            and value.get('applicabilityConfirmed') is True
+            and value.get('powerEnvelopeConfirmed') is True
+            and bool(value.get('evidenceReference'))
+            and (not row.get('footnoteCheck') or value.get('footnotesConfirmed') is True))
+
+
+def screen(folder, records_path, finland_path, limits_path, settings_path=None, confirmations_path=None):
     records = json.loads(Path(records_path).read_text())
     finland = json.loads(Path(finland_path).read_text())
     limits = json.loads(Path(limits_path).read_text())
+    settings_path = Path(settings_path) if settings_path else Path(__file__).resolve().parents[1] / 'src/data/geographic-screening-settings.json'
+    settings = json.loads(settings_path.read_text())
+    buffer_db = settings['nearLimitMarginDb']
+    classification(0, buffer_db)
+    confirmations = json.loads(Path(confirmations_path).read_text()) if confirmations_path else {}
     geo = {r["ntc_id"]: fnum(r["long_nom"]) for r in read(folder, "geo")}
     beams = {(r["ntc_id"], r["beam_name"]): fnum(r["gain"]) for r in read(folder, "s_beam") if r["emi_rcp"] == "E"}
     groups = defaultdict(list)
@@ -99,9 +126,9 @@ def screen(folder, records_path, finland_path, limits_path):
         calc, skipped = [], defaultdict(int)
         for g in groups.get(nid, []):
             lo, hi = fnum(g["freq_min"]), fnum(g["freq_max"])
-            row = next((r for r in limits["limits"] if lo is not None and hi is not None and lo < r["highMHz"] and hi > r["lowMHz"]), None)
+            row = select_limit(lo, hi, limits['limits'])
             if row is None:
-                skipped["no encoded Table 21-4 row for this band"] += 1; continue
+                skipped["no unique encoded row covering the entire group interval"] += 1; continue
             gain = beams.get((nid, g["beam_name"]))
             if gain is None:
                 skipped["beam gain missing"] += 1; continue
@@ -114,18 +141,25 @@ def screen(folder, records_path, finland_path, limits_path):
             calc.append({"groupId": g["grp_id"], "beam": g["beam_name"], "freqLowMHz": lo, "freqHighMHz": hi,
                          "limitId": row["id"], "citation": row["citation"], "service": row["service"],
                          "footnoteCheck": row.get("footnoteCheck"),
+                         "applicabilityConfirmed": confirmed_applicability(confirmations.get(g['grp_id'], {}), row),
+                         "confirmationEvidence": confirmations.get(g['grp_id'], {}),
+                         "comparisonScope": "Conditional encoded-criterion comparison; not verified service applicability unless explicitly confirmed",
                          "referenceBandwidthHz": row["referenceBandwidthHz"],
                          "inputs": {"psdMaxDbwHz": p, "gainMaxDbi": gain, "satelliteLongitudeDeg": sat_lon},
                          "worstPoint": best})
         calc.sort(key=lambda c: -c["worstPoint"]["marginDb"])
         if calc:
             m = calc[0]["worstPoint"]["marginDb"]
-            status = "exceeds" if m > 0 else "near-limit" if m > -3 else "within"
+            status = classification(m, buffer_db) if all(c['applicabilityConfirmed'] for c in calc) else 'not-calculable'
         else:
             status = "not-calculable"
         out[nid] = {"status": status, "reason": "; ".join(f"{n} group(s): {k}" for k, n in skipped.items()) or None,
                     "worstMarginDb": calc[0]["worstPoint"]["marginDb"] if calc else None,
-                    "groupsCalculated": len(calc), "groups": calc[:8]}
+                    "conditionalStatus": classification(m, buffer_db) if calc else None,
+                    "applicabilityStatus": "confirmed evaluated groups only" if calc and all(c['applicabilityConfirmed'] for c in calc) else "unresolved",
+                    "coverageComplete": not skipped,
+                    "groupsSkipped": dict(skipped),
+                    "groupsCalculated": len(calc), "groups": calc}
     wanted = {sid for r in records["records"] for sid in r["finnishStations"]}
     stations = {}
     for st in finland["records"]:
@@ -140,16 +174,28 @@ def screen(folder, records_path, finland_path, limits_path):
             "assumptions": ["Maximum beam gain pointed at each evaluation point (organizer-permitted worst case)",
                             "Maximum filed power density bounds every Hz of the reference bandwidth",
                             "Nominal GSO longitude, WGS84 Earth, free-space spreading, no atmospheric loss",
-                            "Near-limit = within 3 dB below the limit (editable in script)"],
+                            f"Near-limit = within {buffer_db} dB below the limit (team setting, not a regulatory limit)"],
             "evaluationPoints": len(points), "limitsSha256": digest,
+            "reviewBufferDb": buffer_db, "settingsSha256": hashlib.sha256(settings_path.read_bytes()).hexdigest(),
+            "inputSha256": {str(p): hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in
+                [records_path, finland_path, limits_path, *[Path(folder) / f'{table}.csv' for table in ('geo', 'grp', 's_beam', 'emiss')]]},
+            "scriptSha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+            "confirmationsSha256": hashlib.sha256(Path(confirmations_path).read_bytes()).hexdigest() if confirmations_path else None,
             "scope": "Screening result for expert review; not a compliance verdict", "results": out, "finnishStations": stations,
             "inputs": {"ific": "ific3074.mdb tables geo, grp, s_beam, emiss", "finland": "Traficom_SinceAI_Frequencies_of_interest_v05112026.xlsx (normalized)", "limits": "src/data/pfd-limits.json"},
             "script": "scripts/screen_gso_pfd.py"}
 
 
 if __name__ == "__main__":
-    folder, rec, fin, lim, dst = sys.argv[1:6]
-    res = screen(folder, rec, fin, lim)
+    import argparse
+    parser = argparse.ArgumentParser(description=__doc__)
+    for name in ('folder', 'records', 'finland', 'limits', 'output'):
+        parser.add_argument(name)
+    parser.add_argument('--settings')
+    parser.add_argument('--confirmations', help='Group-keyed evidence confirmations; absent groups remain criterion-unresolved')
+    args = parser.parse_args()
+    dst = args.output
+    res = screen(args.folder, args.records, args.finland, args.limits, args.settings, args.confirmations)
     Path(dst).write_text(json.dumps(res, indent=1))
     from collections import Counter
     print(Counter(v["status"] for v in res["results"].values()))

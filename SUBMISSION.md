@@ -70,6 +70,8 @@ comparison is unresolved. No band has preferential priority.
 - Live Oma integration is functional; it does not replace deterministic calculations or expert validation.
 
 ## Honest scope and remaining blockers
+November 8 final audit: `CHALLENGE_AUDIT.md` contains the official-criterion matrix, an indicative 70/100 estimate, sentence-level coverage, Q&A references and prioritized remaining resources. The desk's submission-evidence section downloads separate CSVs, stored calculation JSON, M4 raw snapshot/interval evidence and Q&A coverage. M4 now has reproducible interval use across retained Space/Terrestrial populations, but is still not a complete regulatory applicability map. Hardened future PFD regeneration does not retroactively validate historical outputs.
+
 Not completed: comprehensive M4 applicability; Finnish satellite protection;
 API/A, CR/C and AP30/30A/30B-specific processing; non-GSO/EPFD; orbital/geographic
 continuous maxima; actual-path terrestrial prediction; true land-border layer

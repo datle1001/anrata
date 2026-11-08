@@ -9,6 +9,7 @@ import { NoticeRecords } from "@/components/notice-records";
 import { OmaFloating } from "@/components/oma-floating";
 import { type WorkspaceCommand } from "@/lib/oma/workspace";
 import { CompactHeader } from "@/components/compact-header";
+import { SubmissionEvidence } from "@/components/submission-evidence";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -24,7 +25,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Filter foreign filings by publication, risk, administration and band, then draft a Word letter.",
+          "Review stored Space and land-mobile evidence, inspect assumptions and sources, and prepare expert-approved correspondence.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -76,6 +77,7 @@ function Index() {
       </section>
       <div id="review-desk" className="review-workspace">
         <div className="min-w-0">
+          <SubmissionEvidence />
           <nav aria-label="Publication" className="publication-tabs flex flex-wrap gap-3">
             <Button
               variant={pub === "space" ? "default" : "outline"}

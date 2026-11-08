@@ -86,15 +86,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         name: "description",
         content: "Traceable spectrum filing review for the Traficom SinceAI challenge.",
       },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Spectrum Review" },
+      { property: "og:title", content: "Antara · Spectrum review" },
       {
         property: "og:description",
         content: "Traceable spectrum filing review for the Traficom SinceAI challenge.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {

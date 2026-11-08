@@ -70,7 +70,7 @@ export function reviewReasons(r: NoticeRecord): string[] {
   const p = pfdOf(r);
   const g = p.groups[0];
   const out = [
-    `Frequencies ${ghz(r.frequencyLowMHz)}–${ghz(r.frequencyHighMHz)} overlap ${f.finnishStations} Finnish receiving station(s) in Traficom's national list — some may not be notified to the ITU, so the ITU may not have flagged this.`,
+    `Frequencies ${ghz(r.frequencyLowMHz)}–${ghz(r.frequencyHighMHz)} overlap ${f.finnishStations} protected Finnish source entries (RX or TX fallback). TX reception and broadcast coverage extend beyond the listed sites; some usage may not be notified to the ITU.`,
   ];
   if (g && p.status === "exceeds")
     out.push(
@@ -109,7 +109,7 @@ export function buildLetter(r: NoticeRecord, date = new Date()): string {
         .slice(0, 3)
         .map(
           (g) =>
-            `   - ${ghz(g.freqLowMHz)}–${ghz(g.freqHighMHz)} (group ${g.groupId}): calculated PFD ${g.worstPoint.pfdDb.toFixed(1)} dB(W/m²) in ${refBw(g.referenceBandwidthHz)} at arrival angle ${g.worstPoint.arrivalAngleDeg.toFixed(1)}°, exceeding the limit of ${g.worstPoint.limitDb.toFixed(1)} dB(W/m²) in ${g.citation.split(" (")[0]} by ${g.worstPoint.marginDb.toFixed(1)} dB.`,
+            `   - ${ghz(g.freqLowMHz)}–${ghz(g.freqHighMHz)} (group ${g.groupId}): conditional worst-case PFD estimate ${g.worstPoint.pfdDb.toFixed(1)} dB(W/m²) in ${refBw(g.referenceBandwidthHz)} at arrival angle ${g.worstPoint.arrivalAngleDeg.toFixed(1)}°, above the encoded criterion of ${g.worstPoint.limitDb.toFixed(1)} dB(W/m²) in ${g.citation.split(" (")[0]} by ${g.worstPoint.marginDb.toFixed(1)} dB. Service, footnote and power-envelope applicability remain subject to expert verification.`,
         )
         .join("\n")
     : `   - The frequency band(s) ${ghz(r.frequencyLowMHz)}–${ghz(r.frequencyHighMHz)} are used in Finland by ${stations.length} receiving station(s) (licence classes ${classes || "n/a"}).`;
@@ -127,10 +127,10 @@ The Administration of Finland has examined the satellite network ${r.network}, p
 
 Finland is concerned about the following frequency band(s): ${bands.join(", ") || `${ghz(r.frequencyLowMHz)}–${ghz(r.frequencyHighMHz)}`}. These bands are used in Finland by ${stations.length} receiving station(s) (licence classes ${classes || "n/a"}).
 
-According to our calculations:
+According to the stored conditional screening (not a regulatory verdict):
 ${finding}
 
-Finland therefore does not agree to the assignments of ${r.network} in the above band(s) and requests that the Administration of ${r.administration} ensures that Finnish services are protected.
+We request clarification of the applicable service/provisions, emission power envelope and aggregation, and protection of Finnish reception including coverage areas. These sample estimates do not establish continuous national maxima, harmful interference or a formal objection. The authorized expert must verify the findings and determine any official position before sending this draft.
 
 Yours faithfully,
 
