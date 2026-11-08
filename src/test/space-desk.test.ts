@@ -4,6 +4,32 @@ import { parsePublication, publicationTemplate } from "@/lib/publication-inbox";
 import { detailReviewState, isUnreadFiling } from "@/lib/detail-review";
 
 describe("Space multi-publication desk", () => {
+  it("groups newest uploads first even when an older upload is transferred later", () => {
+    const publication = parsePublication(publicationTemplate);
+    const base = { publication, raw: "original", filename: "file.json", sha256: "hash", transferred: true };
+    const older = { ...base, uploadedAt: "2026-11-08T01:00:00Z", transferredAt: "2026-11-08T02:00:00Z" };
+    const newer = { ...base, publication: { ...publication, issue: 3081 }, uploadedAt: "2026-11-08T01:10:00Z", transferredAt: "2026-11-08T01:15:00Z" };
+    expect(transferredSpaceRows([older, newer]).map((row) => row.issue)).toEqual(["3081", "3081", "3077", "3077"]);
+  });
+  it("orders simultaneous uploads by newest IFIC issue without interleaving files", () => {
+    const publication = parsePublication(publicationTemplate);
+    const base = { publication, raw: "original", filename: "file.json", sha256: "hash", transferred: true, uploadedAt: "2026-11-08T01:00:00Z" };
+    expect(transferredSpaceRows([base, { ...base, publication: { ...publication, issue: 3081 } }]).map((row) => row.issue)).toEqual(["3081", "3081", "3077", "3077"]);
+  });
+  it("orders each file Above then Inside then Below then unresolved using stored statuses", () => {
+    const publication = parsePublication(publicationTemplate);
+    const filing = publication.filings[0];
+    if (!filing) throw new Error("Template must include a filing");
+    const statuses = ["within", "not-calculable", "near-limit", "exceeds"] as const;
+    const filings = statuses.map((status, i) => ({ ...filing, id: `ORDER-${i}`, pfdScreening: { status, groups: [] } }));
+    const entry = { publication: { ...publication, filings }, raw: "original", filename: "file.json", sha256: "hash", transferred: true, uploadedAt: "2026-11-08T01:00:00Z" };
+    const newer = { ...entry, publication: { ...entry.publication, issue: 3081 }, uploadedAt: "2026-11-08T01:10:00Z" };
+    expect(transferredSpaceRows([entry, newer]).map((row) => `${row.issue}:${row.status}`)).toEqual([
+      "3081:exceeds", "3081:near-limit", "3081:within", "3081:not-calculable",
+      "3077:exceeds", "3077:near-limit", "3077:within", "3077:not-calculable",
+    ]);
+    expect(entry.publication.filings.map((row) => row.pfdScreening.status)).toEqual(statuses);
+  });
   it("keeps all four unopened IFIC 3077 filings unread after IFIC 3081 arrives", () => {
     const publication = parsePublication(publicationTemplate);
     const filing = publication.filings[0];

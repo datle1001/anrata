@@ -1,10 +1,28 @@
 import type { InboxEntry } from "@/lib/publication-inbox";
 
+const filingStatusOrder = {
+  exceeds: 0,
+  "near-limit": 1,
+  within: 2,
+  "not-calculable": 3,
+};
+
 export function transferredSpaceRows(entries: InboxEntry[]) {
   return entries
     .filter((entry) => entry.transferred)
+    .sort((a, b) =>
+      Date.parse(b.uploadedAt) - Date.parse(a.uploadedAt) ||
+      b.publication.issue - a.publication.issue ||
+      Date.parse(b.transferredAt ?? b.uploadedAt) - Date.parse(a.transferredAt ?? a.uploadedAt) ||
+      a.sha256.localeCompare(b.sha256),
+    )
     .flatMap((entry) =>
-      entry.publication.filings.map((filing) => ({
+      [...entry.publication.filings]
+        .sort((a, b) =>
+          filingStatusOrder[a.pfdScreening?.status ?? "not-calculable"] -
+          filingStatusOrder[b.pfdScreening?.status ?? "not-calculable"],
+        )
+        .map((filing) => ({
         entry,
         filing,
         id: `SIM:${entry.publication.issue}:${filing.id}`,
@@ -12,8 +30,7 @@ export function transferredSpaceRows(entries: InboxEntry[]) {
         scannedAt: entry.transferredAt ?? entry.uploadedAt,
         status: filing.pfdScreening?.status ?? ("not-calculable" as const),
       })),
-    )
-    .sort((a, b) => Date.parse(b.scannedAt) - Date.parse(a.scannedAt));
+    );
 }
 
 /** Most recent scan batch (one transfer = one batch); null when nothing transferred. */

@@ -1,5 +1,8 @@
 # Traficom submission roadmap
 
+## Multi-IFIC display ordering
+- [x] Group uploaded IFIC files newest upload first (newest issue breaks simultaneous-upload ties), with Above → Inside → Below → unresolved within each file. Verified two actual guest uploads, reverse sort, refresh and mobile: both files stay grouped, eight NEW markers retained, no horizontal overflow or runtime errors. Thirteen focused tests pass; preview build OK. Temporary uploads removed.
+
 ## Multi-IFIC unread regression
 - [x] Keep unopened filings NEW independently of the most recent upload. Verified real guest uploads: four IFIC 3077 filings stay NEW after IFIC 3081; opening one leaves three NEW after refresh while all four 3081 filings remain NEW. Ten focused tests pass; preview build OK. Temporary uploads deleted.
 
