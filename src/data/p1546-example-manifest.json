@@ -1,0 +1,102 @@
+{
+  "notices": {
+    "92817506": [
+      {
+        "id": "983905-Land",
+        "target": "Finnish station 983905 \u00b7 assumed Land",
+        "frequencyMHz": 803.5,
+        "timePercentage": 10,
+        "locationPercentage": 50,
+        "effectiveHeightM": 61.0,
+        "receiverHeightM": 10,
+        "receiverClutterHeightM": 10,
+        "receiverEnvironment": "Rural",
+        "erpKw": 1.6982436524617432,
+        "sections": [{ "distanceKm": 1598.9404570291458, "zone": "Land" }],
+        "evidenceReference": "terrestrial3076-example-preparation.json / station 983905",
+        "assumptions": [
+          "ASSUMPTION: pwr_dbw is total-channel ERP in dBW; pwr_eiv=E not independently verified. No antenna gain added.",
+          "ASSUMPTION: eff_hgtmax is usable effective height in metres; use maximum, not verified directional height.",
+          "Homogeneous path assumed; actual land/sea segments, terrain and directional ERP unresolved."
+        ],
+        "receiverSource": {
+          "file": "Traficom_SinceAI_Frequencies_of_interest_v05112026.xlsx",
+          "sheet": "Frequencies of interest",
+          "row": 853
+        }
+      },
+      {
+        "id": "983020-Land",
+        "target": "Finnish station 983020 \u00b7 assumed Land",
+        "frequencyMHz": 803.5,
+        "timePercentage": 10,
+        "locationPercentage": 50,
+        "effectiveHeightM": 61.0,
+        "receiverHeightM": 10,
+        "receiverClutterHeightM": 10,
+        "receiverEnvironment": "Rural",
+        "erpKw": 1.6982436524617432,
+        "sections": [{ "distanceKm": 1403.3346936923901, "zone": "Land" }],
+        "evidenceReference": "terrestrial3076-example-preparation.json / station 983020",
+        "assumptions": [
+          "ASSUMPTION: pwr_dbw is total-channel ERP in dBW; pwr_eiv=E not independently verified. No antenna gain added.",
+          "ASSUMPTION: eff_hgtmax is usable effective height in metres; use maximum, not verified directional height.",
+          "Homogeneous path assumed; actual land/sea segments, terrain and directional ERP unresolved."
+        ],
+        "receiverSource": {
+          "file": "Traficom_SinceAI_Frequencies_of_interest_v05112026.xlsx",
+          "sheet": "Frequencies of interest",
+          "row": 871
+        }
+      },
+      {
+        "id": "987279-Land",
+        "target": "Finnish station 987279 \u00b7 assumed Land",
+        "frequencyMHz": 803.5,
+        "timePercentage": 10,
+        "locationPercentage": 50,
+        "effectiveHeightM": 61.0,
+        "receiverHeightM": 10,
+        "receiverClutterHeightM": 10,
+        "receiverEnvironment": "Rural",
+        "erpKw": 1.6982436524617432,
+        "sections": [{ "distanceKm": 849.107291232765, "zone": "Land" }],
+        "evidenceReference": "terrestrial3076-example-preparation.json / station 987279",
+        "assumptions": [
+          "ASSUMPTION: pwr_dbw is total-channel ERP in dBW; pwr_eiv=E not independently verified. No antenna gain added.",
+          "ASSUMPTION: eff_hgtmax is usable effective height in metres; use maximum, not verified directional height.",
+          "Homogeneous path assumed; actual land/sea segments, terrain and directional ERP unresolved."
+        ],
+        "receiverSource": {
+          "file": "Traficom_SinceAI_Frequencies_of_interest_v05112026.xlsx",
+          "sheet": "Frequencies of interest",
+          "row": 880
+        }
+      },
+      {
+        "id": "987279-Cold",
+        "target": "Finnish station 987279 \u00b7 assumed Cold",
+        "frequencyMHz": 803.5,
+        "timePercentage": 10,
+        "locationPercentage": 50,
+        "effectiveHeightM": 61.0,
+        "receiverHeightM": 10,
+        "receiverClutterHeightM": 10,
+        "receiverEnvironment": "Rural",
+        "erpKw": 1.6982436524617432,
+        "sections": [{ "distanceKm": 849.107291232765, "zone": "Cold" }],
+        "evidenceReference": "terrestrial3076-example-preparation.json / station 987279",
+        "assumptions": [
+          "ASSUMPTION: pwr_dbw is total-channel ERP in dBW; pwr_eiv=E not independently verified. No antenna gain added.",
+          "ASSUMPTION: eff_hgtmax is usable effective height in metres; use maximum, not verified directional height.",
+          "Homogeneous path assumed; actual land/sea segments, terrain and directional ERP unresolved."
+        ],
+        "receiverSource": {
+          "file": "Traficom_SinceAI_Frequencies_of_interest_v05112026.xlsx",
+          "sheet": "Frequencies of interest",
+          "row": 880
+        }
+      }
+    ]
+  }
+}

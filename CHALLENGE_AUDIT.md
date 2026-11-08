@@ -63,6 +63,9 @@ The supplied Q&A transcript is traceable by line references in `src/data/organiz
 
 ## Remaining resources and build priorities
 
+### P.1546 integration update
+Added a reusable offline pinned-model runner, explicit per-path domain/input blockers, separately gated spectral/coordination comparisons, typed source-bound per-notice artifacts, Cloud/Oma retrieval and exact evidence exports. The real 3076 conditional homogeneous Land/Cold experiment was rerun successfully without user demo files. Existing uploads remain compatible. This improves reproducibility and workflow integration, not actual-path completion: terrain/directional ERP, legal land-border and territorial-sea paths, spectral/applicability verification and independent validation still remain missing. No revised score or safety verdict is justified solely by this integration.
+
 ### Highest-value engineering work
 1. Complete source-informed terrestrial case input interpretation and geographic path construction; run a verified subset across land border AND territorial sea with actual P.1546 field strength, matching spectral reference, criterion and margin. Retain all unresolved notices.
 2. Join Finland coordination rows from documented MDB keys; keep coordination and technical margin independent. Obtain register verification from the challenge owner when available.

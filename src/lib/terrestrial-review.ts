@@ -1,6 +1,7 @@
 import { z } from "zod";
 import tierSettings from "@/data/terrestrial-review-tiers.json";
 import { terrestrialExpertLetterNotes } from "@/lib/terrestrial-expert-checks";
+import { p1546AssessmentSchema, canonicalEvidence } from "./p1546-assessment";
 type JsonValue = string | number | boolean | null | JsonValue[] | { [key: string]: JsonValue };
 const jsonValue: z.ZodType<JsonValue> = z.lazy(() =>
   z.union([
@@ -101,8 +102,22 @@ export const rowSchema = z
         .passthrough(),
     ),
     blockers: z.array(z.string()),
+    p1546: p1546AssessmentSchema.optional(),
   })
-  .passthrough();
+  .passthrough()
+  .superRefine((row, context) => {
+    if (!row.p1546) return;
+    const { p1546, ...sourceRecord } = row;
+    if (
+      p1546.noticeId !== row.notice.raw.terrakey ||
+      canonicalEvidence(p1546.sourceRecord) !== canonicalEvidence(sourceRecord)
+    )
+      context.addIssue({
+        code: "custom",
+        message:
+          "P.1546 artifact does not match the complete current source record; prepare a new offline assessment.",
+      });
+  });
 
 export const terrestrialArtifactSchema = z
   .object({ issue: z.literal(3076), scope: z.string(), records: z.array(rowSchema) })
@@ -288,6 +303,7 @@ ${stations}
 Source: ${row.notice.source.file}, table ${row.notice.source.table}, CSV row ${row.notice.source.csvRow}.
 
 Frequency overlap alone does not establish harmful interference. Actual-path ITU-R P.1546 field strength at the Finnish border or territorial sea and an applicable coordination comparison have not been established. This letter makes no safety or regulatory-compliance finding.
+${row.p1546 ? `\nStored offline P.1546 evidence: ${row.p1546.scope}\n${row.p1546.paths.map((p) => `- ${p.target}: ${p.fieldStrengthDbUvPerM === null ? "unresolved" : `${p.fieldStrengthDbUvPerM} dBµV/m (conditional)`}; ${p.comparison.reason}`).join("\n")}\nSource manifest SHA-256: ${row.p1546.provenance.manifestSha256}. Supplied inputs and model execution are not authenticated by upload.\n` : ""}
 
 ${terrestrialExpertLetterNotes(row)}
 

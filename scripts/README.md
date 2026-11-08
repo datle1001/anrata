@@ -69,6 +69,22 @@ applicability remain unvalidated; no field strength or criterion is calculated.
 
 ## Conditional terrestrial path preparation
 
+### Reusable notice-linked P.1546 runner
+
+`run_p1546_review.py` enriches prepared terrestrial JSON with immutable `record.p1546` artifacts. It invokes the external P.1546-6 implementation, not an invented approximation; both its entry point and entire executable MATLAB tree are pinned. The model remains external under its existing attribution/licence. The browser and Oma never run Octave or recompute propagation.
+
+```sh
+python scripts/run_p1546_review.py /tmp/terrestrial-review.json /tmp/reviewed-path-manifest.json /path/to/pinned/matlab /tmp/terrestrial-with-p1546.json --octave-command 'nix run nixpkgs#octave --'
+```
+
+Manifest shape: `{"notices":{"TERRAKEY":[path,...]}}`. Each path explicitly supplies `id`, `target`, `frequencyMHz`, `timePercentage`, `locationPercentage` (50 only), `effectiveHeightM`, `receiverHeightM`, `receiverClutterHeightM`, `receiverEnvironment`, `erpKw`, ordered `sections` (`distanceKm` and `zone`: Land/Cold/Warm), `evidenceReference` and nonempty `assumptions`. Paths under 15 km also require `transmitterHeightAglM`. This is the conservative no-terrain-profile conditional runner; it does not derive terrain heights, climates, directional patterns or land/sea fractions. Missing inputs, 1–1000 km distance violations and execution failures remain unresolved with null predictions. Raw `pwr_dbw`, AGL height and emission bandwidth are never silently promoted into ERP, effective height or channel spacing.
+
+Optional `coordination` must declare reviewed `lowerMHz`, `upperMHz`, `applicabilityConfirmed`, `spectrumBasisConfirmed`, `evaluationLocationConfirmed` and `evidenceReference`. Optional wide `channelSpacingKhz` requires `uniformSpectrumConfirmed`; above 470 MHz requires `challengeExtensionConfirmed`. Prediction `powerReferenceBandwidthHz`, time/location percentages and receiver height must match the selected T/R 25-08 criterion before any signed margin is produced. Positive margin is field minus trigger, never harmful-interference proof; below-trigger is not clearance. The runner does not authenticate those reviewer claims.
+
+`src/data/p1546-example-manifest.json` and `p1546-notice-reference.json` reproduce the existing POL 3076 homogeneous Land/Cold experiment: station 987279 fields −57.407288886711 / −35.658872975466 dBµV/m; two other paths stay unresolved beyond 1000 km. No coordination margin exists because spectrum/applicability are unconfirmed. These are not user demo files or new actual-path claims.
+
+Existing JSON uploads need no changes and stay unresolved without a prepared artifact. To include predictions, prepare a *new* enriched JSON offline and upload it through the normal Terrestrial inbox. Evidence is stored immediately with the original and read by Oma before Scan. Complete source-record equality guards against stale results when any notice/join/match/blocker field changes; source binding is not model authenticity. Deletion removes the artifact with its owning publication. Never edit values in an attached assessment by hand.
+
 ```sh
 python scripts/prepare_terrestrial_example.py src/data/terrestrial3076-screening-summary.json src/data/finland-normalized.json src/data/terrestrial3076-example-preparation.json
 ```

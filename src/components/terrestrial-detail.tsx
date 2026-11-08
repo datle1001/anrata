@@ -11,6 +11,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { TerrestrialPathPreparation } from "@/components/terrestrial-path-preparation";
+import { P1546AssessmentView } from "./p1546-assessment";
 import preparation from "@/data/terrestrial3076-example-preparation.json";
 import { buildLetterDocx, saveBlob } from "@/lib/dossier-files";
 import { FilingChangesView } from "./filing-changes";
@@ -318,13 +319,19 @@ export function TerrestrialDetail({
               </p>
             </section>
             <section className="border-t border-border pt-4">
-              <h3 className="font-semibold">P.1546 / coordination assessment</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Actual-path field strength at the Finnish border / territorial sea: unresolved.
-                Applicable coordination threshold and spectrum conversion: unconfirmed. No safe /
-                interference verdict.
-              </p>
-              {example && <TerrestrialPathPreparation />}
+              {row.p1546 ? (
+                <P1546AssessmentView assessment={row.p1546} />
+              ) : (
+                <>
+                  <h3 className="font-semibold">P.1546 / coordination assessment</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Actual-path field strength at the Finnish border / territorial sea: unresolved.
+                    Applicable coordination threshold and spectrum conversion: unconfirmed. No safe
+                    / interference verdict.
+                  </p>
+                  {example && <TerrestrialPathPreparation />}
+                </>
+              )}
             </section>
             <section>
               <h3 className="font-semibold">Outstanding checks</h3>

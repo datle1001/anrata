@@ -1,5 +1,10 @@
 # Traficom submission roadmap
 
+## Reusable P.1546 integration
+- [x] Add a pinned external-model offline runner with explicit path/input/domain gates, reproducible hashes and separate coordination comparison.
+- [x] Validate and display stored per-notice P.1546 evidence, retain existing JSON compatibility, and expose the same evidence to Oma and exports.
+- [x] Verify reference Land/Cold execution, ERP doubling (+3.0103 dB), 115 app / 96 offline tests, targeted lint and preview build. Browser upload → Cloud refresh/original export → Scan → detail → unchanged P.1546 export, mobile and Oma exact conditional values checked; temporary upload deleted and absent after refresh. No user demo files used. Actual border/sea paths and applicability remain external-input blockers documented below.
+
 ## Final challenge and organizer Q&A audit
 - [x] Cross-check mandatory Space/Terrestrial requirements and every organizer clarification; record indicative 70/100 scoring and missing resources in CHALLENGE_AUDIT.md.
 - [x] Harden offline unique whole-band limit selection, service/power/footnote confirmation and shared review margins; retain all groups/hashes in future regeneration without rewriting historical calculation artifacts.
