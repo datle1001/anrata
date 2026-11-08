@@ -2,6 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
 import { parsePublication, type InboxEntry } from "./publication-inbox";
 import { validateUploadedFilter, type UploadedFilingFilter } from "./uploaded-filing-query";
+import { parseFilingChanges, type FilingChanges } from "./filing-changes";
 
 export async function publicationAccess(request: Request, token?: string) {
   const url = process.env["SUPABASE_URL"];
@@ -31,12 +32,28 @@ export async function publicationAccess(request: Request, token?: string) {
 }
 export async function loadCloudPublications(access: Awaited<ReturnType<typeof publicationAccess>>) {
   const entries: InboxEntry[] = [];
+  const changesByPublication = new Map<string, Record<string, FilingChanges>>();
+  for (let offset = 0; ; offset += 100) {
+    const { data, error } = await access.db.from("uploaded_filings").select("publication_id,filing_id,changes")
+      .eq("owner_scope", access.scope).order("id").range(offset, offset + 99);
+    if (error) throw new Error(error.message);
+    for (const row of data ?? []) {
+      const changes = parseFilingChanges(row.changes);
+      if (changes) {
+        const map = changesByPublication.get(row.publication_id) ?? {};
+        map[row.filing_id] = changes;
+        changesByPublication.set(row.publication_id, map);
+      }
+    }
+    if (!data || data.length < 100) break;
+  }
   for (let offset = 0; ; offset += 100) {
     const { data, error } = await access.db.from("uploaded_publications").select("*")
       .eq("owner_scope", access.scope).order("uploaded_at").order("id").range(offset, offset + 99);
     if (error) throw new Error(error.message);
     for (const row of data ?? []) entries.push({ publication: parsePublication(row.publication), raw: row.raw,
       filename: row.filename, sha256: row.sha256, uploadedAt: row.uploaded_at, transferred: row.transferred,
+      filingChanges: changesByPublication.get(row.id) ?? {},
       ...(row.transferred_at ? { transferredAt: row.transferred_at } : {}) });
     if (!data || data.length < 100) break;
   }
@@ -65,7 +82,7 @@ export async function queryCloudFilings(access: Awaited<ReturnType<typeof public
       lowerMHz: row.freq_lower_mhz, upperMHz: row.freq_upper_mhz,
       pfdStatus: row.pfd_status, worstMarginDb: row.worst_margin_db, reviewTrigger: row.review_trigger,
       pfdCalculation: row.pfd_screening, affectedFinnishFrequencies: row.affected_stations,
-      filing: row.raw, evidence: row.evidence, synthetic: true,
+      filing: row.raw, evidence: row.evidence, changes: parseFilingChanges(row.changes) ?? null, synthetic: true,
     })),
   };
 }

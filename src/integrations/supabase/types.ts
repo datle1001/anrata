@@ -108,6 +108,7 @@ export type Database = {
         Row: {
           administration: string
           affected_stations: Json
+          changes: Json | null
           evidence: Json
           filing_id: string
           freq_lower_mhz: number
@@ -128,6 +129,7 @@ export type Database = {
         Insert: {
           administration: string
           affected_stations?: Json
+          changes?: Json | null
           evidence?: Json
           filing_id: string
           freq_lower_mhz: number
@@ -148,6 +150,7 @@ export type Database = {
         Update: {
           administration?: string
           affected_stations?: Json
+          changes?: Json | null
           evidence?: Json
           filing_id?: string
           freq_lower_mhz?: number
@@ -225,7 +228,22 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      compute_uploaded_changes: {
+        Args: {
+          target: Database["public"]["Tables"]["uploaded_filings"]["Row"]
+        }
+        Returns: Json
+      }
+      upload_diff_fields: {
+        Args: {
+          a: Json
+          a_present?: boolean
+          b: Json
+          b_present?: boolean
+          path?: string
+        }
+        Returns: Json
+      }
     }
     Enums: {
       [_ in never]: never

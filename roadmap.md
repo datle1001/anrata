@@ -1,5 +1,10 @@
 # Traficom submission roadmap
 
+## Cross-IFIC changes-first review
+- [x] Persist owner-scoped previous/current field differences with baseline issue/hash; refresh after upload/deletion and preserve stored PFD unchanged. Exact ID/administration or unique normalized name/administration is a candidate match, not verified ITU modification; ambiguity remains unresolved.
+- [x] Show Changes first for repeated uploaded filings, keep full evidence collapsed, export the original comparison artifact and ground Oma follow-up in fresh stored differences.
+- [x] Verified three actual guest releases: 3984 identifies only lowerMHz 10700 → 10700.125 vs 3983, refresh retains Changes and collapsed evidence, Oma returns exact stored values/provenance, baseline deletion returns no-baseline, mobile has no overflow/runtime errors. All 90 tests pass; preview build OK. Temporary test uploads removed. Account verification remains the existing blocker below.
+
 ## Multi-IFIC display ordering
 - [x] Group uploaded IFIC files newest upload first (newest issue breaks simultaneous-upload ties), with Above → Inside → Below → unresolved within each file. Verified two actual guest uploads, reverse sort, refresh and mobile: both files stay grouped, eight NEW markers retained, no horizontal overflow or runtime errors. Thirteen focused tests pass; preview build OK. Temporary uploads removed.
 

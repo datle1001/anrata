@@ -1,4 +1,5 @@
 import { z } from "zod";
+import type { FilingChanges } from "./filing-changes";
 
 const num = z.number().finite();
 /** Offline-computed PFD screening supplied with the upload; displayed as stored, never recomputed. */
@@ -110,6 +111,8 @@ const circularSchema = z
     }),
   );
 export type InboxEntry = {
+  /** Server-persisted comparison; never calculated by the browser. */
+  filingChanges?: Record<string, FilingChanges>;
   publication: DemoPublication;
   raw: string;
   filename: string;

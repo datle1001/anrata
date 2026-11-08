@@ -8,6 +8,7 @@ export function uploadedFilingEvidence(entry: InboxEntry, filing: InboxEntry["pu
   return {
     issue: entry.publication.issue, synthetic: true, filing,
     reviewTrigger: filing.reviewTrigger,
+    changes: entry.filingChanges?.[filing.id] ?? null,
     pfdCalculation: filing.pfdScreening ?? null,
     affectedFinnishFrequencies: stations,
     provenance: { filename: entry.filename, sha256: entry.sha256, uploadedAt: entry.uploadedAt, finnishSource: pfdMeta.inputs.finland },
