@@ -1,0 +1,212 @@
+{
+  "schemaVersion": "antara-publication-demo-v1",
+  "synthetic": true,
+  "publication": {
+    "ific_no": 3081,
+    "publication_date": "2027-02-09",
+    "service": "Space Services",
+    "total_notices": 5,
+    "status": "published"
+  },
+  "notices": [
+    {
+      "id": "IFIC3081-001",
+      "name": "ARCTIC-LINK-A",
+      "administration": "CAN",
+      "lowerMHz": 11700,
+      "upperMHz": 12200,
+      "orbit": "GSO",
+      "visibility": "Coverage includes Northern Europe and Finnish Lapland.",
+      "reviewTrigger": "Potential overlap with protected Finnish receiving services.",
+      "blockers": [
+        "Coordination not completed"
+      ],
+      "pfdScreening": {
+        "status": "exceeds",
+        "worstMarginDb": 19.5,
+        "method": "Synthetic demo screening",
+        "groups": [
+          {
+            "groupId": "308100101",
+            "beam": "AR1",
+            "freqLowMHz": 11800,
+            "freqHighMHz": 12100,
+            "citation": "Synthetic Rule Set A",
+            "service": "Fixed-satellite (space-to-Earth), GSO",
+            "referenceBandwidthHz": 4000,
+            "inputs": {
+              "psdMaxDbwHz": -47,
+              "gainMaxDbi": 41,
+              "satelliteLongitudeDeg": -15
+            },
+            "worstPoint": {
+              "label": "Station 420101",
+              "lat": 68.9,
+              "lon": 23.7,
+              "arrivalAngleDeg": 6.4,
+              "slantRangeKm": 41020,
+              "spreadingLossDb": 163.1,
+              "pfdDb": -131.8,
+              "limitDb": -151.3,
+              "marginDb": 19.5
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "IFIC3081-002",
+      "name": "BALTIC-STREAM",
+      "administration": "EST",
+      "lowerMHz": 10700,
+      "upperMHz": 11700,
+      "orbit": "GSO",
+      "visibility": "Baltic region and Southern Finland.",
+      "reviewTrigger": "Cross-border coordination recommended.",
+      "blockers": [
+        "Cross-border review recommended"
+      ],
+      "pfdScreening": {
+        "status": "exceeds",
+        "worstMarginDb": 3.28,
+        "method": "Synthetic demo screening",
+        "groups": [
+          {
+            "groupId": "308100201",
+            "beam": "BS1",
+            "freqLowMHz": 10800,
+            "freqHighMHz": 11100,
+            "citation": "Synthetic Rule Set B",
+            "service": "Fixed-satellite (space-to-Earth), GSO",
+            "referenceBandwidthHz": 4000,
+            "inputs": {
+              "psdMaxDbwHz": -57.5,
+              "gainMaxDbi": 39,
+              "satelliteLongitudeDeg": 12
+            },
+            "worstPoint": {
+              "label": "Station 420102",
+              "lat": 60.17,
+              "lon": 24.94,
+              "arrivalAngleDeg": 10.2,
+              "slantRangeKm": 40400,
+              "spreadingLossDb": 163,
+              "pfdDb": -143.2,
+              "limitDb": -146.48,
+              "marginDb": 3.28
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "IFIC3081-003",
+      "name": "EUROSAFE-KA",
+      "administration": "F",
+      "lowerMHz": 20200,
+      "upperMHz": 21200,
+      "orbit": "GSO",
+      "visibility": "Central Europe.",
+      "reviewTrigger": "Routine publication review.",
+      "blockers": [
+        "Awaiting specialist confirmation of frequency plan update"
+      ],
+      "pfdScreening": {
+        "status": "within",
+        "worstMarginDb": -12.4,
+        "method": "Synthetic demo screening",
+        "groups": [
+          {
+            "groupId": "308100301",
+            "beam": "ESK1",
+            "freqLowMHz": 20400,
+            "freqHighMHz": 20800,
+            "citation": "Synthetic Rule Set C",
+            "service": "Fixed-satellite (space-to-Earth), GSO",
+            "referenceBandwidthHz": 4000,
+            "inputs": {
+              "psdMaxDbwHz": -67,
+              "gainMaxDbi": 37,
+              "satelliteLongitudeDeg": 19
+            },
+            "worstPoint": {
+              "label": "Station 420103",
+              "lat": 61.5,
+              "lon": 25.1,
+              "arrivalAngleDeg": 12.6,
+              "slantRangeKm": 40450,
+              "spreadingLossDb": 163.2,
+              "pfdDb": -157.7,
+              "limitDb": -146.5,
+              "marginDb": -12.4
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "IFIC3081-004",
+      "name": "NORDIC-MESH-L",
+      "administration": "NOR",
+      "lowerMHz": 19600,
+      "upperMHz": 20200,
+      "orbit": "Non-GSO",
+      "visibility": "Dynamic Nordic coverage.",
+      "reviewTrigger": "Requires EPFD simulation.",
+      "blockers": [
+        "Orbital simulation unavailable",
+        "EPFD study pending"
+      ],
+      "pfdScreening": {
+        "status": "not-calculable",
+        "reason": "Non-GSO orbital analysis required.",
+        "groups": []
+      }
+    },
+    {
+      "id": "IFIC3081-005",
+      "name": "FIN-OVERLAP-DEMO",
+      "administration": "UK",
+      "lowerMHz": 3700,
+      "upperMHz": 4200,
+      "orbit": "GSO",
+      "visibility": "Northern Europe focused beam.",
+      "reviewTrigger": "Direct overlap with Finnish protected frequency allocation.",
+      "blockers": [
+        "Finnish review required"
+      ],
+      "pfdScreening": {
+        "status": "exceeds",
+        "worstMarginDb": 10.15,
+        "method": "Synthetic demo screening",
+        "groups": [
+          {
+            "groupId": "308100501",
+            "beam": "FIN1",
+            "freqLowMHz": 3800,
+            "freqHighMHz": 4100,
+            "citation": "Synthetic Rule Set D",
+            "service": "Fixed-satellite (space-to-Earth), GSO",
+            "referenceBandwidthHz": 4000,
+            "inputs": {
+              "psdMaxDbwHz": -52,
+              "gainMaxDbi": 40.5,
+              "satelliteLongitudeDeg": 0
+            },
+            "worstPoint": {
+              "label": "Station 396091",
+              "lat": 69.04276,
+              "lon": 20.85122,
+              "arrivalAngleDeg": 8.7,
+              "slantRangeKm": 40610,
+              "spreadingLossDb": 163,
+              "pfdDb": -142,
+              "limitDb": -151.62,
+              "marginDb": 10.15
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

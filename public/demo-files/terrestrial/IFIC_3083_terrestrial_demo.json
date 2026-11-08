@@ -1,0 +1,220 @@
+{
+  "schemaVersion": "antara-terrestrial-review-v1",
+  "service": "Terrestrial Services",
+  "synthetic": true,
+  "issue": 3083,
+  "publishedAt": "2026-11-08",
+  "scope": "Synthetic terrestrial demo publication (kỳ 1). All station names, coordinates and Excel rows are simulated for Anrata Terrestrial Desk verification; not real BR IFIC data.",
+  "totalNotices": 3,
+  "records": [
+    {
+      "notice": {
+        "source": {
+          "file": "brific3083-terrestrial-demo.json",
+          "table": "fxm_terra",
+          "csvRow": 101
+        },
+        "raw": {
+          "terrakey": "RUS-TERRA-3083-001",
+          "adm": "RUS",
+          "assgn_id": "RUS-ASSIGN-88401",
+          "stn_id": "Vyborg Land-Mobile Base 1",
+          "freq_min": "150.0",
+          "freq_max": "151.2",
+          "freq_assgn": "150.600",
+          "stn_cls": "FB",
+          "stn_type": "TX",
+          "emi_cls": "16K0F3E",
+          "bdwdth_cde": "16K0",
+          "prov": "RR 6.7",
+          "intent": "ADD"
+        }
+      },
+      "screenStatus": "Excel overlap; review required",
+      "matchedFinnishRows": [
+        {
+          "station": "FIN-PM-LAP-04",
+          "source": {
+            "file": "Traficom_Frequencies_of_interest.xlsx",
+            "sheet": "Frequencies of interest",
+            "row": 245
+          },
+          "protectedFrequencyBasis": "RX",
+          "lowerMHz": 150,
+          "upperMHz": 151
+        }
+      ],
+      "transmitterLocations": [
+        {
+          "origin": "fxm_geo",
+          "geoKey": "GEO-RUS-001",
+          "reportedPoint": {
+            "latitudeDeg": 60.71,
+            "longitudeDeg": 28.75
+          },
+          "geoEvidence": [
+            {
+              "table": "fxm_geo",
+              "csvRow": 101,
+              "raw": {
+                "site_name": "Vyborg North Station"
+              }
+            }
+          ],
+          "antennaEvidence": [
+            {
+              "table": "fxm_ant",
+              "csvRow": 101,
+              "raw": {
+                "pwr_dbw": "20.0",
+                "pwr_eiv": "100",
+                "hgt_agl": "45",
+                "eff_hgtmax": "120",
+                "azm_max_e": "315",
+                "gain_max": "6.5"
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        "Transmitter reported ~38 km from Finnish border (nominal point estimate); expert review against applicable bilateral arrangement required",
+        "Actual-path P.1546 field strength at Finnish border unresolved"
+      ]
+    },
+    {
+      "notice": {
+        "source": {
+          "file": "brific3083-terrestrial-demo.json",
+          "table": "fxm_terra",
+          "csvRow": 102
+        },
+        "raw": {
+          "terrakey": "POL-TERRA-3083-002",
+          "adm": "POL",
+          "assgn_id": "POL-ASSIGN-44120",
+          "stn_id": "Gdansk Coastal Base Station",
+          "freq_min": "450.0",
+          "freq_max": "452.5",
+          "freq_assgn": "451.250",
+          "stn_cls": "FB",
+          "stn_type": "TX",
+          "emi_cls": "11K0F3E",
+          "bdwdth_cde": "11K0",
+          "prov": "RR 6.7",
+          "intent": "ADD"
+        }
+      },
+      "screenStatus": "Excel overlap; review required",
+      "matchedFinnishRows": [
+        {
+          "station": "FIN-PMR-COAST-12",
+          "source": {
+            "file": "Traficom_Frequencies_of_interest.xlsx",
+            "sheet": "Frequencies of interest",
+            "row": 880
+          },
+          "protectedFrequencyBasis": "RX",
+          "lowerMHz": 450,
+          "upperMHz": 453
+        }
+      ],
+      "transmitterLocations": [
+        {
+          "origin": "fxm_geo",
+          "geoKey": "GEO-POL-002",
+          "reportedPoint": {
+            "latitudeDeg": 54.37,
+            "longitudeDeg": 18.66
+          },
+          "geoEvidence": [
+            {
+              "table": "fxm_geo",
+              "csvRow": 102,
+              "raw": {
+                "site_name": "Gdansk Oliwa Transmitter"
+              }
+            }
+          ],
+          "antennaEvidence": [
+            {
+              "table": "fxm_ant",
+              "csvRow": 102,
+              "raw": {
+                "pwr_dbw": "18.5",
+                "pwr_eiv": "70.8",
+                "hgt_agl": "60",
+                "eff_hgtmax": "180",
+                "azm_max_e": "020",
+                "gain_max": "8.0"
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        "Baltic over-water (cold sea) path propagation unverified",
+        "Applicability of any coordination threshold (e.g. T/R 25-08) unconfirmed"
+      ]
+    },
+    {
+      "notice": {
+        "source": {
+          "file": "brific3083-terrestrial-demo.json",
+          "table": "fxm_terra",
+          "csvRow": 103
+        },
+        "raw": {
+          "terrakey": "KAZ-TERRA-3083-003",
+          "adm": "KAZ",
+          "assgn_id": "KAZ-ASSIGN-11092",
+          "stn_id": "Aktau Mobile Transport Unit",
+          "freq_min": "162.0",
+          "freq_max": "162.5",
+          "freq_assgn": "162.250",
+          "stn_cls": "ML",
+          "stn_type": "TX",
+          "emi_cls": "16K0F3E",
+          "bdwdth_cde": "16K0",
+          "prov": "",
+          "intent": "ADD"
+        }
+      },
+      "screenStatus": "No Excel overlap; national/adjacent-band relevance unresolved",
+      "matchedFinnishRows": [],
+      "transmitterLocations": [
+        {
+          "origin": "fxm_geo",
+          "geoKey": "GEO-KAZ-003",
+          "reportedPoint": {
+            "latitudeDeg": 43.65,
+            "longitudeDeg": 51.16
+          },
+          "geoEvidence": [
+            {
+              "table": "fxm_geo",
+              "csvRow": 103,
+              "raw": {
+                "site_name": "Aktau Mobile Fleet"
+              }
+            }
+          ],
+          "antennaEvidence": [
+            {
+              "table": "fxm_ant",
+              "csvRow": 103,
+              "raw": {
+                "pwr_dbw": "10.0",
+                "hgt_agl": "2"
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        "No direct Finnish Excel overlap",
+        "Large nominal distance noted; geographic relevance not used as exclusion and remains unresolved"
+      ]
+    }
+  ]
+}

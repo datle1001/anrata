@@ -1,0 +1,224 @@
+{
+  "schemaVersion": "antara-terrestrial-review-v1",
+  "service": "Terrestrial Services",
+  "synthetic": true,
+  "issue": 3084,
+  "publishedAt": "2026-11-22",
+  "scope": "Synthetic follow-up publication (kỳ 2): modifies RUS and POL notices from IFIC 3083 and adds one new SWE notice. Simulated data.",
+  "totalNotices": 3,
+  "records": [
+    {
+      "notice": {
+        "source": {
+          "file": "brific3084-terrestrial-demo.json",
+          "table": "fxm_terra",
+          "csvRow": 101
+        },
+        "raw": {
+          "terrakey": "RUS-TERRA-3083-001",
+          "adm": "RUS",
+          "assgn_id": "RUS-ASSIGN-88401",
+          "stn_id": "Vyborg Land-Mobile Base 1",
+          "freq_min": "150.0",
+          "freq_max": "151.2",
+          "freq_assgn": "150.600",
+          "stn_cls": "FB",
+          "stn_type": "TX",
+          "emi_cls": "16K0F3E",
+          "bdwdth_cde": "16K0",
+          "prov": "RR 6.7",
+          "intent": "MOD"
+        }
+      },
+      "screenStatus": "Excel overlap; review required",
+      "matchedFinnishRows": [
+        {
+          "station": "FIN-PM-LAP-04",
+          "source": {
+            "file": "Traficom_Frequencies_of_interest.xlsx",
+            "sheet": "Frequencies of interest",
+            "row": 245
+          },
+          "protectedFrequencyBasis": "RX",
+          "lowerMHz": 150,
+          "upperMHz": 151
+        }
+      ],
+      "transmitterLocations": [
+        {
+          "origin": "fxm_geo",
+          "geoKey": "GEO-RUS-001",
+          "reportedPoint": {
+            "latitudeDeg": 60.71,
+            "longitudeDeg": 28.75
+          },
+          "geoEvidence": [
+            {
+              "table": "fxm_geo",
+              "csvRow": 101,
+              "raw": {
+                "site_name": "Vyborg North Station (upgraded mast)"
+              }
+            }
+          ],
+          "antennaEvidence": [
+            {
+              "table": "fxm_ant",
+              "csvRow": 101,
+              "raw": {
+                "pwr_dbw": "24.5",
+                "pwr_eiv": "281.8",
+                "hgt_agl": "65",
+                "eff_hgtmax": "120",
+                "azm_max_e": "315",
+                "gain_max": "9.0"
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        "Reported power and antenna height increased versus earlier notice; border field strength requires expert re-evaluation",
+        "Actual-path P.1546 field strength at Finnish border unresolved"
+      ]
+    },
+    {
+      "notice": {
+        "source": {
+          "file": "brific3084-terrestrial-demo.json",
+          "table": "fxm_terra",
+          "csvRow": 102
+        },
+        "raw": {
+          "terrakey": "POL-TERRA-3083-002",
+          "adm": "POL",
+          "assgn_id": "POL-ASSIGN-44120",
+          "stn_id": "Gdansk Coastal Base Station",
+          "freq_min": "450.0",
+          "freq_max": "452.5",
+          "freq_assgn": "451.750",
+          "stn_cls": "FB",
+          "stn_type": "TX",
+          "emi_cls": "11K0F3E",
+          "bdwdth_cde": "11K0",
+          "prov": "RR 6.7",
+          "intent": "MOD"
+        }
+      },
+      "screenStatus": "Excel overlap; review required",
+      "matchedFinnishRows": [
+        {
+          "station": "FIN-PMR-COAST-12",
+          "source": {
+            "file": "Traficom_Frequencies_of_interest.xlsx",
+            "sheet": "Frequencies of interest",
+            "row": 880
+          },
+          "protectedFrequencyBasis": "RX",
+          "lowerMHz": 450,
+          "upperMHz": 453
+        }
+      ],
+      "transmitterLocations": [
+        {
+          "origin": "fxm_geo",
+          "geoKey": "GEO-POL-002",
+          "reportedPoint": {
+            "latitudeDeg": 54.37,
+            "longitudeDeg": 18.66
+          },
+          "geoEvidence": [
+            {
+              "table": "fxm_geo",
+              "csvRow": 102,
+              "raw": {
+                "site_name": "Gdansk Oliwa Transmitter"
+              }
+            }
+          ],
+          "antennaEvidence": [
+            {
+              "table": "fxm_ant",
+              "csvRow": 102,
+              "raw": {
+                "pwr_dbw": "18.5",
+                "pwr_eiv": "70.8",
+                "hgt_agl": "60",
+                "eff_hgtmax": "180",
+                "azm_max_e": "020",
+                "gain_max": "8.0"
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        "Baltic over-water (cold sea) path propagation unverified",
+        "Applicability of any coordination threshold (e.g. T/R 25-08) unconfirmed"
+      ]
+    },
+    {
+      "notice": {
+        "source": {
+          "file": "brific3084-terrestrial-demo.json",
+          "table": "fxm_terra",
+          "csvRow": 103
+        },
+        "raw": {
+          "terrakey": "SWE-TERRA-3084-001",
+          "adm": "SWE",
+          "assgn_id": "SWE-ASSIGN-90114",
+          "stn_id": "Stockholm Archipelago Relay",
+          "freq_min": "460.0",
+          "freq_max": "462.0",
+          "freq_assgn": "460.800",
+          "stn_cls": "FB",
+          "stn_type": "TX",
+          "emi_cls": "16K0F3E",
+          "bdwdth_cde": "16K0",
+          "prov": "RR 6.7",
+          "intent": "ADD"
+        }
+      },
+      "screenStatus": "No Excel overlap; national/adjacent-band relevance unresolved",
+      "matchedFinnishRows": [],
+      "transmitterLocations": [
+        {
+          "origin": "fxm_geo",
+          "geoKey": "GEO-SWE-001",
+          "reportedPoint": {
+            "latitudeDeg": 59.33,
+            "longitudeDeg": 18.95
+          },
+          "geoEvidence": [
+            {
+              "table": "fxm_geo",
+              "csvRow": 103,
+              "raw": {
+                "site_name": "Stockholm Coastal Tower"
+              }
+            }
+          ],
+          "antennaEvidence": [
+            {
+              "table": "fxm_ant",
+              "csvRow": 103,
+              "raw": {
+                "pwr_dbw": "16.0",
+                "pwr_eiv": "40.0",
+                "hgt_agl": "50",
+                "eff_hgtmax": "110",
+                "azm_max_e": "085",
+                "gain_max": "7.0"
+              }
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        "No direct Finnish Excel overlap",
+        "Over-sea path toward Åland unverified; relevance unresolved"
+      ]
+    }
+  ]
+}

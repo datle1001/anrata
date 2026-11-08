@@ -1,0 +1,166 @@
+{
+  "schemaVersion": "antara-publication-demo-v1",
+  "synthetic": true,
+  "publication": {
+    "ific_no": 3077,
+    "publication_date": "2026-11-17",
+    "service": "Space Services",
+    "total_notices": 4,
+    "status": "published"
+  },
+  "notices": [
+    {
+      "id": "IFIC3077-001",
+      "name": "ATLANTIC-STAR-A",
+      "administration": "USA",
+      "lowerMHz": 3720,
+      "upperMHz": 4220,
+      "orbit": "GSO",
+      "visibility": "North Atlantic and Northern Europe coverage.",
+      "reviewTrigger": "Extended C-band usage requires technical review.",
+      "blockers": [
+        "Applicable footnotes not confirmed"
+      ],
+      "pfdScreening": {
+        "status": "exceeds",
+        "worstMarginDb": 15.45,
+        "method": "Offline worst-case screening (scripts/screen_gso_pfd.py method); synthetic demo values",
+        "groups": [
+          {
+            "groupId": "307700101",
+            "beam": "CB1",
+            "freqLowMHz": 3720,
+            "freqHighMHz": 4220,
+            "citation": "RR2024 Vol.1 Table 21-4, row 3 400-4 200 MHz (PDF p.297)",
+            "service": "Fixed-satellite (space-to-Earth), GSO",
+            "referenceBandwidthHz": 4000,
+            "inputs": {
+              "psdMaxDbwHz": -49.5,
+              "gainMaxDbi": 40.5,
+              "satelliteLongitudeDeg": -30
+            },
+            "worstPoint": {
+              "label": "Station 396091",
+              "lat": 69.04276,
+              "lon": 20.85122,
+              "arrivalAngleDeg": 4.38,
+              "slantRangeKm": 41195,
+              "spreadingLossDb": 163.29,
+              "pfdDb": -136.55,
+              "limitDb": -152,
+              "marginDb": 15.45
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "IFIC3077-002",
+      "name": "SCANDI-NET-5",
+      "administration": "S",
+      "lowerMHz": 10700,
+      "upperMHz": 11700,
+      "orbit": "GSO",
+      "visibility": "Coverage includes Finland and Sweden.",
+      "reviewTrigger": "Reception-band relevance requires confirmation.",
+      "blockers": [
+        "Applicable regulatory provision not confirmed"
+      ],
+      "pfdScreening": {
+        "status": "exceeds",
+        "worstMarginDb": 2.15,
+        "method": "Offline worst-case screening (scripts/screen_gso_pfd.py method); synthetic demo values",
+        "groups": [
+          {
+            "groupId": "307700201",
+            "beam": "KU1",
+            "freqLowMHz": 10950,
+            "freqHighMHz": 11200,
+            "citation": "RR2024 Vol.1 Table 21-4, row 10.7-11.7 GHz GSO (PDF p.298)",
+            "service": "Fixed-satellite (space-to-Earth), GSO",
+            "referenceBandwidthHz": 4000,
+            "inputs": {
+              "psdMaxDbwHz": -58,
+              "gainMaxDbi": 40,
+              "satelliteLongitudeDeg": 5
+            },
+            "worstPoint": {
+              "label": "Station 396091",
+              "lat": 69.04276,
+              "lon": 20.85122,
+              "arrivalAngleDeg": 11.6,
+              "slantRangeKm": 40415.6,
+              "spreadingLossDb": 163.12,
+              "pfdDb": -145.85,
+              "limitDb": -146.7,
+              "marginDb": 2.15
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "IFIC3077-003",
+      "name": "EURO-GATEWAY-X",
+      "administration": "D",
+      "lowerMHz": 10700,
+      "upperMHz": 11700,
+      "orbit": "GSO",
+      "visibility": "Europe-wide coverage.",
+      "reviewTrigger": "Frequency plan update requires specialist review.",
+      "blockers": [
+        "Coordination status pending"
+      ],
+      "pfdScreening": {
+        "status": "within",
+        "worstMarginDb": -9.2,
+        "method": "Offline worst-case screening (scripts/screen_gso_pfd.py method); synthetic demo values",
+        "groups": [
+          {
+            "groupId": "307700301",
+            "beam": "EU2",
+            "freqLowMHz": 11450,
+            "freqHighMHz": 11700,
+            "citation": "RR2024 Vol.1 Table 21-4, row 10.7-11.7 GHz GSO (PDF p.298)",
+            "service": "Fixed-satellite (space-to-Earth), GSO",
+            "referenceBandwidthHz": 4000,
+            "inputs": {
+              "psdMaxDbwHz": -66,
+              "gainMaxDbi": 38,
+              "satelliteLongitudeDeg": 9
+            },
+            "worstPoint": {
+              "label": "Station 396091",
+              "lat": 69.04276,
+              "lon": 20.85122,
+              "arrivalAngleDeg": 11.98,
+              "slantRangeKm": 40375.8,
+              "spreadingLossDb": 163.11,
+              "pfdDb": -157.2,
+              "limitDb": -146.51,
+              "marginDb": -9.2
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "IFIC3077-004",
+      "name": "POLARIS-LINK",
+      "administration": "NOR",
+      "lowerMHz": 17800,
+      "upperMHz": 20300,
+      "orbit": "Non-GSO",
+      "visibility": "Time-varying Nordic coverage.",
+      "reviewTrigger": "Non-GSO analysis requires orbital assessment.",
+      "blockers": [
+        "Orbital time series unavailable"
+      ],
+      "pfdScreening": {
+        "status": "not-calculable",
+        "reason": "Non-GSO: Article 22 EPFD needs time-domain simulation; not computed.",
+        "groups": []
+      }
+    }
+  ]
+}

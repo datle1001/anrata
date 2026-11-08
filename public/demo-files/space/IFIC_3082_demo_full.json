@@ -1,0 +1,164 @@
+{
+  "schemaVersion": "antara-publication-demo-v1",
+  "synthetic": true,
+  "publication": {
+    "ific_no": 3082,
+    "publication_date": "2027-02-23",
+    "service": "Space Services",
+    "total_notices": 4,
+    "status": "published"
+  },
+  "notices": [
+    {
+      "id": "IFIC3082-001",
+      "name": "SCANDI-COM-2",
+      "administration": "SWE",
+      "lowerMHz": 17700,
+      "upperMHz": 19700,
+      "orbit": "GSO",
+      "visibility": "Fennoscandia and Northern Europe coverage.",
+      "reviewTrigger": "Routine coordination review; Ka-band downlink.",
+      "blockers": [
+        "Bilateral coordination required"
+      ],
+      "pfdScreening": {
+        "status": "within",
+        "worstMarginDb": -7.9,
+        "method": "Synthetic demo screening",
+        "groups": [
+          {
+            "groupId": "308200101",
+            "beam": "SC2",
+            "freqLowMHz": 18100,
+            "freqHighMHz": 18600,
+            "citation": "Synthetic Rule Set A",
+            "service": "Fixed-satellite (space-to-Earth), GSO",
+            "referenceBandwidthHz": 1000000,
+            "inputs": {
+              "psdMaxDbwHz": -62,
+              "gainMaxDbi": 44,
+              "satelliteLongitudeDeg": 5
+            },
+            "worstPoint": {
+              "label": "Station 420201",
+              "lat": 64.5,
+              "lon": 26,
+              "arrivalAngleDeg": 14.8,
+              "slantRangeKm": 39800,
+              "spreadingLossDb": 163,
+              "pfdDb": -156.45,
+              "limitDb": -148,
+              "marginDb": -7.9
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "IFIC3082-002",
+      "name": "BALTIC-STREAM",
+      "administration": "EST",
+      "lowerMHz": 10750,
+      "upperMHz": 12200,
+      "orbit": "GSO",
+      "visibility": "Baltic region and Southern Finland.",
+      "reviewTrigger": "Cross-border coordination recommended.",
+      "blockers": [
+        "Cross-border review recommended"
+      ],
+      "pfdScreening": {
+        "status": "exceeds",
+        "worstMarginDb": 1.78,
+        "method": "Synthetic demo screening",
+        "groups": [
+          {
+            "groupId": "308100201",
+            "beam": "BS1",
+            "freqLowMHz": 10800,
+            "freqHighMHz": 11100,
+            "citation": "Synthetic Rule Set B",
+            "service": "Fixed-satellite (space-to-Earth), GSO",
+            "referenceBandwidthHz": 4000,
+            "inputs": {
+              "psdMaxDbwHz": -57.5,
+              "gainMaxDbi": 39,
+              "satelliteLongitudeDeg": 12
+            },
+            "worstPoint": {
+              "label": "Station 420102",
+              "lat": 60.17,
+              "lon": 24.94,
+              "arrivalAngleDeg": 10.2,
+              "slantRangeKm": 40400,
+              "spreadingLossDb": 163,
+              "pfdDb": -143.2,
+              "limitDb": -146.48,
+              "marginDb": 3.28
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "IFIC3082-003",
+      "name": "ATLAS-GEO-V",
+      "administration": "D",
+      "lowerMHz": 20200,
+      "upperMHz": 21200,
+      "orbit": "GSO",
+      "visibility": "Central and Northern Europe coverage.",
+      "reviewTrigger": "Routine publication review.",
+      "blockers": [],
+      "pfdScreening": {
+        "status": "within",
+        "worstMarginDb": -13.6,
+        "method": "Synthetic demo screening",
+        "groups": [
+          {
+            "groupId": "308200301",
+            "beam": "AG1",
+            "freqLowMHz": 20400,
+            "freqHighMHz": 20800,
+            "citation": "Synthetic Rule Set A",
+            "service": "Fixed-satellite (space-to-Earth), GSO",
+            "referenceBandwidthHz": 1000000,
+            "inputs": {
+              "psdMaxDbwHz": -65,
+              "gainMaxDbi": 42,
+              "satelliteLongitudeDeg": 19.2
+            },
+            "worstPoint": {
+              "label": "Station 420301",
+              "lat": 60.5,
+              "lon": 25,
+              "arrivalAngleDeg": 21,
+              "slantRangeKm": 38900,
+              "spreadingLossDb": 162.8,
+              "pfdDb": -159.2,
+              "limitDb": -145,
+              "marginDb": -13.6
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "IFIC3082-004",
+      "name": "ORION-LEO-NORTH",
+      "administration": "NOR",
+      "lowerMHz": 14100,
+      "upperMHz": 14600,
+      "orbit": "Non-GSO",
+      "visibility": "Circumpolar orbits passing over Fennoscandia.",
+      "reviewTrigger": "Non-GSO epfd verification required; dynamic simulation needed.",
+      "blockers": [
+        "EPFD simulation required"
+      ],
+      "pfdScreening": {
+        "status": "not-calculable",
+        "method": "Synthetic demo screening",
+        "groups": []
+      }
+    }
+  ]
+}
