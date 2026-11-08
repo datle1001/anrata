@@ -1,0 +1,136 @@
+{
+  "issue": 3076,
+  "scope": "Frequency-only Excel screening and raw relational input audit. Not complete Finnish relevance, field-strength prediction or coordination verdict.",
+  "calculationScope": "Counts of stored matchedFinnishRows only; not interference, propagation or coordination assessment.",
+  "source": {
+    "file": "terrestrial3076-screening.json",
+    "sha256": "c98b658f9ac8d6298b8ba59e67aaaea4f37802dd8fbf1ac3a275f77248768c9e"
+  },
+  "totalNotices": 1858,
+  "distribution": {
+    "0": 1658,
+    "1": 100,
+    "2": 86,
+    "3": 13,
+    "5": 1
+  },
+  "exactlyThree": [
+    {
+      "id": "92817506",
+      "administration": "POL",
+      "source": {
+        "file": "brific3076.mdb",
+        "table": "fxm_terra",
+        "csvRow": 480
+      }
+    },
+    {
+      "id": "92817514",
+      "administration": "POL",
+      "source": {
+        "file": "brific3076.mdb",
+        "table": "fxm_terra",
+        "csvRow": 481
+      }
+    },
+    {
+      "id": "92817515",
+      "administration": "POL",
+      "source": {
+        "file": "brific3076.mdb",
+        "table": "fxm_terra",
+        "csvRow": 482
+      }
+    },
+    {
+      "id": "92817516",
+      "administration": "POL",
+      "source": {
+        "file": "brific3076.mdb",
+        "table": "fxm_terra",
+        "csvRow": 483
+      }
+    },
+    {
+      "id": "92845770",
+      "administration": "POL",
+      "source": {
+        "file": "brific3076.mdb",
+        "table": "fxm_terra",
+        "csvRow": 495
+      }
+    },
+    {
+      "id": "92845771",
+      "administration": "POL",
+      "source": {
+        "file": "brific3076.mdb",
+        "table": "fxm_terra",
+        "csvRow": 496
+      }
+    },
+    {
+      "id": "92845772",
+      "administration": "POL",
+      "source": {
+        "file": "brific3076.mdb",
+        "table": "fxm_terra",
+        "csvRow": 497
+      }
+    },
+    {
+      "id": "92845773",
+      "administration": "POL",
+      "source": {
+        "file": "brific3076.mdb",
+        "table": "fxm_terra",
+        "csvRow": 498
+      }
+    },
+    {
+      "id": "92845774",
+      "administration": "POL",
+      "source": {
+        "file": "brific3076.mdb",
+        "table": "fxm_terra",
+        "csvRow": 499
+      }
+    },
+    {
+      "id": "93081456",
+      "administration": "RUS",
+      "source": {
+        "file": "brific3076.mdb",
+        "table": "fxm_terra",
+        "csvRow": 1654
+      }
+    },
+    {
+      "id": "93081457",
+      "administration": "RUS",
+      "source": {
+        "file": "brific3076.mdb",
+        "table": "fxm_terra",
+        "csvRow": 1655
+      }
+    },
+    {
+      "id": "93083020",
+      "administration": "CHN",
+      "source": {
+        "file": "brific3076.mdb",
+        "table": "fxm_terra",
+        "csvRow": 2646
+      }
+    },
+    {
+      "id": "93083022",
+      "administration": "CHN",
+      "source": {
+        "file": "brific3076.mdb",
+        "table": "fxm_terra",
+        "csvRow": 2648
+      }
+    }
+  ]
+}

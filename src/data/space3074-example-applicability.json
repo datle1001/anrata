@@ -1,0 +1,22 @@
+{
+  "noticeId": "95500027",
+  "groupId": "95600901",
+  "status": "Narrow Table 21-4 criterion supported by documentary evidence; filing-specific power semantics and aggregation remain unvalidated",
+  "criterion": "RR2024 No.21.16 Table21-4, GSO FSS space-to-Earth, 3400–4200 MHz, 4 kHz",
+  "evidence": [
+    {"source": "M4.pdf", "pdfPage": 157, "printedPage": "148 (230)", "finding": "3400–3800 MHz MOBILE AND FIXED includes FX TXRX and FXA TXRX; protected terrestrial fixed reception is supported."},
+    {"source": "RR2024 Volume 1", "pdfPage": 139, "printedPage": 129, "finding": "Article 5 Region 1 3600–3800 MHz: FIXED, FSS space-to-Earth and MOBILE except aeronautical mobile have primary allocations."},
+    {"source": "RR2024 Volume 1", "pdfPage": 296, "printedPage": 286, "finding": "No.21.16 applies to indicated space emissions in bands shared with equal rights with fixed or mobile services, unless otherwise stated."},
+    {"source": "RR2024 Volume 1", "pdfPage": 297, "printedPage": 287, "finding": "Table21-4: GSO FSS 3400–4200 MHz, angle-dependent limit, 4 kHz reference."},
+    {"source": "https://www.itu.int/en/ITU-R/space/Preface/preface_e.pdf", "pdfPage": 176, "finding": "Table3: EC means space station in fixed-satellite service; Table4 p178: CP means public correspondence, not a priority class."},
+    {"source": "RR2024 Volume 2", "pdfPage": 87, "printedPage": 75, "finding": "Appendix4 footnote2: below15 GHz power density is averaged over worst4kHz band; see SF.675. This can support 4kHz conversion without assuming a flat emission spectrum."}
+  ],
+  "qualifications": [
+    "Space records reviewed through existing audit, not independently re-exported during applicability review.",
+    "Maximum/mean power interpretation, antenna-input reference and simultaneous-carrier aggregation require filing-specific verification.",
+    "Four emission records are treated as separate scenarios, not a validated aggregate beam bound.",
+    "Nominal single-point calculations do not cover orbital tolerance or Finland-wide reception maxima.",
+    "Any conservative exceedance is a screening concern, not proven harmful interference or a regulatory violation."
+  ],
+  "comparisonStatus": "Deferred until filing-specific power and aggregation checks are completed; historical input audit and conditional example remain unchanged."
+}

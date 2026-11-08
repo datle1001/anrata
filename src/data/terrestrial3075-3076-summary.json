@@ -1,0 +1,74 @@
+{
+  "scope": "Publication-aware data comparison only; no geographic relevance, field strength, coordination or interference verdict.",
+  "identityScope": "Provisional fragment+administration+assignment ID; not independently validated across issues. Duplicates retained for review.",
+  "classScope": "FB base station and ML land mobile station review pool, supported by embedded ref_stn_cls. Full Preface/service applicability pending.",
+  "actionScope": "intent and amend_type preserved verbatim; ADD/MODIFY/SUPPRESS are not inferred from presence. Suppression and withdrawal remain distinct.",
+  "references": [
+    "https://www.itu.int/ITU-R/terrasys/docs/db/structure/"
+  ],
+  "issues": [
+    {
+      "issue": 3075,
+      "totalExtractRows": 8373,
+      "currentPublicationRows": 6506,
+      "landMobileClassPoolRows": 1661,
+      "landMobileRawActions": {
+        "ADD": 1657,
+        "MODIFY": 4
+      },
+      "landMobileAdministrations": {
+        "RUS": 90,
+        "UZB": 457,
+        "SNG": 13,
+        "IND": 1,
+        "EST": 24,
+        "F": 74,
+        "CHN": 970,
+        "BHR": 32
+      },
+      "inputCsvSha256": {
+        "fxm_terra": "30494c7cfe19d38e829cf269d4f99d96b8e6d675997627e4563467fe4216b48d",
+        "fxm_pub_hist": "a98038a403fa539858289b9ae1c914846a92d5f09ea3cfcbcc57594a5128f12f",
+        "pub": "2656ced5324c55de93d4a3a933dadfda38d8acbadcc9b3fd7a31956270a8f3f6",
+        "pub_current_circ": "2d4be14f833d966bf2c08a6806986405a621990ac03176e07418680f2bcb9e54"
+      },
+      "unresolvedJoinRows": 0
+    },
+    {
+      "issue": 3076,
+      "totalExtractRows": 4057,
+      "currentPublicationRows": 3481,
+      "landMobileClassPoolRows": 1858,
+      "landMobileRawActions": {
+        "ADD": 1847,
+        "MODIFY": 11
+      },
+      "landMobileAdministrations": {
+        "POL": 9,
+        "RUS": 114,
+        "KAZ": 412,
+        "CHN": 194,
+        "F": 2,
+        "SVN": 1127
+      },
+      "inputCsvSha256": {
+        "fxm_terra": "1ef7f6a6aaa21a605151af77c537fb5747a26416a82497a16d46294960811e30",
+        "fxm_pub_hist": "fc60a7c4e2b3373d4b3d6721d75376fbeaa0ea3cec14259be70b0765b5487987",
+        "pub": "af2017de61f2c2a07682e5a56a4bb8a94a9c7c50b96d69b1652c6de0059f5a48",
+        "pub_current_circ": "0489e51bb41220835e94d49ae836b7414a9511743ee588f99db1b813d80cbb74"
+      },
+      "unresolvedJoinRows": 0
+    }
+  ],
+  "presenceCounts": {
+    "Only in current extract; not proof of new assignment": 3481,
+    "Only in previous extract; not proof of withdrawal": 6506
+  },
+  "pending": [
+    "Verify cross-issue identity and publication-part semantics",
+    "Join geographic and transmitter/antenna inputs",
+    "Screen Finnish reception and border/territorial-sea relevance",
+    "Validate and calculate P.1546",
+    "Generate separate submission results"
+  ]
+}

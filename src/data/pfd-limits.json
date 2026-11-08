@@ -1,0 +1,31 @@
+{
+  "source": "ITU Radio Regulations 2024, Volume 1, Article 21, No. 21.16, Table 21-4",
+  "note": "Only GSO fixed-satellite (space-to-Earth) rows that apply in Region 1 / Finland are encoded. Rows with footnote conditions are flagged for expert confirmation. Edit this file to add bands; rerun scripts/screen_gso_pfd.py.",
+  "limits": [
+    {
+      "id": "fss-3400-4200",
+      "lowMHz": 3400, "highMHz": 4200,
+      "service": "Fixed-satellite (space-to-Earth), GSO",
+      "lowAngleDb": -152, "highAngleDb": -142, "slopeDbPerDeg": 0.5,
+      "referenceBandwidthHz": 4000,
+      "citation": "RR2024 Vol.1 Table 21-4, row 3 400-4 200 MHz (PDF p.297)"
+    },
+    {
+      "id": "fss-10700-11700-gso",
+      "lowMHz": 10700, "highMHz": 11700,
+      "service": "Fixed-satellite (space-to-Earth), GSO",
+      "lowAngleDb": -150, "highAngleDb": -140, "slopeDbPerDeg": 0.5,
+      "referenceBandwidthHz": 4000,
+      "citation": "RR2024 Vol.1 Table 21-4, row 10.7-11.7 GHz GSO (PDF p.298)"
+    },
+    {
+      "id": "fss-17700-19300",
+      "lowMHz": 17700, "highMHz": 19300,
+      "service": "Fixed-satellite (space-to-Earth), GSO",
+      "lowAngleDb": -115, "highAngleDb": -105, "slopeDbPerDeg": 0.5,
+      "referenceBandwidthHz": 1000000,
+      "citation": "RR2024 Vol.1 Table 21-4, row 17.7-19.3 GHz, footnotes 14/15 (PDF p.299)",
+      "footnoteCheck": "Footnotes 13-15 alter the limit for some cases; confirm before citing."
+    }
+  ]
+}

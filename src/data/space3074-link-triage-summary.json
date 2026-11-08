@@ -1,0 +1,18 @@
+{
+  "scope": "Conservative link-type triage after Excel frequency overlap. No M4/geographic/PFD validation. Pool membership does not prove an Earth destination. All quarantined groups retained.",
+  "references": [
+    "https://www.itu.int/en/ITU-R/space/Documents/sns_dbv91.pdf",
+    "https://www.itu.int/en/ITU-R/space/Preface/preface_e.pdf"
+  ],
+  "metrics": {
+    "frequencyRowsByClassification": {
+      "downlink_review_pool_destination_unverified": 14229,
+      "space_endpoint_or_intersatellite_review": 46,
+      "sensor_service_separate_review": 13,
+      "outside_satellite_notice_scope": 1,
+      "missing_service_class": 16
+    },
+    "downlinkReviewPoolNotices": 122,
+    "downlinkReviewPoolGroups": 8448
+  }
+}

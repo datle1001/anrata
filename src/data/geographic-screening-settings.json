@@ -1,0 +1,18 @@
+{
+  "scope": "Organizer-approved geographic sampling and team-defined review settings; not regulatory limits or completed calculations",
+  "organizerConfirmationDate": "2026-11-07",
+  "gridStepDegrees": 0.1,
+  "boundaryMaximumStepKm": 5,
+  "nearLimitMarginDb": 3,
+  "marginAuthority": "Team-selected initial 3 dB review buffer, not specified by Traficom; configurable and not a change to any applicable limit",
+  "bandPriority": "none",
+  "territorialSeaSource": "https://avoindata.suomi.fi/data/dataset/aluevesien-rajat",
+  "qualifications": [
+    "Angular grid spacing is not a fixed kilometre spacing; boundary points are prepared separately",
+    "A sampled maximum is not a continuous national maximum",
+    "Use territorial-sea outer limit, not EEZ or internal-water limits",
+    "Margin classification requires a confirmed applicable comparison and matching reference units",
+    "Missing inputs and out-of-domain propagation paths remain unresolved",
+    "No frequency band is assigned preferential review priority"
+  ]
+}

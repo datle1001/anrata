@@ -1,0 +1,333 @@
+{
+  "issue": 3074,
+  "noticeId": "95500027",
+  "groupId": "95600901",
+  "networkName": "INTELSAT7 66E",
+  "administration": "USA",
+  "scope": "Single-point conditional worst-case-pointing estimates, nominal GSO orbit. Not a Finland-wide maximum, validated regulatory result or interference verdict.",
+  "formula": "PSD(dBW/Hz) + gain(dBi) + 10log10(4000 Hz) - 10log10(4*pi*range_m^2)",
+  "assumptions": [
+    "Maximum reported PSD bounds all frequencies within the 4 kHz window; semantics require review",
+    "Maximum beam gain directed at the reception point, per organizer worst-case permission",
+    "Emission alternatives evaluated separately, not summed or joined by frequency sequence",
+    "WGS84 receiver surface, nominal circular equatorial GSO at 42164 km geocentric radius",
+    "Zero atmospheric/obstruction loss; orbital tolerances and footprint not evaluated",
+    "No receiving-antenna gain added: PFD is incident flux, not received power"
+  ],
+  "validation": "Analytic geometry and logarithmic scaling unit tests only; no GIBC or expert benchmark validation",
+  "blockers": [
+    "Confirm EC/CP downlink service and RR21.16 equal-rights applicability with M4",
+    "Validate reported PSD and reference-window interpretation",
+    "Evaluate orbital tolerance and Finnish reception-area maxima",
+    "Compare against an independent expert or official-tool benchmark"
+  ],
+  "sourceEvidence": {
+    "file": "ific3074.mdb",
+    "s_beam": [
+      {
+        "csvRow": 4,
+        "raw": {
+          "ntc_id": "95500027",
+          "emi_rcp": "E",
+          "beam_name": "H1",
+          "beam_old": "",
+          "f_steer": "",
+          "gain": "22.6",
+          "gain_x": "",
+          "beamlet": "",
+          "bore_long": "",
+          "bore_lat": "",
+          "maj_axis": "",
+          "min_axis": "",
+          "orient": "",
+          "pnt_acc": "0.1",
+          "rot_acc": "",
+          "pattern_id": "",
+          "freq_min": "3725.5",
+          "freq_max": "4072",
+          "sr_type": "",
+          "act_code": "",
+          "ang_alpha": "",
+          "ang_beta": "",
+          "attch_alpha_beta": "",
+          "attch_e": "",
+          "attch_elev": "",
+          "pwr_max_4k": "",
+          "pwr_avg_4k": "",
+          "pwr_max_1m": "",
+          "pwr_avg_1m": "",
+          "prot_ratio": "",
+          "f_fdg_reqd": "",
+          "f_tx_vis": "",
+          "tx_ang_min": "",
+          "attch_pfd_steer": "",
+          "f_pfd_steer_default": "",
+          "f_co_change": "",
+          "f_aggso_change": "",
+          "f_e_change": "",
+          "cmp_ntc_id": "",
+          "cmp_beam": "",
+          "f_cmp_str": "",
+          "f_cmp_rec": ""
+        }
+      }
+    ],
+    "geo": [
+      {
+        "csvRow": 2,
+        "raw": {
+          "ntc_id": "95500027",
+          "sat_name": "INTELSAT7 66E",
+          "long_nom": "66",
+          "tol_east": "0.1",
+          "tol_west": "0.1",
+          "inclin_exc": "0.1",
+          "long_orig": "66"
+        }
+      }
+    ],
+    "emiss": [
+      {
+        "csvRow": 509,
+        "raw": {
+          "grp_id": "95600901",
+          "seq_no": "1",
+          "design_emi": "30M0FXW--",
+          "pep_max": "13.1",
+          "pwr_ds_max": "-49.900002",
+          "pep_min": "",
+          "pwr_ds_min": "",
+          "c_to_n": "",
+          "pwr_ds_nbw": "",
+          "pulse_length": "",
+          "pulse_rep": "",
+          "f_emi_type": "",
+          "attch_pep": "",
+          "attch_mpd": "",
+          "attch_c2n": "",
+          "pwr_ds_nbc": "",
+          "f_cmp_rec": ""
+        }
+      },
+      {
+        "csvRow": 510,
+        "raw": {
+          "grp_id": "95600901",
+          "seq_no": "2",
+          "design_emi": "36M0F8W--",
+          "pep_max": "13.1",
+          "pwr_ds_max": "-47.400002",
+          "pep_min": "",
+          "pwr_ds_min": "",
+          "c_to_n": "",
+          "pwr_ds_nbw": "",
+          "pulse_length": "",
+          "pulse_rep": "",
+          "f_emi_type": "",
+          "attch_pep": "",
+          "attch_mpd": "",
+          "attch_c2n": "",
+          "pwr_ds_nbc": "",
+          "f_cmp_rec": ""
+        }
+      },
+      {
+        "csvRow": 511,
+        "raw": {
+          "grp_id": "95600901",
+          "seq_no": "3",
+          "design_emi": "45K0G1X--",
+          "pep_max": "-16.700001",
+          "pwr_ds_max": "-62.5",
+          "pep_min": "",
+          "pwr_ds_min": "",
+          "c_to_n": "",
+          "pwr_ds_nbw": "",
+          "pulse_length": "",
+          "pulse_rep": "",
+          "f_emi_type": "",
+          "attch_pep": "",
+          "attch_mpd": "",
+          "attch_c2n": "",
+          "pwr_ds_nbc": "",
+          "f_cmp_rec": ""
+        }
+      },
+      {
+        "csvRow": 512,
+        "raw": {
+          "grp_id": "95600901",
+          "seq_no": "4",
+          "design_emi": "72M0G7W--",
+          "pep_max": "13.1",
+          "pwr_ds_max": "-60.599998",
+          "pep_min": "",
+          "pwr_ds_min": "",
+          "c_to_n": "",
+          "pwr_ds_nbw": "",
+          "pulse_length": "",
+          "pulse_rep": "",
+          "f_emi_type": "",
+          "attch_pep": "",
+          "attch_mpd": "",
+          "attch_c2n": "",
+          "pwr_ds_nbc": "",
+          "f_cmp_rec": ""
+        }
+      }
+    ],
+    "srv_cls": [
+      {
+        "csvRow": 182,
+        "raw": {
+          "grp_id": "95600901",
+          "seq_no": "1",
+          "stn_cls": "EC",
+          "nat_srv": "CP"
+        }
+      }
+    ]
+  },
+  "results": [
+    {
+      "station": "983816",
+      "source": {
+        "file": "Traficom_SinceAI_Frequencies_of_interest_v05112026.xlsx",
+        "sheet": "Frequencies of interest",
+        "row": 849
+      },
+      "receiverRaw": {
+        "Station number": 983816,
+        "Class of licence": "MVV",
+        "Longitude": "24.6245",
+        "Latitude": "65.6981",
+        "Ground height (m)": 83,
+        "Mast height (m)": 70,
+        "Mast type": "KIINTEÄ",
+        "Channel bandwidth": "100 MHz",
+        "TX frequency": "3726.8 MHz",
+        "RX frequency": "3726.8 MHz",
+        "Ant height AGL (m)": 61,
+        "Ant height ASL (m)": 144,
+        "Ant gain (dB)": 40,
+        "Class of transmission": "W7W",
+        "Transmission bandwidth": "100M",
+        "Radiation direction (°)": 253,
+        "Polarisation": "V",
+        "Radioation power": 145,
+        "Radioation power (ITU)": "E",
+        "Radiation power unit": "W",
+        "Transmission line (dB)": null,
+        "Directivity": "D"
+      },
+      "normalizationFlags": [],
+      "geometry": {
+        "slantRangeM": 40641026.36015399,
+        "arrivalAngleDeg": 9.43285880908769,
+        "aboveGeometricHorizon": true,
+        "spreadingLossDbM2": 163.17139198446006
+      },
+      "emissionAlternatives": [
+        {
+          "emissionCsvRow": 509,
+          "sequenceRaw": "1",
+          "emissionRaw": {
+            "grp_id": "95600901",
+            "seq_no": "1",
+            "design_emi": "30M0FXW--",
+            "pep_max": "13.1",
+            "pwr_ds_max": "-49.900002",
+            "pep_min": "",
+            "pwr_ds_min": "",
+            "c_to_n": "",
+            "pwr_ds_nbw": "",
+            "pulse_length": "",
+            "pulse_rep": "",
+            "f_emi_type": "",
+            "attch_pep": "",
+            "attch_mpd": "",
+            "attch_c2n": "",
+            "pwr_ds_nbc": "",
+            "f_cmp_rec": ""
+          },
+          "conditionalPfdDbwPerM2In4kHz": -154.45079407118044
+        },
+        {
+          "emissionCsvRow": 510,
+          "sequenceRaw": "2",
+          "emissionRaw": {
+            "grp_id": "95600901",
+            "seq_no": "2",
+            "design_emi": "36M0F8W--",
+            "pep_max": "13.1",
+            "pwr_ds_max": "-47.400002",
+            "pep_min": "",
+            "pwr_ds_min": "",
+            "c_to_n": "",
+            "pwr_ds_nbw": "",
+            "pulse_length": "",
+            "pulse_rep": "",
+            "f_emi_type": "",
+            "attch_pep": "",
+            "attch_mpd": "",
+            "attch_c2n": "",
+            "pwr_ds_nbc": "",
+            "f_cmp_rec": ""
+          },
+          "conditionalPfdDbwPerM2In4kHz": -151.95079407118044
+        },
+        {
+          "emissionCsvRow": 511,
+          "sequenceRaw": "3",
+          "emissionRaw": {
+            "grp_id": "95600901",
+            "seq_no": "3",
+            "design_emi": "45K0G1X--",
+            "pep_max": "-16.700001",
+            "pwr_ds_max": "-62.5",
+            "pep_min": "",
+            "pwr_ds_min": "",
+            "c_to_n": "",
+            "pwr_ds_nbw": "",
+            "pulse_length": "",
+            "pulse_rep": "",
+            "f_emi_type": "",
+            "attch_pep": "",
+            "attch_mpd": "",
+            "attch_c2n": "",
+            "pwr_ds_nbc": "",
+            "f_cmp_rec": ""
+          },
+          "conditionalPfdDbwPerM2In4kHz": -167.05079207118044
+        },
+        {
+          "emissionCsvRow": 512,
+          "sequenceRaw": "4",
+          "emissionRaw": {
+            "grp_id": "95600901",
+            "seq_no": "4",
+            "design_emi": "72M0G7W--",
+            "pep_max": "13.1",
+            "pwr_ds_max": "-60.599998",
+            "pep_min": "",
+            "pwr_ds_min": "",
+            "c_to_n": "",
+            "pwr_ds_nbw": "",
+            "pulse_length": "",
+            "pulse_rep": "",
+            "f_emi_type": "",
+            "attch_pep": "",
+            "attch_mpd": "",
+            "attch_c2n": "",
+            "pwr_ds_nbc": "",
+            "f_cmp_rec": ""
+          },
+          "conditionalPfdDbwPerM2In4kHz": -165.15079007118044
+        }
+      ],
+      "limitDbwPerM2": null,
+      "marginDb": null,
+      "status": "Conditional numerical estimate; regulatory applicability unconfirmed"
+    }
+  ]
+}

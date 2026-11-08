@@ -1,0 +1,504 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --font-sans: "Manrope", "Segoe UI", sans-serif;
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root,
+.dark {
+  color-scheme: light;
+  --radius: 0.5rem;
+  --background: oklch(0.955 0.012 240);
+  --foreground: oklch(0.24 0.012 255);
+  --primary: oklch(0.32 0.025 255);
+  --primary-foreground: oklch(0.98 0.003 250);
+  --secondary: oklch(0.42 0.04 250);
+  --secondary-foreground: oklch(0.98 0.003 250);
+  --accent: oklch(0.92 0.015 240);
+  --accent-foreground: var(--foreground);
+  --card: oklch(0.98 0.006 240);
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --muted: oklch(0.925 0.012 240);
+  --muted-foreground: oklch(0.45 0.012 255);
+  --destructive: oklch(0.53 0.19 27);
+  --destructive-foreground: oklch(0.98 0.003 250);
+  --border: oklch(0.835 0.014 240);
+  --input: var(--border);
+  --ring: var(--secondary);
+  --chart-1: oklch(0.58 0.14 60);
+  --chart-2: oklch(0.52 0.11 155);
+  --chart-3: var(--secondary);
+  --chart-4: oklch(0.5 0.06 250);
+  --chart-5: var(--destructive);
+  --sidebar: var(--card);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--muted);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+  --desk-shadow: 0 18px 48px oklch(0.3 0.02 255 / 0.18);
+  --lift-shadow: 0 10px 24px -8px oklch(0.3 0.02 255 / 0.28);
+  --surface-sheen: linear-gradient(145deg, oklch(1 0 0 / 0.12), transparent 55%, oklch(0.3 0.02 240 / 0.035));
+  --surface-relief: inset 0 1px 0 oklch(1 0 0 / 0.2), inset 0 -1px 0 oklch(0.3 0.02 240 / 0.06);
+  --chat-surface: oklch(0.38 0.018 285);
+  --chat-ink: oklch(0.96 0.004 250);
+  --chat-muted: oklch(0.8 0.008 255);
+  --chat-border: oklch(0.52 0.018 285);
+  --chat-recess: oklch(0.33 0.018 285);
+  --chat-raised: oklch(0.44 0.018 285);
+  --chat-user: oklch(0.88 0.012 250);
+  --chat-user-ink: oklch(0.22 0.012 255);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+}
+
+/* Evidence grids must constrain long raw records, including expanded JSON. */
+main section.grid > div {
+  min-width: 0;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    letter-spacing: 0;
+  }
+}
+.oma-panel {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+}
+.oma-panel pre {
+  max-width: 100%;
+  overflow: auto;
+}
+.oma-float {
+  color-scheme: dark;
+  --background: var(--chat-surface);
+  --foreground: var(--chat-ink);
+  --card: var(--chat-surface);
+  --popover: var(--chat-surface);
+  --muted: var(--chat-raised);
+  --muted-foreground: var(--chat-muted);
+  --border: var(--chat-border);
+  --input: var(--chat-border);
+  --primary: var(--chat-user);
+  --primary-foreground: var(--chat-user-ink);
+  --secondary: var(--chat-user);
+  --secondary-foreground: var(--chat-user-ink);
+  --accent: var(--chat-raised);
+  --accent-foreground: var(--chat-ink);
+  --destructive: oklch(0.74 0.14 25);
+  --chart-1: oklch(0.8 0.12 70);
+  --chart-2: oklch(0.78 0.1 155);
+  position: fixed;
+  z-index: 50;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--desk-shadow);
+}
+.oma-handle {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  z-index: 2;
+}
+.oma-bubble {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 50;
+  border-radius: 9999px;
+  background: var(--chat-surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--desk-shadow);
+  transition: transform 0.2s;
+}
+.oma-bubble:hover {
+  transform: scale(1.08) rotate(-6deg);
+}
+.google-auth {
+  background: oklch(0.19 0.002 285);
+  color: oklch(0.91 0.004 250);
+  border-color: oklch(0.65 0.006 250);
+}
+
+h1,
+h2,
+h3,
+.brand-name {
+  font-family: var(--font-display);
+  letter-spacing: 0;
+}
+h1 {
+  text-wrap: balance;
+}
+button,
+a,
+input,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+.desk-scene {
+  position: fixed;
+  inset: 0 0 auto;
+  height: 580px;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  background: var(--background);
+}
+.desk-scene img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center 45%;
+  opacity: 0.12;
+  filter: saturate(0.45);
+}
+.desk-surface {
+  background: transparent;
+}
+.desk-header {
+  background: color-mix(in oklch, var(--background) 91%, transparent);
+  backdrop-filter: blur(18px);
+}
+.desk-masthead {
+  max-width: 1152px;
+  margin-inline: auto;
+  padding: 54px 24px;
+}
+.desk-masthead .brand-name {
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+.antara-logo {
+  filter: brightness(0) invert(0.22);
+}
+.brand-word {
+  display: inline-flex;
+  align-items: flex-end;
+  line-height: 1;
+}
+.brand-word .antara-logo {
+  height: 1.05em;
+  width: auto;
+  margin-right: -0.04em;
+}
+.desk-introduction {
+  position: relative;
+  isolation: isolate;
+  min-height: 360px;
+  overflow: hidden;
+}
+.introduction-photo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 48%;
+  filter: saturate(0.35) brightness(1.15);
+}
+.desk-introduction::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, color-mix(in oklch, var(--background) 88%, transparent) 0%, color-mix(in oklch, var(--background) 55%, transparent) 55%, color-mix(in oklch, var(--background) 20%, transparent) 100%);
+}
+.desk-introduction .desk-masthead > div {
+  text-shadow: 0 1px 10px var(--background);
+}
+.desk-introduction .text-muted-foreground {
+  color: var(--foreground);
+}
+.review-workspace {
+  scroll-margin-top: 64px;
+  background: var(--background);
+  border-top: 1px solid var(--border);
+}
+.publication-tabs {
+  max-width: 1152px;
+  margin-inline: auto;
+  border-block: 1px solid var(--border);
+  padding: 12px 24px;
+  background: color-mix(in oklch, var(--background) 74%, transparent);
+}
+.publication-tabs button {
+  border-radius: 4px;
+}
+.evidence-desk {
+  max-width: 1152px;
+  margin-inline: auto;
+  padding: 30px 24px 48px;
+  background: color-mix(in oklch, var(--background) 94%, transparent);
+}
+.evidence-desk h1 {
+  font-size: 28px;
+}
+[aria-label="Outstanding review counts"] > button,
+[aria-label="Terrestrial outstanding workload"] > button {
+  min-height: 110px;
+  position: relative;
+  border-radius: 6px;
+  background: var(--card);
+  border-top-width: 3px;
+  transition:
+    transform 180ms,
+    box-shadow 180ms;
+}
+[aria-label="Outstanding review counts"] > button[aria-pressed="true"],
+[aria-label="Terrestrial outstanding workload"] > button[aria-pressed="true"] {
+  background: var(--muted);
+  outline: 1px solid currentColor;
+  outline-offset: 2px;
+}
+[aria-label="Outstanding review counts"] > button > p:first-child {
+  font-family: var(--font-display);
+  font-size: 32px;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+.evidence-desk > ul > li {
+  background: color-mix(in oklch, var(--card) 40%, transparent);
+}
+.evidence-desk > ul > li:nth-child(even) {
+  background: color-mix(in oklch, var(--card) 72%, transparent);
+}
+.evidence-desk table {
+  font-variant-numeric: tabular-nums;
+}
+.evidence-desk dl.grid,
+[data-slot="dialog-content"] dl.grid {
+  text-align: center;
+}
+.evidence-desk table th,
+.evidence-desk table td,
+[data-slot="dialog-content"] table th,
+[data-slot="dialog-content"] table td {
+  text-align: center;
+  vertical-align: middle;
+}
+.evidence-desk thead {
+  background: var(--card);
+  font-size: 11px;
+}
+.evidence-desk th {
+  padding: 14px 10px;
+  font-weight: 500;
+}
+.evidence-desk td {
+  padding-inline: 10px;
+}
+.evidence-desk tbody tr:nth-child(even) {
+  background: color-mix(in oklch, var(--card) 65%, transparent);
+}
+/* Hover lifts surfaces instead of recolouring them so text never loses contrast. */
+[data-slot="button"]:not([data-variant="link"]) {
+  background-image: var(--surface-sheen);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+[data-slot="button"][data-variant="outline"]:hover {
+  background-color: var(--background);
+}
+[data-slot="button"][data-variant="default"]:hover {
+  background-color: var(--primary);
+}
+[data-slot="button"][data-variant="secondary"]:hover {
+  background-color: var(--secondary);
+}
+@media (hover: hover) {
+  [data-slot="button"]:not([data-variant="link"]):not(:disabled):not([aria-disabled="true"]):hover {
+    transform: translateY(-2px);
+    box-shadow: var(--surface-relief), var(--lift-shadow);
+  }
+  [data-slot="button"]:not([data-variant="link"]):active {
+    transform: translateY(0);
+  }
+}
+.lift,
+.evidence-desk > ul > li,
+[aria-label="Outstanding review counts"] > button,
+[aria-label="Terrestrial outstanding workload"] > button {
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+.lift:hover,
+.evidence-desk > ul > li:hover,
+[aria-label="Outstanding review counts"] > button:hover,
+[aria-label="Terrestrial outstanding workload"] > button:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--lift-shadow);
+  position: relative;
+  z-index: 1;
+}
+.evidence-desk tbody tr {
+  transition: box-shadow 160ms;
+}
+.evidence-desk tbody tr:hover {
+  box-shadow: inset 3px 0 0 var(--secondary), var(--lift-shadow);
+}
+[data-slot="dialog-content"] {
+  box-shadow: var(--desk-shadow);
+}
+.oma-watermark {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  right: -38px;
+  bottom: 90px;
+  opacity: 0.035;
+  z-index: -1;
+  pointer-events: none;
+  transform: rotate(-12deg);
+}
+.oma-panel > :not(.oma-watermark) {
+  position: relative;
+}
+.oma-panel [data-slot="input-group"] {
+  background: var(--chat-recess);
+}
+.oma-float .oma-logo,
+.oma-bubble .oma-logo {
+  filter: invert(0.94);
+}
+.oma-panel .is-user [data-streamdown] {
+  color: var(--primary-foreground);
+}
+.oma-panel pre {
+  background: var(--muted);
+  color: var(--foreground);
+}
+.oma-panel [data-streamdown="link"] {
+  color: var(--primary);
+}
+.oma-panel .is-user [data-streamdown="link"] {
+  color: var(--primary-foreground);
+}
+@media (max-width: 640px) {
+  .desk-masthead {
+    padding: 34px 16px;
+  }
+  .desk-masthead .brand-name {
+    font-size: 38px;
+  }
+  .desk-introduction {
+    min-height: 320px;
+  }
+  .introduction-photo {
+    object-position: 65% center;
+  }
+  .publication-tabs {
+    padding-inline: 16px;
+    gap: 8px;
+  }
+  .publication-tabs button {
+    flex: 1;
+    padding-inline: 8px;
+    font-size: 12px;
+  }
+  .evidence-desk {
+    padding: 24px 16px 36px;
+  }
+  .evidence-desk h1 {
+    font-size: 24px;
+  }
+  .oma-bubble {
+    right: 16px;
+    bottom: 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-slot="button"]:hover,
+  .lift:hover,
+  .evidence-desk > ul > li:hover {
+    transform: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "scope": "Offline geographic sample points; no propagation or regulatory comparison",
+  "settings": {
+    "scope": "Organizer-approved geographic sampling and team-defined review settings; not regulatory limits or completed calculations",
+    "organizerConfirmationDate": "2026-11-07",
+    "gridStepDegrees": 0.1,
+    "boundaryMaximumStepKm": 5,
+    "nearLimitMarginDb": 3,
+    "marginAuthority": "Team-selected initial 3 dB review buffer, not specified by Traficom; configurable and not a change to any applicable limit",
+    "bandPriority": "none",
+    "territorialSeaSource": "https://avoindata.suomi.fi/data/dataset/aluevesien-rajat",
+    "qualifications": [
+      "Angular grid spacing is not a fixed kilometre spacing; boundary points are prepared separately",
+      "A sampled maximum is not a continuous national maximum",
+      "Use territorial-sea outer limit, not EEZ or internal-water limits",
+      "Margin classification requires a confirmed applicable comparison and matching reference units",
+      "Missing inputs and out-of-domain propagation paths remain unresolved",
+      "No frequency band is assigned preferential review priority"
+    ]
+  },
+  "coordinateOrder": "longitude, latitude; WGS84 CRS84",
+  "sources": [
+    {
+      "role": "nationalFootprint",
+      "sourceUrl": "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/FIN/ADM0/geoBoundaries-FIN-ADM0.geojson",
+      "selectedLayer": "gbOpen FIN ADM0 full; boundary FIN-ADM0-59408979; revision 9469f09",
+      "sha256": "658462437b581dcad4ef68e01ed5b02ece8de641909c820cbcf05ccd506ea4c6",
+      "license": "ODbL 1.0; OpenStreetMap/Wambacher and geoBoundaries attribution",
+      "representedYear": 2017,
+      "sourceUpdate": "2023-01-19",
+      "buildDate": "2023-12-12"
+    },
+    {
+      "role": "territorialSeaOuterLimit",
+      "sourceUrl": "https://julkinen.traficom.fi/inspirepalvelu/avoin/wfs",
+      "selectedLayer": "avoin:TerritorialSeaArea_L; CRS84",
+      "sha256": "a13dba7d488f60629bbf404437ffe1a4a0c088642dd1034342f467fd4b1f65a9"
+    }
+  ],
+  "pointCounts": {
+    "nationalGrid": 6296,
+    "nationalPolygonBoundary": 351725,
+    "territorialSeaOuterLimit": 360
+  },
+  "qualifications": [
+    "Angular grid spacing is not a fixed kilometre spacing; boundary points are prepared separately",
+    "A sampled maximum is not a continuous national maximum",
+    "Use territorial-sea outer limit, not EEZ or internal-water limits",
+    "Margin classification requires a confirmed applicable comparison and matching reference units",
+    "Missing inputs and out-of-domain propagation paths remain unresolved",
+    "No frequency band is assigned preferential review priority",
+    "National footprint includes inland waters; this is not a dry-land mask",
+    "National polygon boundary includes coastline and islands; not a verified land-border-only layer",
+    "\u00c5land included; small-island completeness and positional tolerance unverified",
+    "Full geoBoundaries file is not a guarantee of unsimplified survey accuracy or current legal boundaries",
+    "Source vertices retained; linear lon/lat interpolation; not terrain or continuous maxima"
+  ]
+}

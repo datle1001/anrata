@@ -1,0 +1,9 @@
+{
+  "scope": "Team-selected administration-context review priority; not calculated interference risk, a verified path or geographic clearance.",
+  "administrations": {
+    "RUS": { "tier": "high", "reason": "Shared Finnish land-border context; verify the actual transmitter and cross-border path." },
+    "POL": { "tier": "medium", "reason": "Baltic context; verify whether the actual path includes cold sea." },
+    "KAZ": { "tier": "low", "reason": "Distant-administration context; actual transmitter distance and model domain remain unverified." },
+    "CHN": { "tier": "low", "reason": "Distant-administration context; actual transmitter distance and model domain remain unverified." }
+  }
+}

@@ -1,0 +1,211 @@
+{
+  "scope": "Raw input-presence audit of Excel-overlap candidates only. No PFD calculation, unit validation, M4 assessment or Finland-wide relevance verdict. Input presence is not calculation readiness.",
+  "metrics": {
+    "candidateGroups": 8498,
+    "candidateNotices": 131,
+    "unvalidatedGsoGroupsWithRawInputs": 3779,
+    "beamJoinStates": {
+      "matched": 8497,
+      "missing": 1
+    },
+    "pfdCalculations": 0
+  },
+  "example": {
+    "noticeId": "95500027",
+    "groupId": "95600901",
+    "administration": "USA",
+    "beam": "H1",
+    "networkName": "INTELSAT7 66E",
+    "noticeTypeRaw": "G",
+    "frequencyRows": 1,
+    "frequencyIntervalsMHz": [
+      [
+        3725.5,
+        3759.5
+      ]
+    ],
+    "matchedFinnishSourceRows": [
+      849
+    ],
+    "beamJoin": "matched",
+    "gsoJoin": "matched",
+    "nonGsoRows": 0,
+    "rawNumericGsoInputsPresent": true,
+    "status": "Unvalidated inputs present",
+    "calculationStatus": "Not calculated",
+    "blockers": [
+      "Verify power-density and gain semantics/units from ITU dictionary",
+      "Verify space-to-Earth service and applicable RR table/provision",
+      "Verify M4 protected-service applicability",
+      "Define Finnish reception-area evaluation points",
+      "Validate geometry, reference bandwidth and PFD implementation"
+    ],
+    "evidence": {
+      "file": "ific3074.mdb",
+      "s_beam": [
+        {
+          "csvRow": 4,
+          "raw": {
+            "ntc_id": "95500027",
+            "emi_rcp": "E",
+            "beam_name": "H1",
+            "beam_old": "",
+            "f_steer": "",
+            "gain": "22.6",
+            "gain_x": "",
+            "beamlet": "",
+            "bore_long": "",
+            "bore_lat": "",
+            "maj_axis": "",
+            "min_axis": "",
+            "orient": "",
+            "pnt_acc": "0.1",
+            "rot_acc": "",
+            "pattern_id": "",
+            "freq_min": "3725.5",
+            "freq_max": "4072",
+            "sr_type": "",
+            "act_code": "",
+            "ang_alpha": "",
+            "ang_beta": "",
+            "attch_alpha_beta": "",
+            "attch_e": "",
+            "attch_elev": "",
+            "pwr_max_4k": "",
+            "pwr_avg_4k": "",
+            "pwr_max_1m": "",
+            "pwr_avg_1m": "",
+            "prot_ratio": "",
+            "f_fdg_reqd": "",
+            "f_tx_vis": "",
+            "tx_ang_min": "",
+            "attch_pfd_steer": "",
+            "f_pfd_steer_default": "",
+            "f_co_change": "",
+            "f_aggso_change": "",
+            "f_e_change": "",
+            "cmp_ntc_id": "",
+            "cmp_beam": "",
+            "f_cmp_str": "",
+            "f_cmp_rec": ""
+          }
+        }
+      ],
+      "geo": [
+        {
+          "csvRow": 2,
+          "raw": {
+            "ntc_id": "95500027",
+            "sat_name": "INTELSAT7 66E",
+            "long_nom": "66",
+            "tol_east": "0.1",
+            "tol_west": "0.1",
+            "inclin_exc": "0.1",
+            "long_orig": "66"
+          }
+        }
+      ],
+      "emiss": [
+        {
+          "csvRow": 509,
+          "raw": {
+            "grp_id": "95600901",
+            "seq_no": "1",
+            "design_emi": "30M0FXW--",
+            "pep_max": "13.1",
+            "pwr_ds_max": "-49.900002",
+            "pep_min": "",
+            "pwr_ds_min": "",
+            "c_to_n": "",
+            "pwr_ds_nbw": "",
+            "pulse_length": "",
+            "pulse_rep": "",
+            "f_emi_type": "",
+            "attch_pep": "",
+            "attch_mpd": "",
+            "attch_c2n": "",
+            "pwr_ds_nbc": "",
+            "f_cmp_rec": ""
+          }
+        },
+        {
+          "csvRow": 510,
+          "raw": {
+            "grp_id": "95600901",
+            "seq_no": "2",
+            "design_emi": "36M0F8W--",
+            "pep_max": "13.1",
+            "pwr_ds_max": "-47.400002",
+            "pep_min": "",
+            "pwr_ds_min": "",
+            "c_to_n": "",
+            "pwr_ds_nbw": "",
+            "pulse_length": "",
+            "pulse_rep": "",
+            "f_emi_type": "",
+            "attch_pep": "",
+            "attch_mpd": "",
+            "attch_c2n": "",
+            "pwr_ds_nbc": "",
+            "f_cmp_rec": ""
+          }
+        },
+        {
+          "csvRow": 511,
+          "raw": {
+            "grp_id": "95600901",
+            "seq_no": "3",
+            "design_emi": "45K0G1X--",
+            "pep_max": "-16.700001",
+            "pwr_ds_max": "-62.5",
+            "pep_min": "",
+            "pwr_ds_min": "",
+            "c_to_n": "",
+            "pwr_ds_nbw": "",
+            "pulse_length": "",
+            "pulse_rep": "",
+            "f_emi_type": "",
+            "attch_pep": "",
+            "attch_mpd": "",
+            "attch_c2n": "",
+            "pwr_ds_nbc": "",
+            "f_cmp_rec": ""
+          }
+        },
+        {
+          "csvRow": 512,
+          "raw": {
+            "grp_id": "95600901",
+            "seq_no": "4",
+            "design_emi": "72M0G7W--",
+            "pep_max": "13.1",
+            "pwr_ds_max": "-60.599998",
+            "pep_min": "",
+            "pwr_ds_min": "",
+            "c_to_n": "",
+            "pwr_ds_nbw": "",
+            "pulse_length": "",
+            "pulse_rep": "",
+            "f_emi_type": "",
+            "attch_pep": "",
+            "attch_mpd": "",
+            "attch_c2n": "",
+            "pwr_ds_nbc": "",
+            "f_cmp_rec": ""
+          }
+        }
+      ],
+      "srv_cls": [
+        {
+          "csvRow": 182,
+          "raw": {
+            "grp_id": "95600901",
+            "seq_no": "1",
+            "stn_cls": "EC",
+            "nat_srv": "CP"
+          }
+        }
+      ]
+    }
+  }
+}

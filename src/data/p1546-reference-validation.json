@@ -1,0 +1,11 @@
+{
+  "referenceCaseCount": 52,
+  "profileFileCount": 24,
+  "maximumAbsoluteReportedDeviationDb": 0.0,
+  "toleranceDb": 1e-07,
+  "scope": "Agreement with external implementation bundled references at eight-decimal CSV precision; not independent validation or Finnish-case validation",
+  "repository": "https://github.com/eeveetza/p1546",
+  "commit": "0e4263999ce055100f42257c2aafbac96ac630af",
+  "runtime": "GNU Octave 11.1.0",
+  "sourceCsvSha256": "69382ee2188093387b184a0c80ad5c9d96693694c1737f224f838e398b409b2b"
+}

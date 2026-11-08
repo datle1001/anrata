@@ -1,0 +1,14 @@
+{
+  "note": "Team-defined review-priority weights (editable). They order expert reading only and are not regulatory limits.",
+  "weights": {
+    "pointsPerFinnishStation": 5,
+    "finnishStationPointsCap": 40,
+    "overlapRowsPerPoint": 10,
+    "overlapRowPointsCap": 20,
+    "visibilityPoints": 15,
+    "missingInputPoints": 15,
+    "newInIssuePoints": 10,
+    "highThreshold": 60,
+    "mediumThreshold": 30
+  }
+}

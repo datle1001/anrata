@@ -1,0 +1,528 @@
+{
+  "issue": 3074,
+  "noticeId": "95500027",
+  "groupId": "95600901",
+  "networkName": "INTELSAT7 66E",
+  "scope": "Nominal-GSO conditional PFD sample maxima only; not continuous maxima or a regulatory verdict",
+  "assumptions": [
+    "Maximum reported PSD bounds all frequencies within the 4 kHz window; semantics require review",
+    "Maximum beam gain directed at the reception point, per organizer worst-case permission",
+    "Emission alternatives evaluated separately, not summed or joined by frequency sequence",
+    "WGS84 receiver surface, nominal circular equatorial GSO at 42164 km geocentric radius",
+    "Zero atmospheric/obstruction loss; orbital tolerances and footprint not evaluated",
+    "No receiving-antenna gain added: PFD is incident flux, not received power"
+  ],
+  "validation": "Analytic geometry and logarithmic scaling unit tests only; no GIBC or expert benchmark validation",
+  "qualifications": [
+    "Angular grid spacing is not a fixed kilometre spacing; boundary points are prepared separately",
+    "A sampled maximum is not a continuous national maximum",
+    "Use territorial-sea outer limit, not EEZ or internal-water limits",
+    "Margin classification requires a confirmed applicable comparison and matching reference units",
+    "Missing inputs and out-of-domain propagation paths remain unresolved",
+    "No frequency band is assigned preferential review priority",
+    "National footprint includes inland waters; this is not a dry-land mask",
+    "National polygon boundary includes coastline and islands; not a verified land-border-only layer",
+    "\u00c5land included; small-island completeness and positional tolerance unverified",
+    "Full geoBoundaries file is not a guarantee of unsimplified survey accuracy or current legal boundaries",
+    "Source vertices retained; linear lon/lat interpolation; not terrain or continuous maxima"
+  ],
+  "sources": [
+    {
+      "role": "nationalFootprint",
+      "sourceUrl": "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/FIN/ADM0/geoBoundaries-FIN-ADM0.geojson",
+      "selectedLayer": "gbOpen FIN ADM0 full; boundary FIN-ADM0-59408979; revision 9469f09",
+      "sha256": "658462437b581dcad4ef68e01ed5b02ece8de641909c820cbcf05ccd506ea4c6",
+      "license": "ODbL 1.0; OpenStreetMap/Wambacher and geoBoundaries attribution",
+      "representedYear": 2017,
+      "sourceUpdate": "2023-01-19",
+      "buildDate": "2023-12-12"
+    },
+    {
+      "role": "territorialSeaOuterLimit",
+      "sourceUrl": "https://julkinen.traficom.fi/inspirepalvelu/avoin/wfs",
+      "selectedLayer": "avoin:TerritorialSeaArea_L; CRS84",
+      "sha256": "a13dba7d488f60629bbf404437ffe1a4a0c088642dd1034342f467fd4b1f65a9"
+    }
+  ],
+  "results": [
+    {
+      "sampleGroup": "nationalGrid",
+      "sampleCount": 6296,
+      "visibleCount": 6296,
+      "emissionCsvRow": 509,
+      "emissionRaw": {
+        "grp_id": "95600901",
+        "seq_no": "1",
+        "design_emi": "30M0FXW--",
+        "pep_max": "13.1",
+        "pwr_ds_max": "-49.900002",
+        "pep_min": "",
+        "pwr_ds_min": "",
+        "c_to_n": "",
+        "pwr_ds_nbw": "",
+        "pulse_length": "",
+        "pulse_rep": "",
+        "f_emi_type": "",
+        "attch_pep": "",
+        "attch_mpd": "",
+        "attch_c2n": "",
+        "pwr_ds_nbc": "",
+        "f_cmp_rec": ""
+      },
+      "sampleMaximumConditionalPfdDbwM2In4kHz": -154.33948532697684,
+      "maximumPointLonLat": [
+        27.7,
+        60.5
+      ],
+      "geometryAtMaximum": {
+        "slantRangeM": 40123538.821365826,
+        "arrivalAngleDeg": 14.33174084615622,
+        "aboveGeometricHorizon": true,
+        "spreadingLossDbM2": 163.06008324025646
+      },
+      "limitDbwM2": null,
+      "marginDb": null,
+      "status": "Conditional sample maximum; regulatory comparison unresolved"
+    },
+    {
+      "sampleGroup": "nationalGrid",
+      "sampleCount": 6296,
+      "visibleCount": 6296,
+      "emissionCsvRow": 510,
+      "emissionRaw": {
+        "grp_id": "95600901",
+        "seq_no": "2",
+        "design_emi": "36M0F8W--",
+        "pep_max": "13.1",
+        "pwr_ds_max": "-47.400002",
+        "pep_min": "",
+        "pwr_ds_min": "",
+        "c_to_n": "",
+        "pwr_ds_nbw": "",
+        "pulse_length": "",
+        "pulse_rep": "",
+        "f_emi_type": "",
+        "attch_pep": "",
+        "attch_mpd": "",
+        "attch_c2n": "",
+        "pwr_ds_nbc": "",
+        "f_cmp_rec": ""
+      },
+      "sampleMaximumConditionalPfdDbwM2In4kHz": -151.83948532697684,
+      "maximumPointLonLat": [
+        27.7,
+        60.5
+      ],
+      "geometryAtMaximum": {
+        "slantRangeM": 40123538.821365826,
+        "arrivalAngleDeg": 14.33174084615622,
+        "aboveGeometricHorizon": true,
+        "spreadingLossDbM2": 163.06008324025646
+      },
+      "limitDbwM2": null,
+      "marginDb": null,
+      "status": "Conditional sample maximum; regulatory comparison unresolved"
+    },
+    {
+      "sampleGroup": "nationalGrid",
+      "sampleCount": 6296,
+      "visibleCount": 6296,
+      "emissionCsvRow": 511,
+      "emissionRaw": {
+        "grp_id": "95600901",
+        "seq_no": "3",
+        "design_emi": "45K0G1X--",
+        "pep_max": "-16.700001",
+        "pwr_ds_max": "-62.5",
+        "pep_min": "",
+        "pwr_ds_min": "",
+        "c_to_n": "",
+        "pwr_ds_nbw": "",
+        "pulse_length": "",
+        "pulse_rep": "",
+        "f_emi_type": "",
+        "attch_pep": "",
+        "attch_mpd": "",
+        "attch_c2n": "",
+        "pwr_ds_nbc": "",
+        "f_cmp_rec": ""
+      },
+      "sampleMaximumConditionalPfdDbwM2In4kHz": -166.93948332697684,
+      "maximumPointLonLat": [
+        27.7,
+        60.5
+      ],
+      "geometryAtMaximum": {
+        "slantRangeM": 40123538.821365826,
+        "arrivalAngleDeg": 14.33174084615622,
+        "aboveGeometricHorizon": true,
+        "spreadingLossDbM2": 163.06008324025646
+      },
+      "limitDbwM2": null,
+      "marginDb": null,
+      "status": "Conditional sample maximum; regulatory comparison unresolved"
+    },
+    {
+      "sampleGroup": "nationalGrid",
+      "sampleCount": 6296,
+      "visibleCount": 6296,
+      "emissionCsvRow": 512,
+      "emissionRaw": {
+        "grp_id": "95600901",
+        "seq_no": "4",
+        "design_emi": "72M0G7W--",
+        "pep_max": "13.1",
+        "pwr_ds_max": "-60.599998",
+        "pep_min": "",
+        "pwr_ds_min": "",
+        "c_to_n": "",
+        "pwr_ds_nbw": "",
+        "pulse_length": "",
+        "pulse_rep": "",
+        "f_emi_type": "",
+        "attch_pep": "",
+        "attch_mpd": "",
+        "attch_c2n": "",
+        "pwr_ds_nbc": "",
+        "f_cmp_rec": ""
+      },
+      "sampleMaximumConditionalPfdDbwM2In4kHz": -165.03948132697684,
+      "maximumPointLonLat": [
+        27.7,
+        60.5
+      ],
+      "geometryAtMaximum": {
+        "slantRangeM": 40123538.821365826,
+        "arrivalAngleDeg": 14.33174084615622,
+        "aboveGeometricHorizon": true,
+        "spreadingLossDbM2": 163.06008324025646
+      },
+      "limitDbwM2": null,
+      "marginDb": null,
+      "status": "Conditional sample maximum; regulatory comparison unresolved"
+    },
+    {
+      "sampleGroup": "nationalPolygonBoundary",
+      "sampleCount": 351725,
+      "visibleCount": 351725,
+      "emissionCsvRow": 509,
+      "emissionRaw": {
+        "grp_id": "95600901",
+        "seq_no": "1",
+        "design_emi": "30M0FXW--",
+        "pep_max": "13.1",
+        "pwr_ds_max": "-49.900002",
+        "pep_min": "",
+        "pwr_ds_min": "",
+        "c_to_n": "",
+        "pwr_ds_nbw": "",
+        "pulse_length": "",
+        "pulse_rep": "",
+        "f_emi_type": "",
+        "attch_pep": "",
+        "attch_mpd": "",
+        "attch_c2n": "",
+        "pwr_ds_nbc": "",
+        "f_cmp_rec": ""
+      },
+      "sampleMaximumConditionalPfdDbwM2In4kHz": -154.33890664598428,
+      "maximumPointLonLat": [
+        27.740586,
+        60.4847309
+      ],
+      "geometryAtMaximum": {
+        "slantRangeM": 40120865.75541597,
+        "arrivalAngleDeg": 14.357457838808102,
+        "aboveGeometricHorizon": true,
+        "spreadingLossDbM2": 163.0595045592639
+      },
+      "limitDbwM2": null,
+      "marginDb": null,
+      "status": "Conditional sample maximum; regulatory comparison unresolved"
+    },
+    {
+      "sampleGroup": "nationalPolygonBoundary",
+      "sampleCount": 351725,
+      "visibleCount": 351725,
+      "emissionCsvRow": 510,
+      "emissionRaw": {
+        "grp_id": "95600901",
+        "seq_no": "2",
+        "design_emi": "36M0F8W--",
+        "pep_max": "13.1",
+        "pwr_ds_max": "-47.400002",
+        "pep_min": "",
+        "pwr_ds_min": "",
+        "c_to_n": "",
+        "pwr_ds_nbw": "",
+        "pulse_length": "",
+        "pulse_rep": "",
+        "f_emi_type": "",
+        "attch_pep": "",
+        "attch_mpd": "",
+        "attch_c2n": "",
+        "pwr_ds_nbc": "",
+        "f_cmp_rec": ""
+      },
+      "sampleMaximumConditionalPfdDbwM2In4kHz": -151.83890664598428,
+      "maximumPointLonLat": [
+        27.740586,
+        60.4847309
+      ],
+      "geometryAtMaximum": {
+        "slantRangeM": 40120865.75541597,
+        "arrivalAngleDeg": 14.357457838808102,
+        "aboveGeometricHorizon": true,
+        "spreadingLossDbM2": 163.0595045592639
+      },
+      "limitDbwM2": null,
+      "marginDb": null,
+      "status": "Conditional sample maximum; regulatory comparison unresolved"
+    },
+    {
+      "sampleGroup": "nationalPolygonBoundary",
+      "sampleCount": 351725,
+      "visibleCount": 351725,
+      "emissionCsvRow": 511,
+      "emissionRaw": {
+        "grp_id": "95600901",
+        "seq_no": "3",
+        "design_emi": "45K0G1X--",
+        "pep_max": "-16.700001",
+        "pwr_ds_max": "-62.5",
+        "pep_min": "",
+        "pwr_ds_min": "",
+        "c_to_n": "",
+        "pwr_ds_nbw": "",
+        "pulse_length": "",
+        "pulse_rep": "",
+        "f_emi_type": "",
+        "attch_pep": "",
+        "attch_mpd": "",
+        "attch_c2n": "",
+        "pwr_ds_nbc": "",
+        "f_cmp_rec": ""
+      },
+      "sampleMaximumConditionalPfdDbwM2In4kHz": -166.93890464598428,
+      "maximumPointLonLat": [
+        27.740586,
+        60.4847309
+      ],
+      "geometryAtMaximum": {
+        "slantRangeM": 40120865.75541597,
+        "arrivalAngleDeg": 14.357457838808102,
+        "aboveGeometricHorizon": true,
+        "spreadingLossDbM2": 163.0595045592639
+      },
+      "limitDbwM2": null,
+      "marginDb": null,
+      "status": "Conditional sample maximum; regulatory comparison unresolved"
+    },
+    {
+      "sampleGroup": "nationalPolygonBoundary",
+      "sampleCount": 351725,
+      "visibleCount": 351725,
+      "emissionCsvRow": 512,
+      "emissionRaw": {
+        "grp_id": "95600901",
+        "seq_no": "4",
+        "design_emi": "72M0G7W--",
+        "pep_max": "13.1",
+        "pwr_ds_max": "-60.599998",
+        "pep_min": "",
+        "pwr_ds_min": "",
+        "c_to_n": "",
+        "pwr_ds_nbw": "",
+        "pulse_length": "",
+        "pulse_rep": "",
+        "f_emi_type": "",
+        "attch_pep": "",
+        "attch_mpd": "",
+        "attch_c2n": "",
+        "pwr_ds_nbc": "",
+        "f_cmp_rec": ""
+      },
+      "sampleMaximumConditionalPfdDbwM2In4kHz": -165.03890264598428,
+      "maximumPointLonLat": [
+        27.740586,
+        60.4847309
+      ],
+      "geometryAtMaximum": {
+        "slantRangeM": 40120865.75541597,
+        "arrivalAngleDeg": 14.357457838808102,
+        "aboveGeometricHorizon": true,
+        "spreadingLossDbM2": 163.0595045592639
+      },
+      "limitDbwM2": null,
+      "marginDb": null,
+      "status": "Conditional sample maximum; regulatory comparison unresolved"
+    },
+    {
+      "sampleGroup": "territorialSeaOuterLimit",
+      "sampleCount": 360,
+      "visibleCount": 360,
+      "emissionCsvRow": 509,
+      "emissionRaw": {
+        "grp_id": "95600901",
+        "seq_no": "1",
+        "design_emi": "30M0FXW--",
+        "pep_max": "13.1",
+        "pwr_ds_max": "-49.900002",
+        "pep_min": "",
+        "pwr_ds_min": "",
+        "c_to_n": "",
+        "pwr_ds_nbw": "",
+        "pulse_length": "",
+        "pulse_rep": "",
+        "f_emi_type": "",
+        "attch_pep": "",
+        "attch_mpd": "",
+        "attch_c2n": "",
+        "pwr_ds_nbc": "",
+        "f_cmp_rec": ""
+      },
+      "sampleMaximumConditionalPfdDbwM2In4kHz": -154.33750228448048,
+      "maximumPointLonLat": [
+        27.2930437,
+        60.20020273
+      ],
+      "geometryAtMaximum": {
+        "slantRangeM": 40114379.41411923,
+        "arrivalAngleDeg": 14.420182685766841,
+        "aboveGeometricHorizon": true,
+        "spreadingLossDbM2": 163.0581001977601
+      },
+      "limitDbwM2": null,
+      "marginDb": null,
+      "status": "Conditional sample maximum; regulatory comparison unresolved"
+    },
+    {
+      "sampleGroup": "territorialSeaOuterLimit",
+      "sampleCount": 360,
+      "visibleCount": 360,
+      "emissionCsvRow": 510,
+      "emissionRaw": {
+        "grp_id": "95600901",
+        "seq_no": "2",
+        "design_emi": "36M0F8W--",
+        "pep_max": "13.1",
+        "pwr_ds_max": "-47.400002",
+        "pep_min": "",
+        "pwr_ds_min": "",
+        "c_to_n": "",
+        "pwr_ds_nbw": "",
+        "pulse_length": "",
+        "pulse_rep": "",
+        "f_emi_type": "",
+        "attch_pep": "",
+        "attch_mpd": "",
+        "attch_c2n": "",
+        "pwr_ds_nbc": "",
+        "f_cmp_rec": ""
+      },
+      "sampleMaximumConditionalPfdDbwM2In4kHz": -151.83750228448048,
+      "maximumPointLonLat": [
+        27.2930437,
+        60.20020273
+      ],
+      "geometryAtMaximum": {
+        "slantRangeM": 40114379.41411923,
+        "arrivalAngleDeg": 14.420182685766841,
+        "aboveGeometricHorizon": true,
+        "spreadingLossDbM2": 163.0581001977601
+      },
+      "limitDbwM2": null,
+      "marginDb": null,
+      "status": "Conditional sample maximum; regulatory comparison unresolved"
+    },
+    {
+      "sampleGroup": "territorialSeaOuterLimit",
+      "sampleCount": 360,
+      "visibleCount": 360,
+      "emissionCsvRow": 511,
+      "emissionRaw": {
+        "grp_id": "95600901",
+        "seq_no": "3",
+        "design_emi": "45K0G1X--",
+        "pep_max": "-16.700001",
+        "pwr_ds_max": "-62.5",
+        "pep_min": "",
+        "pwr_ds_min": "",
+        "c_to_n": "",
+        "pwr_ds_nbw": "",
+        "pulse_length": "",
+        "pulse_rep": "",
+        "f_emi_type": "",
+        "attch_pep": "",
+        "attch_mpd": "",
+        "attch_c2n": "",
+        "pwr_ds_nbc": "",
+        "f_cmp_rec": ""
+      },
+      "sampleMaximumConditionalPfdDbwM2In4kHz": -166.93750028448048,
+      "maximumPointLonLat": [
+        27.2930437,
+        60.20020273
+      ],
+      "geometryAtMaximum": {
+        "slantRangeM": 40114379.41411923,
+        "arrivalAngleDeg": 14.420182685766841,
+        "aboveGeometricHorizon": true,
+        "spreadingLossDbM2": 163.0581001977601
+      },
+      "limitDbwM2": null,
+      "marginDb": null,
+      "status": "Conditional sample maximum; regulatory comparison unresolved"
+    },
+    {
+      "sampleGroup": "territorialSeaOuterLimit",
+      "sampleCount": 360,
+      "visibleCount": 360,
+      "emissionCsvRow": 512,
+      "emissionRaw": {
+        "grp_id": "95600901",
+        "seq_no": "4",
+        "design_emi": "72M0G7W--",
+        "pep_max": "13.1",
+        "pwr_ds_max": "-60.599998",
+        "pep_min": "",
+        "pwr_ds_min": "",
+        "c_to_n": "",
+        "pwr_ds_nbw": "",
+        "pulse_length": "",
+        "pulse_rep": "",
+        "f_emi_type": "",
+        "attch_pep": "",
+        "attch_mpd": "",
+        "attch_c2n": "",
+        "pwr_ds_nbc": "",
+        "f_cmp_rec": ""
+      },
+      "sampleMaximumConditionalPfdDbwM2In4kHz": -165.03749828448048,
+      "maximumPointLonLat": [
+        27.2930437,
+        60.20020273
+      ],
+      "geometryAtMaximum": {
+        "slantRangeM": 40114379.41411923,
+        "arrivalAngleDeg": 14.420182685766841,
+        "aboveGeometricHorizon": true,
+        "spreadingLossDbM2": 163.0581001977601
+      },
+      "limitDbwM2": null,
+      "marginDb": null,
+      "status": "Conditional sample maximum; regulatory comparison unresolved"
+    }
+  ],
+  "blockers": [
+    "Confirm EC/CP downlink service and RR21.16 equal-rights applicability with M4",
+    "Validate reported PSD and reference-window interpretation",
+    "Evaluate orbital tolerance and Finnish reception-area maxima",
+    "Compare against an independent expert or official-tool benchmark",
+    "National polygon includes coast and inland waters; true land-border layer not verified"
+  ],
+  "inputSha256": {
+    "example": "78d335744597c4aec5e55a13b08ec46a2bdc207d8db207a05ce7399a93058d5a",
+    "points": "eb5b4c4e09b34a0856f2790f4578e3819273c642d0c084316b35ad568486bc92"
+  }
+}

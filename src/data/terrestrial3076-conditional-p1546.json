@@ -1,0 +1,763 @@
+{
+  "issue": 3076,
+  "noticeEvidence": {
+    "source": {
+      "file": "brific3076.mdb",
+      "table": "fxm_terra",
+      "csvRow": 480
+    },
+    "raw": {
+      "terrakey": "92817506",
+      "fragment": "GE06L",
+      "adm": "POL",
+      "addr_code": "A",
+      "freq_assgn": "803.5",
+      "chn_no": "",
+      "op_hh_fr": "0",
+      "op_hh_to": "2400",
+      "op_prd_cde": "",
+      "traffic": "",
+      "stn_cls": "FB",
+      "emi_cls": "G7W--",
+      "bdwdth": "5000",
+      "bdwdth_cde": "5M00",
+      "geo_key": "3945334",
+      "freq_carr": "",
+      "d_inuse": "07/07/21 00:00:00",
+      "notice_typ": "G12",
+      "stn_id": "",
+      "stn_type": "TX",
+      "intent": "ADD",
+      "mod_type": "NOT MODIFY",
+      "prov": "GE06-4.2",
+      "d_rcv": "03/21/24 00:00:00",
+      "d_updated": "07/09/26 10:49:56",
+      "src_update": "",
+      "stage": "NOTICE",
+      "amend_type": "NOT AMENDED",
+      "is_notice": "TRUE",
+      "is_public": "TRUE",
+      "is_resub": "FALSE",
+      "is_allot": "FALSE",
+      "is_pub_req": "TRUE",
+      "d_pub_req": "06/30/26 00:00:00",
+      "src_notice": "NOTIFIER",
+      "assgn_id": "124021620",
+      "adm_ref_id": "POL210026I01211",
+      "plan_adm_ref_id": "",
+      "d_adm_ntc": "",
+      "fdg_observ": "",
+      "d_recog": "",
+      "band_pref": "",
+      "chn_pref": "",
+      "chn_alt": "",
+      "freq_dev": "",
+      "energy_dsp": "",
+      "freq_min": "801",
+      "freq_max": "806",
+      "is_restricted": "FALSE",
+      "exam_category": "",
+      "d_expiry": "",
+      "pwr_dens_reference": "",
+      "has_signed_commitment": "FALSE",
+      "are_rmk_conds_met": "FALSE",
+      "assgn_category": "",
+      "in_accord_with_itu_purposes": ""
+    },
+    "publicationEvidence": [
+      {
+        "csvRow": 951,
+        "raw": {
+          "terrakey": "92817506",
+          "pub_no": "167",
+          "pub_prefix": "GE06L",
+          "pub_part": "B",
+          "addendum": "",
+          "corrigendum": ""
+        },
+        "publication": {
+          "csvRow": 786,
+          "raw": {
+            "pub_no": "167",
+            "pub_prefix": "GE06L",
+            "circ_no": "3076",
+            "addendum": "",
+            "corrigendum": ""
+          }
+        }
+      }
+    ],
+    "landMobileClassPool": true,
+    "notificationActionRaw": "ADD",
+    "withdrawalEvidenceRaw": false,
+    "status": "Publication identified; Finland relevance and P.1546 pending"
+  },
+  "transmitterEvidence": {
+    "origin": "Notice TX site",
+    "geoKey": "3945334",
+    "antKey": null,
+    "geoEvidence": [
+      {
+        "table": "fxm_geo",
+        "csvRow": 1659,
+        "raw": {
+          "geo_key": "3945334",
+          "geo_type": "POINT",
+          "ctry": "POL",
+          "site_name": "OLS0501",
+          "zone_id": "",
+          "radius": "",
+          "d_updated": "03/27/24 16:54:54",
+          "src_update": "",
+          "longitude_dms": "205718",
+          "latitude_dms": "535152",
+          "seconds_in_use": "TRUE",
+          "long_dec": "20.955",
+          "lat_dec": "53.8644444444444",
+          "site_alt": "157"
+        }
+      }
+    ],
+    "reportedPoint": {
+      "latitudeDeg": 53.8644444444444,
+      "longitudeDeg": 20.955,
+      "scope": "Reported decimal point; datum/encoding not independently verified"
+    },
+    "antennaEvidence": [
+      {
+        "table": "fxm_ant",
+        "csvRow": 654,
+        "raw": {
+          "terrakey": "92817506",
+          "ant_key": "1",
+          "pwr_xyz": "Y",
+          "pwr_ant": "",
+          "pwr_dbw": "32.3",
+          "pwr_eiv": "E",
+          "ant_dir": "D",
+          "azm_max_e": "240",
+          "gain_max": "1",
+          "gain_type": "D",
+          "bmwdth": "66",
+          "ant_ref": "",
+          "elev": "",
+          "polar": "SR",
+          "hgt_agl": "37",
+          "dist_max": "",
+          "is_rot": "FALSE",
+          "pwr_dens": "",
+          "pwr_range": "",
+          "tx_rx": "TX",
+          "gain_max_horizon": "",
+          "eff_hgtmax": "61"
+        },
+        "effectiveHeightEvidence": [
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 527,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "0",
+              "eff_hgt": "19"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 528,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "10",
+              "eff_hgt": "37"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 529,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "20",
+              "eff_hgt": "42"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 530,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "30",
+              "eff_hgt": "28"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 531,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "40",
+              "eff_hgt": "25"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 532,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "50",
+              "eff_hgt": "19"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 533,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "60",
+              "eff_hgt": "20"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 534,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "70",
+              "eff_hgt": "22"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 535,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "80",
+              "eff_hgt": "34"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 536,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "90",
+              "eff_hgt": "32"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 537,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "100",
+              "eff_hgt": "34"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 538,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "110",
+              "eff_hgt": "42"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 539,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "120",
+              "eff_hgt": "37"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 540,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "130",
+              "eff_hgt": "37"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 541,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "140",
+              "eff_hgt": "29"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 542,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "150",
+              "eff_hgt": "25"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 543,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "160",
+              "eff_hgt": "30"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 544,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "170",
+              "eff_hgt": "32"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 545,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "180",
+              "eff_hgt": "29"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 546,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "190",
+              "eff_hgt": "24"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 547,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "200",
+              "eff_hgt": "31"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 548,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "210",
+              "eff_hgt": "34"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 549,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "220",
+              "eff_hgt": "39"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 550,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "230",
+              "eff_hgt": "50"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 551,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "240",
+              "eff_hgt": "57"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 552,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "250",
+              "eff_hgt": "55"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 553,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "260",
+              "eff_hgt": "61"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 554,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "270",
+              "eff_hgt": "54"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 555,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "280",
+              "eff_hgt": "52"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 556,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "290",
+              "eff_hgt": "53"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 557,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "300",
+              "eff_hgt": "48"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 558,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "310",
+              "eff_hgt": "47"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 559,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "320",
+              "eff_hgt": "45"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 560,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "330",
+              "eff_hgt": "46"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 561,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "340",
+              "eff_hgt": "35"
+            }
+          },
+          {
+            "table": "fxm_ant_hgt",
+            "csvRow": 562,
+            "raw": {
+              "terrakey": "92817506",
+              "ant_key": "1",
+              "azm": "350",
+              "eff_hgt": "23"
+            }
+          }
+        ]
+      },
+      {
+        "table": "fxm_ant",
+        "csvRow": 655,
+        "raw": {
+          "terrakey": "92817506",
+          "ant_key": "2",
+          "pwr_xyz": "Y",
+          "pwr_ant": "",
+          "pwr_dbw": "32.3",
+          "pwr_eiv": "E",
+          "ant_dir": "D",
+          "azm_max_e": "120",
+          "gain_max": "0",
+          "gain_type": "D",
+          "bmwdth": "66",
+          "ant_ref": "",
+          "elev": "",
+          "polar": "SR",
+          "hgt_agl": "37",
+          "dist_max": "",
+          "is_rot": "FALSE",
+          "pwr_dens": "",
+          "pwr_range": "",
+          "tx_rx": "TX",
+          "gain_max_horizon": "",
+          "eff_hgtmax": "61"
+        },
+        "effectiveHeightEvidence": []
+      },
+      {
+        "table": "fxm_ant",
+        "csvRow": 656,
+        "raw": {
+          "terrakey": "92817506",
+          "ant_key": "3",
+          "pwr_xyz": "Y",
+          "pwr_ant": "",
+          "pwr_dbw": "32.3",
+          "pwr_eiv": "E",
+          "ant_dir": "D",
+          "azm_max_e": "0",
+          "gain_max": "0",
+          "gain_type": "D",
+          "bmwdth": "66",
+          "ant_ref": "",
+          "elev": "",
+          "polar": "SR",
+          "hgt_agl": "37",
+          "dist_max": "",
+          "is_rot": "FALSE",
+          "pwr_dens": "",
+          "pwr_range": "",
+          "tx_rx": "TX",
+          "gain_max_horizon": "",
+          "eff_hgtmax": "61"
+        },
+        "effectiveHeightEvidence": []
+      }
+    ],
+    "joinStatus": "Unique geographic row"
+  },
+  "scope": "Conditional P.1546 sensitivity experiment; not actual mixed-path prediction, validated worst-case bound or coordination verdict",
+  "proposedModelInputs": {
+    "frequencyMHz": 803.5,
+    "timePercentage": 10,
+    "locationPercentage": 50,
+    "receiverHeightM": 10,
+    "erpKwConditional": 1.6982436524617432,
+    "effectiveHeightMConditional": 61.0,
+    "powerInterpretation": "ASSUMPTION: pwr_dbw is total-channel ERP in dBW; pwr_eiv=E not independently verified. No antenna gain added.",
+    "heightInterpretation": "ASSUMPTION: eff_hgtmax is usable effective height in metres; use maximum, not verified directional height."
+  },
+  "paths": [
+    {
+      "station": "983905",
+      "source": {
+        "file": "Traficom_SinceAI_Frequencies_of_interest_v05112026.xlsx",
+        "sheet": "Frequencies of interest",
+        "row": 853
+      },
+      "receiverRaw": {
+        "Station number": 983905,
+        "Class of licence": "MVV",
+        "Longitude": "28.6393",
+        "Latitude": "67.7744",
+        "Ground height (m)": 96,
+        "Mast height (m)": 34,
+        "Mast type": "KIINTE\u00c4",
+        "Channel bandwidth": "5 MHz",
+        "TX frequency": "839.6 MHz",
+        "RX frequency": "798.6 MHz",
+        "Ant height AGL (m)": 8,
+        "Ant height ASL (m)": 104,
+        "Ant gain (dB)": 44,
+        "Class of transmission": "W7W",
+        "Transmission bandwidth": "5M",
+        "Radiation direction (\u00b0)": 223,
+        "Polarisation": "V",
+        "Radioation power": 149,
+        "Radioation power (ITU)": "E",
+        "Radiation power unit": "W",
+        "Transmission line (dB)": null,
+        "Directivity": "D"
+      },
+      "distanceKm": 1598.9404570291458,
+      "initialBearingDeg": 11.751119386240449,
+      "geometryMethod": "Spherical great circle, mean Earth radius 6371.0088 km; not a terrain profile",
+      "withinP1546DistanceDomain": false,
+      "fieldStrengthDbUvPerM": null,
+      "coordinationMarginDb": null,
+      "status": "Outside 1\u20131000 km P.1546 distance domain; do not extrapolate",
+      "sensitivityScenarios": []
+    },
+    {
+      "station": "983020",
+      "source": {
+        "file": "Traficom_SinceAI_Frequencies_of_interest_v05112026.xlsx",
+        "sheet": "Frequencies of interest",
+        "row": 871
+      },
+      "receiverRaw": {
+        "Station number": 983020,
+        "Class of licence": "MVV",
+        "Longitude": "23.9531",
+        "Latitude": "66.3999",
+        "Ground height (m)": 197,
+        "Mast height (m)": 117,
+        "Mast type": "KIINTE\u00c4",
+        "Channel bandwidth": "5 MHz",
+        "TX frequency": "846.4 MHz",
+        "RX frequency": "805.4 MHz",
+        "Ant height AGL (m)": 68,
+        "Ant height ASL (m)": 265,
+        "Ant gain (dB)": 62,
+        "Class of transmission": "W7W",
+        "Transmission bandwidth": "5M",
+        "Radiation direction (\u00b0)": 291,
+        "Polarisation": "V",
+        "Radioation power": 167,
+        "Radioation power (ITU)": "E",
+        "Radiation power unit": "W",
+        "Transmission line (dB)": null,
+        "Directivity": "D"
+      },
+      "distanceKm": 1403.3346936923901,
+      "initialBearingDeg": 5.499459345304854,
+      "geometryMethod": "Spherical great circle, mean Earth radius 6371.0088 km; not a terrain profile",
+      "withinP1546DistanceDomain": false,
+      "fieldStrengthDbUvPerM": null,
+      "coordinationMarginDb": null,
+      "status": "Outside 1\u20131000 km P.1546 distance domain; do not extrapolate",
+      "sensitivityScenarios": []
+    },
+    {
+      "station": "987279",
+      "source": {
+        "file": "Traficom_SinceAI_Frequencies_of_interest_v05112026.xlsx",
+        "sheet": "Frequencies of interest",
+        "row": 880
+      },
+      "receiverRaw": {
+        "Station number": 987279,
+        "Class of licence": "MVV",
+        "Longitude": "24.2463",
+        "Latitude": "61.2965",
+        "Ground height (m)": 67,
+        "Mast height (m)": 83,
+        "Mast type": "KIINTE\u00c4",
+        "Channel bandwidth": "5 MHz",
+        "TX frequency": "844.2 MHz",
+        "RX frequency": "803.2 MHz",
+        "Ant height AGL (m)": 11,
+        "Ant height ASL (m)": 78,
+        "Ant gain (dB)": 71,
+        "Class of transmission": "W7W",
+        "Transmission bandwidth": "5M",
+        "Radiation direction (\u00b0)": 338,
+        "Polarisation": "V",
+        "Radioation power": 176,
+        "Radioation power (ITU)": "E",
+        "Radiation power unit": "W",
+        "Transmission line (dB)": null,
+        "Directivity": "D"
+      },
+      "distanceKm": 849.107291232765,
+      "initialBearingDeg": 11.976216869228287,
+      "geometryMethod": "Spherical great circle, mean Earth radius 6371.0088 km; not a terrain profile",
+      "withinP1546DistanceDomain": true,
+      "fieldStrengthDbUvPerM": null,
+      "coordinationMarginDb": null,
+      "status": "Conditional sensitivity calculated; actual path and criterion comparison unresolved",
+      "sensitivityScenarios": [
+        {
+          "pathZone": "Land",
+          "receiverEnvironment": "Rural",
+          "receiverClutterHeightM": 10,
+          "terrainProfileAvailable": false,
+          "fieldStrengthDbUvPerMTotalChannelConditional": -57.407288886711,
+          "basicTransmissionLossDb": 257.107006508699,
+          "coordinationMarginDb": null,
+          "scope": "Homogeneous-path sensitivity only; actual land/sea fractions and directional ERP unknown"
+        },
+        {
+          "pathZone": "Cold",
+          "receiverEnvironment": "Rural",
+          "receiverClutterHeightM": 10,
+          "terrainProfileAvailable": false,
+          "fieldStrengthDbUvPerMTotalChannelConditional": -35.658872975466,
+          "basicTransmissionLossDb": 235.358590597453,
+          "coordinationMarginDb": null,
+          "scope": "Homogeneous-path sensitivity only; actual land/sea fractions and directional ERP unknown"
+        }
+      ],
+      "executionWarnings": ""
+    }
+  ],
+  "assumptions": [
+    "Reported point coordinates used as decimal degrees; datum unverified.",
+    "Maximum effective height and total ERP are conditional sensitivity inputs, not validated worst-case bounds.",
+    "All-land / all-sea scenarios, if evaluated, are sensitivity cases; actual mixed-path geometry is unknown.",
+    "Receiver height 10 m follows coordination criterion, not each Excel antenna height.",
+    "No channel spacing or uniform spectrum inferred from necessary bandwidth 5M00."
+  ],
+  "blockers": [
+    "Verify software reference tests and licensing before reproducible delivery.",
+    "Verify ITU ERP and effective-height field semantics.",
+    "Determine terrain, sea/land path sections, climate and correction inputs.",
+    "Confirm co-channel applicability and power in each 25 kHz window before comparing with 20 dB\u00b5V/m.",
+    "M4 allocation mapping and Finland border/territorial-sea maxima remain unimplemented."
+  ],
+  "inputSha256": {
+    "terrestrial3076-screening-summary.json": "9ceb1005149efee281c4a3e429654dd5701f0d5b842b917ccc2754e1041a644f",
+    "finland-normalized.json": "ad4de8aff672d244b14e83856874c144d853fecdd6d49a2873debdff9174d4c5"
+  },
+  "model": {
+    "repository": "https://github.com/eeveetza/p1546",
+    "expectedCommit": "0e4263999ce055100f42257c2aafbac96ac630af",
+    "entryPointSha256": "a327182423a061571345db976e841488de77dfd1ee91826c855e2b908a18da3b",
+    "credit": "Jef Statham; Ivica Stevanovic. External implementation, custom license; not vendored.",
+    "limitations": [
+      "Annex 7 climatic adjustments not implemented",
+      "Annex 5 section 4.3(a) C_h1 not implemented",
+      "Some input-domain checks are disabled in the external software"
+    ]
+  },
+  "preparationSha256": "2e49595496ea818ba2cd9abed473b8104daffad26ae2788e1aa8199d601b652a"
+}
