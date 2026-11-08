@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { Download, ChevronLeft, ChevronRight } from "lucide-react";
+import { Download, ChevronLeft, ChevronRight, RotateCcw } from "lucide-react";
 import { Button } from "./ui/button";
+import { Checkbox } from "./ui/checkbox";
 import { Input } from "./ui/input";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "./ui/select";
 import { TerrestrialDetail } from "./terrestrial-detail";
@@ -9,35 +10,37 @@ import { useTerrestrialInbox } from "@/hooks/use-terrestrial-inbox";
 import { terrestrialCloud } from "@/lib/terrestrial-cloud.functions";
 import { guestPublicationToken } from "@/lib/publication-access";
 import { terrestrialUploadRows, terrestrialInboxEvent } from "@/lib/terrestrial-upload";
-import {
-  matchesTerrestrialSearch,
-  siteName,
-  intervalLabel,
-  terrestrialTier,
-} from "@/lib/terrestrial-review";
+import { siteName, intervalLabel, terrestrialTier } from "@/lib/terrestrial-review";
 import { isUnreadFiling } from "@/lib/detail-review";
 import { downloadText } from "@/lib/review";
+import {
+  defaultUploadFilters,
+  filterUploadedTerrestrial,
+  selectedTerrestrialEvidence,
+  type UploadFilters,
+} from "@/lib/terrestrial-upload-workspace";
 
 export function TerrestrialUploadQueue() {
   const { entries, setEntries, error: loadError } = useTerrestrialInbox();
   const cloud = useServerFn(terrestrialCloud);
-  const [query, setQuery] = useState(""),
-    [page, setPage] = useState(0),
-    [issue, setIssue] = useState("all"),
-    [workflow, setWorkflow] = useState("all");
+  const [filters, setFilters] = useState({ ...defaultUploadFilters });
+  const [page, setPage] = useState(0);
+  const [checked, setChecked] = useState<string[]>([]);
+  function filter(key: keyof UploadFilters, value: string) {
+    setFilters((f) => ({ ...f, [key]: value }));
+    setPage(0);
+  }
   const [selected, setSelected] = useState<string>(),
     [error, setError] = useState(""),
     [busy, setBusy] = useState(false);
   const rows = useMemo(() => terrestrialUploadRows(entries), [entries]);
-  const filtered = rows.filter(
-    (r) =>
-      (issue === "all" || String(r.entry.artifact.issue) === issue) &&
-      (workflow === "all" || r.review?.state === workflow) &&
-      matchesTerrestrialSearch(r.row, query),
-  );
+  const filtered = filterUploadedTerrestrial(rows, filters);
   const pages = Math.max(1, Math.ceil(filtered.length / 25)),
     current = Math.min(page, pages - 1);
   const active = rows.find((r) => r.review?.id === selected);
+  const visible = filtered.slice(current * 25, current * 25 + 25);
+  const visibleIds = visible.flatMap((r) => (r.review ? [r.review.id] : []));
+  const exportRows = selectedTerrestrialEvidence(rows, checked);
   async function review(
     id: string,
     state: "unreviewed" | "in-review" | "completed",
@@ -72,24 +75,49 @@ export function TerrestrialUploadQueue() {
         synthetic · {rows.filter((r) => r.review?.state === "completed").length} reviewed. Separate
         from the real IFIC 3076 benchmark.
       </p>
+      <div
+        className="mt-5 grid grid-cols-2 gap-4 border-y border-border py-4 md:grid-cols-4"
+        aria-label="Uploaded terrestrial workload"
+      >
+        {[
+          [
+            "unread",
+            "Unread",
+            rows.filter((r) => isUnreadFiling(r.review?.state ?? "unreviewed", r.review?.viewedAt))
+              .length,
+          ],
+          [
+            "outstanding",
+            "Outstanding",
+            rows.filter((r) => r.review?.state !== "completed").length,
+          ],
+          ["in-review", "In review", rows.filter((r) => r.review?.state === "in-review").length],
+          ["completed", "Reviewed", rows.filter((r) => r.review?.state === "completed").length],
+        ].map(([value, label, count]) => (
+          <Button
+            key={value}
+            variant="ghost"
+            aria-pressed={filters.workflow === value}
+            className="h-auto flex-col items-start whitespace-normal text-left"
+            onClick={() => {
+              setFilters({ ...defaultUploadFilters, workflow: String(value) });
+              setPage(0);
+            }}
+          >
+            <span className="text-sm text-muted-foreground">{label}</span>
+            <span className="text-2xl font-semibold">{count}</span>
+          </Button>
+        ))}
+      </div>
       <div className="my-5 flex flex-wrap gap-3">
         <Input
           className="max-w-xs"
           aria-label="Search uploaded terrestrial notices"
           placeholder="Site, notice, administration or MHz"
-          value={query}
-          onChange={(e) => {
-            setQuery(e.target.value);
-            setPage(0);
-          }}
+          value={filters.query}
+          onChange={(e) => filter("query", e.target.value)}
         />
-        <Select
-          value={issue}
-          onValueChange={(v) => {
-            setIssue(v);
-            setPage(0);
-          }}
-        >
+        <Select value={filters.issue} onValueChange={(v) => filter("issue", v)}>
           <SelectTrigger aria-label="Uploaded terrestrial publication" className="w-56">
             <SelectValue />
           </SelectTrigger>
@@ -104,48 +132,79 @@ export function TerrestrialUploadQueue() {
               ))}
           </SelectContent>
         </Select>
-        <Select
-          value={workflow}
-          onValueChange={(v) => {
-            setWorkflow(v);
-            setPage(0);
-          }}
-        >
+        <Select value={filters.workflow} onValueChange={(v) => filter("workflow", v)}>
           <SelectTrigger aria-label="Uploaded terrestrial workflow" className="w-44">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            {["all", "unreviewed", "in-review", "completed"].map((v) => (
+            {["all", "unread", "outstanding", "unreviewed", "in-review", "completed"].map((v) => (
               <SelectItem key={v} value={v}>
                 {v}
               </SelectItem>
             ))}
           </SelectContent>
         </Select>
+        {(
+          [
+            [
+              "administration",
+              "Administration",
+              [...new Set(rows.map((r) => r.row.notice.raw.adm))].sort(),
+            ],
+            ["relevance", "Finnish intervals", ["overlap", "no-overlap"]],
+            ["tier", "Team priority", ["high", "medium", "low", "unclassified"]],
+            ["comparison", "Comparison", ["new", "changed", "unchanged", "ambiguous"]],
+            [
+              "action",
+              "Reported action",
+              [...new Set(rows.map((r) => r.row.notice.raw.intent).filter(Boolean))].sort(),
+            ],
+            ["source", "Source", ["supplied", "synthetic"]],
+          ] as [keyof UploadFilters, string, string[]][]
+        ).map(([key, label, options]) => (
+          <Select key={key} value={filters[key]} onValueChange={(v) => filter(key, v)}>
+            <SelectTrigger aria-label={`Uploaded terrestrial ${label}`} className="w-44">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">{label} · all</SelectItem>
+              {options.map((v) => (
+                <SelectItem key={v} value={v}>
+                  {v}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        ))}
+        <Button
+          variant="ghost"
+          onClick={() => {
+            setFilters({ ...defaultUploadFilters });
+            setPage(0);
+          }}
+        >
+          <RotateCcw />
+          Reset filters
+        </Button>
         <Button
           variant="outline"
+          disabled={!exportRows.length}
           onClick={() =>
             downloadText(
-              JSON.stringify(
-                filtered.map((r) => ({
-                  issue: r.entry.artifact.issue,
-                  sha256: r.entry.sha256,
-                  synthetic: r.entry.artifact.synthetic,
-                  record: r.row,
-                  changes: r.review?.changes,
-                })),
-                null,
-                2,
-              ),
+              JSON.stringify(exportRows, null, 2),
               "terrestrial-selected-evidence.json",
               "application/json",
             )
           }
         >
           <Download />
-          Export selected evidence
+          Export selected evidence · {exportRows.length}
         </Button>
       </div>
+      <p className="mb-3 text-xs text-muted-foreground">
+        {filtered.length} matching notices · {exportRows.length} selected · team priority is not an
+        interference verdict.
+      </p>
       <details className="my-4 border-y border-border py-3">
         <summary className="cursor-pointer text-sm">Upload coverage by administration</summary>
         <p className="mt-3 text-xs text-muted-foreground">
@@ -170,8 +229,23 @@ export function TerrestrialUploadQueue() {
         <table className="w-full min-w-[620px] text-center text-sm">
           <thead className="border-y border-border text-muted-foreground">
             <tr>
+              <th className="px-3">
+                <Checkbox
+                  aria-label="Select current terrestrial page"
+                  checked={visibleIds.length > 0 && visibleIds.every((id) => checked.includes(id))}
+                  disabled={!visibleIds.length}
+                  onCheckedChange={(value) =>
+                    setChecked((ids) =>
+                      value === true
+                        ? [...new Set([...ids, ...visibleIds])]
+                        : ids.filter((id) => !visibleIds.includes(id)),
+                    )
+                  }
+                />
+              </th>
               <th className="py-3">Notice / IFIC</th>
               <th>Adm.</th>
+              <th>Reported action</th>
               <th>Frequency · MHz</th>
               <th>Review priority</th>
               <th>Stored evidence</th>
@@ -179,11 +253,26 @@ export function TerrestrialUploadQueue() {
             </tr>
           </thead>
           <tbody>
-            {filtered.slice(current * 25, current * 25 + 25).map(({ entry, row, review: r }) => (
+            {visible.map(({ entry, row, review: r }) => (
               <tr
                 key={r?.id ?? `${entry.id}:${row.notice.raw.terrakey}`}
                 className="border-b border-border"
               >
+                <td className="px-3">
+                  <Checkbox
+                    aria-label={`Select notice ${row.notice.raw.terrakey} IFIC ${entry.artifact.issue}`}
+                    checked={!!r && checked.includes(r.id)}
+                    disabled={!r}
+                    onCheckedChange={(value) => {
+                      if (r)
+                        setChecked((ids) =>
+                          value === true
+                            ? [...new Set([...ids, r.id])]
+                            : ids.filter((id) => id !== r.id),
+                        );
+                    }}
+                  />
+                </td>
                 <td className="max-w-56 py-4">
                   <Button
                     variant="link"
@@ -205,6 +294,7 @@ export function TerrestrialUploadQueue() {
                   )}
                 </td>
                 <td>{row.notice.raw.adm}</td>
+                <td>{row.notice.raw.intent || "Not reported"}</td>
                 <td>{intervalLabel(row)}</td>
                 <td>{terrestrialTier(row.notice.raw.adm).tier} · team triage</td>
                 <td className="max-w-48">
@@ -253,6 +343,8 @@ export function TerrestrialUploadQueue() {
           row={active.row}
           issue={active.entry.artifact.issue}
           synthetic={active.entry.artifact.synthetic}
+          persistence="cloud"
+          busy={busy}
           changes={active.review.changes}
           state={active.review.state}
           onState={(state) => {

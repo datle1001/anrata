@@ -3,3 +3,4 @@
 - Stored comparisons follow upload sequence, not IFIC number, and expose reverse-chronology context to avoid implying official modifications.
 - Publication deletion removes only its original, index and read/review state; cascade terrestrial states and reset browser Space states after Cloud acknowledges success.
 - Terrestrial RPC returns JSON text, parsed at the client boundary, to preserve arbitrary nested evidence without unknown runtime objects.
+- Uploaded Terrestrial workspace filters and selections never alter evidence; selected exports retain supplied records and stored comparison artifacts unchanged.

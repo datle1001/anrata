@@ -17,6 +17,7 @@ This is a working partial-scope demonstrator, not a guaranteed 100-point submiss
 4. Reverse IFIC upload order is explicit. Differences follow upload sequence, not a claim that an earlier publication modified a later one.
 5. Review or export selected evidence and edit a Word draft. Nothing sends itself or changes technical findings.
 6. Delete the selected inbox file to remove original/index/comparisons and associated state. Re-upload starts NEW; unrelated files remain.
+7. Uploaded Terrestrial notices can be filtered by issue, administration, raw action, team priority, interval matches, comparison, source and review state. Select individual records or a page to export only chosen evidence; stored comparison JSON is preserved unchanged. Review actions remain available without expanding repeated-notice evidence.
 
 ## Current limits
 - Space demo JSON and versioned terrestrial offline review JSON only; raw MDB preparation remains CLI/offline.

@@ -1,5 +1,9 @@
 # Traficom submission roadmap
 
+## Terrestrial workflow parity follow-through
+- [x] Complete uploaded-notice filters, live workload shortcuts, explicit record selection/export, raw action visibility and standard Review Trigger; keep review actions reachable in Changes mode.
+- [x] All 107 automated tests pass; changed-file lint and preview build OK. Real IFIC 3076 detail, review/reopen and 502px mobile layout verified without browser errors or page overflow. User-provided upload tests deferred as requested; account ownership and actual-path predictions retain the documented external-input blockers.
+
 ## Unified upload lifecycle and terrestrial extension
 - [x] Delete publication-specific Cloud/browser review and read state; re-upload starts NEW. Compare newly uploaded Space evidence against prior uploads, explicitly separate publication chronology.
 - [x] Add separate Space/Terrestrial inboxes with immediate owner-scoped Cloud originals and terrestrial record indexes, stored recursive Changes, scan/transfer and original export.

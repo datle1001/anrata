@@ -93,7 +93,10 @@ export function terrestrialUploadRows(entries: TerrestrialUploadEntry[]) {
   const rank = { high: 0, medium: 1, low: 2, unclassified: 3 };
   return [...entries]
     .filter((e) => e.transferred)
-    .sort((a, b) => Date.parse(b.uploadedAt) - Date.parse(a.uploadedAt))
+    .sort(
+      (a, b) =>
+        Date.parse(b.uploadedAt) - Date.parse(a.uploadedAt) || b.artifact.issue - a.artifact.issue,
+    )
     .flatMap((entry) =>
       [...entry.artifact.records]
         .sort(

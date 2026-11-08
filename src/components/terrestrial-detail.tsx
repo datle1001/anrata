@@ -36,6 +36,8 @@ export function TerrestrialDetail({
   issue = 3076,
   synthetic = false,
   changes,
+  persistence = "browser",
+  busy = false,
 }: {
   row: TerrestrialRow;
   state: ReviewState;
@@ -45,6 +47,8 @@ export function TerrestrialDetail({
   issue?: number;
   synthetic?: boolean;
   changes?: FilingChanges | undefined;
+  persistence?: "browser" | "cloud";
+  busy?: boolean;
 }) {
   const [letterOpen, setLetterOpen] = useState(false);
   const [draft, setDraft] = useState(() => terrestrialLetter(row, new Date(), issue, synthetic));
@@ -55,6 +59,7 @@ export function TerrestrialDetail({
   const example =
     issue === 3076 && !synthetic && raw.terrakey === preparation.noticeEvidence.raw.terrakey;
   const repeated = hasEarlierFilingMatch(changes, issue);
+  const ambiguous = changes?.status === "ambiguous";
   async function exportWord() {
     setExporting(true);
     setError("");
@@ -92,6 +97,56 @@ export function TerrestrialDetail({
               currentFilingId={raw.terrakey}
             />
           )}
+          {!repeated && (
+            <section
+              className="border-l-2 border-secondary pl-4"
+              aria-label="Terrestrial review trigger"
+            >
+              <h3 className="text-xs font-semibold text-secondary">REVIEW TRIGGER</h3>
+              <p className="mt-2 text-sm">
+                {hasOverlap(row)
+                  ? `${row.matchedFinnishRows.length} supplied Finnish reception interval matches require expert review.`
+                  : "No supplied Finnish interval match; national, adjacent-band and geographic relevance remains unresolved."}
+              </p>
+              <p className="mt-2 text-xs text-muted-foreground">
+                Reported action: {raw.intent || "Not reported"}. Frequency overlap and notification
+                actions are not interference or clearance findings.
+              </p>
+              {ambiguous && (
+                <p className="mt-2 text-sm text-chart-1">
+                  Earlier identity match is ambiguous; no single baseline comparison is asserted.
+                </p>
+              )}
+            </section>
+          )}
+          <div className="flex flex-wrap items-center gap-2 border-y border-border py-3">
+            <span className="mr-auto text-sm text-muted-foreground">
+              {state === "completed"
+                ? "Reviewed"
+                : state === "in-review"
+                  ? "In review"
+                  : "Unreviewed"}
+            </span>
+            <Button
+              variant="outline"
+              disabled={busy}
+              onClick={() => onState(state === "in-review" ? "unreviewed" : "in-review")}
+            >
+              {state === "in-review" ? "Return to unreviewed" : "Start review"}
+            </Button>
+            <Button
+              disabled={busy}
+              onClick={() => onState(state === "completed" ? "unreviewed" : "completed")}
+            >
+              {state === "completed" ? "Reopen review" : "Mark as Reviewed"}
+            </Button>
+          </div>
+          <p className="text-xs text-muted-foreground">
+            Review state saved{" "}
+            {persistence === "cloud" ? "in Cloud for this workspace" : "in this browser"}
+            {updatedAt ? ` · ${new Date(updatedAt).toLocaleString()}` : ""}; not a technical
+            verdict.
+          </p>
           <details open={!repeated} className="min-w-0 space-y-4">
             {repeated && (
               <summary className="cursor-pointer text-sm font-semibold">
@@ -115,26 +170,7 @@ export function TerrestrialDetail({
                   ? "Excel overlap · review required"
                   : "No Excel overlap · relevance unresolved"}
               </span>
-              <Button
-                variant="outline"
-                onClick={() => onState(state === "in-review" ? "unreviewed" : "in-review")}
-              >
-                {state === "in-review" ? "Return to unreviewed" : "Start review"}
-              </Button>
-              <Button onClick={() => onState(state === "completed" ? "unreviewed" : "completed")}>
-                {state === "completed" ? "Reopen review" : "Mark as Reviewed"}
-              </Button>
             </div>
-            <p className="text-xs text-muted-foreground">
-              Workflow:{" "}
-              {state === "completed"
-                ? "Reviewed"
-                : state === "in-review"
-                  ? "In review"
-                  : "Unreviewed"}
-              {updatedAt ? ` · ${new Date(updatedAt).toLocaleString()}` : ""} · saved in this
-              browser; not a technical verdict.
-            </p>
             <dl className="grid grid-cols-2 gap-4 border-b border-border pb-5 sm:grid-cols-4">
               {[
                 ["Frequency interval", intervalLabel(row)],
