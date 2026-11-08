@@ -75,6 +75,7 @@ function PublicationPortal() {
           uploadedAt: new Date().toISOString(),
           transferred: false,
         };
+      // Validate duplicates without showing a local-only upload as successfully saved.
       addPublication(readInbox(localStorage), entry);
       writeInbox(await cloud({ data: { action: "save", token: guestPublicationToken(), entry } }));
     } catch (e) {

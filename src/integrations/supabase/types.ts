@@ -104,9 +104,81 @@ export type Database = {
         }
         Relationships: []
       }
+      uploaded_filings: {
+        Row: {
+          administration: string
+          affected_stations: Json
+          evidence: Json
+          filing_id: string
+          freq_lower_mhz: number
+          freq_upper_mhz: number
+          id: string
+          issue: number
+          network_name: string
+          owner_scope: string
+          pfd_screening: Json | null
+          pfd_status: string
+          publication_id: string
+          raw: Json
+          review_trigger: string
+          updated_at: string
+          user_id: string | null
+          worst_margin_db: number | null
+        }
+        Insert: {
+          administration: string
+          affected_stations?: Json
+          evidence?: Json
+          filing_id: string
+          freq_lower_mhz: number
+          freq_upper_mhz: number
+          id?: string
+          issue: number
+          network_name: string
+          owner_scope: string
+          pfd_screening?: Json | null
+          pfd_status?: string
+          publication_id: string
+          raw: Json
+          review_trigger: string
+          updated_at?: string
+          user_id?: string | null
+          worst_margin_db?: number | null
+        }
+        Update: {
+          administration?: string
+          affected_stations?: Json
+          evidence?: Json
+          filing_id?: string
+          freq_lower_mhz?: number
+          freq_upper_mhz?: number
+          id?: string
+          issue?: number
+          network_name?: string
+          owner_scope?: string
+          pfd_screening?: Json | null
+          pfd_status?: string
+          publication_id?: string
+          raw?: Json
+          review_trigger?: string
+          updated_at?: string
+          user_id?: string | null
+          worst_margin_db?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "uploaded_filings_publication_id_fkey"
+            columns: ["publication_id"]
+            isOneToOne: false
+            referencedRelation: "uploaded_publications"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       uploaded_publications: {
         Row: {
           filename: string
+          filing_evidence: Json
           id: string
           issue: number
           owner_scope: string
@@ -120,6 +192,7 @@ export type Database = {
         }
         Insert: {
           filename: string
+          filing_evidence?: Json
           id?: string
           issue: number
           owner_scope: string
@@ -133,6 +206,7 @@ export type Database = {
         }
         Update: {
           filename?: string
+          filing_evidence?: Json
           id?: string
           issue?: number
           owner_scope?: string

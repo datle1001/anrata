@@ -1,9 +1,10 @@
 # Traficom submission roadmap
 
 ## Cloud upload evidence and alignment
-- [ ] Persist accepted uploads and original bytes immediately with isolated guest/account access, including existing browser uploads and deletion/transfer changes.
-- [ ] Give Oma fresh uploaded-publication inventory and paginated trigger/PFD/affected-frequency evidence for comparisons without recomputation.
-- [ ] Center filing metadata and table values; verify upload → Cloud → Oma comparison → refresh and deletion.
+- [x] Normalize accepted JSON publication filings in Cloud atomically, preserve original content and stored PFD, and enable scoped Oma queries across issues, administration, frequencies and PFD categories.
+- [x] Verify guest upload → two Cloud filing rows before transfer → Oma returns exact stored 4.25 dB → refresh → deletion; all 81 tests pass and preview build OK. Test uploads deleted. Supported imports remain validated synthetic Space JSON, not arbitrary official ITU MDB/PDF.
+- [ ] Verify authenticated ownership end-to-end: blocked because the remixed project has no auth users; sign in/create an account before testing. Guest storage and retrieval verified separately.
+- [ ] Center filing metadata and table values: deferred from earlier request; latest request only covers immediate Cloud upload and Oma access.
 
 ## Neutral identity and read-state update
 - [x] Create a distinctive transparent Antara logo and favicon; align Oma logo with MA.
